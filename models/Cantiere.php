@@ -1,21 +1,23 @@
 <?php
 
+use Cassandra\Date;
+
 class Cantiere
 {
     private int $idCantiere;
     private string $nome;
     private Localita $localita;
-    private \Cassandra\Date $dataInizio;
-    private \Cassandra\Date $dataFine;
+    private date $dataInizio;
+    private date $dataFine;
 
     /**
      * @param int $idCantiere
      * @param string $nome
      * @param Localita $localita
-     * @param \Cassandra\Date $dataInizio
-     * @param \Cassandra\Date $dataFine
+     * @param date $dataInizio
+     * @param date $dataFine
      */
-    public function __construct(int $idCantiere, string $nome, Localita $localita, \Cassandra\Date $dataInizio, \Cassandra\Date $dataFine)
+    public function __construct(int $idCantiere, string $nome, Localita $localita, Date $dataInizio, Date $dataFine)
     {
         $this->idCantiere = $idCantiere;
         $this->nome = $nome;
@@ -73,33 +75,33 @@ class Cantiere
     }
 
     /**
-     * @return \Cassandra\Date
+     * @return Date
      */
-    public function getDataInizio(): \Cassandra\Date
+    public function getDataInizio(): Date
     {
         return $this->dataInizio;
     }
 
     /**
-     * @param \Cassandra\Date $dataInizio
+     * @param Date $dataInizio
      */
-    public function setDataInizio(\Cassandra\Date $dataInizio): void
+    public function setDataInizio(Date $dataInizio): void
     {
         $this->dataInizio = $dataInizio;
     }
 
     /**
-     * @return \Cassandra\Date
+     * @return Date
      */
-    public function getDataFine(): \Cassandra\Date
+    public function getDataFine(): Date
     {
         return $this->dataFine;
     }
 
     /**
-     * @param \Cassandra\Date $dataFine
+     * @param Date $dataFine
      */
-    public function setDataFine(\Cassandra\Date $dataFine): void
+    public function setDataFine(Date $dataFine): void
     {
         $this->dataFine = $dataFine;
     }
