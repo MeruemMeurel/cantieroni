@@ -15,7 +15,7 @@
     $(function () {
         $("#header").load("header.php");
         $("#footer").load("footer.php");
-        $("#calendario").load("calendario.php");
+        $("#listapresenze").load("listapresenze.php");
     });
 </script>
 
@@ -33,12 +33,12 @@
             <div class="">
                     <!-- Sezione di sinistra  alto-->
                     <!-- calendario -->
-                    <div id="calendario"></div>
+                    <img src="../img/logo login.png" />
             </div>
             <div class="">
                     <!-- Sezione di sinistra  basso-->
                     <!-- lista presenze -->
-                    <img src="../img/logo login.png" />
+                    <div id="listapresenze"></div>
             </div>
 
         </div>
@@ -56,6 +56,7 @@
 
     <!-- importo footer -->
     <div id="footer"></div>
-
+    <script src="../cdn/js/script.js">
+    </script>
 </body>
 </html>
