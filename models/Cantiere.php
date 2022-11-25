@@ -4,27 +4,53 @@ use Cassandra\Date;
 
 class Cantiere
 {
+    private $conn;
+
     private int $idCantiere;
     private string $nome;
     private Localita $localita;
     private date $dataInizio;
     private date $dataFine;
 
-    /**
-     * @param int $idCantiere
-     * @param string $nome
-     * @param Localita $localita
-     * @param date $dataInizio
-     * @param date $dataFine
-     */
-    public function __construct(int $idCantiere, string $nome, Localita $localita, Date $dataInizio, Date $dataFine)
-    {
-        $this->idCantiere = $idCantiere;
-        $this->nome = $nome;
-        $this->localita = $localita;
-        $this->dataInizio = $dataInizio;
-        $this->dataFine = $dataFine;
+//    /**
+//     * @param int $idCantiere
+//     * @param string $nome
+//     * @param Localita $localita
+//     * @param date $dataInizio
+//     * @param date $dataFine
+//     */
+//    public function __construct(int $idCantiere, string $nome, Localita $localita, Date $dataInizio, Date $dataFine)
+//    {
+//        $this->idCantiere = $idCantiere;
+//        $this->nome = $nome;
+//        $this->localita = $localita;
+//        $this->dataInizio = $dataInizio;
+//        $this->dataFine = $dataFine;
+//    }
+
+    public function __construct($db){
+        $this->conn = $db;
     }
+
+
+    public function read(){
+        $query="SELECT * FROM dbo.Cantiere";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+
+
+
+
+
+
+
+
 
     /**
      * @return int

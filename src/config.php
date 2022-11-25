@@ -1,6 +1,6 @@
 <?php
     define("DB_HOST","localhost");
-    define("DB_USERNAME","demo");
-    define("DB_PASSWORD","demo");
-    define("DB_DATABASE_NAME","rest_api_demo");
+    define("DB_USERNAME","MANUEL MAURO");
+    define("DB_PASSWORD","");
+    define("DB_DATABASE_NAME","Cantieroni");
 ?>
