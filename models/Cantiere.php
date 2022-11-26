@@ -32,7 +32,10 @@ class Cantiere
         $this->conn = $db;
     }
 
-
+    /**
+     * Lancia una query al DB e restituisce tutti i record della tabella Cantiere
+     * @return mixed
+     */
     public function read(){
         $query="SELECT * FROM dbo.Cantiere";
 
