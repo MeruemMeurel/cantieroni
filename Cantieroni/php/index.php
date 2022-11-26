@@ -16,6 +16,7 @@
         $("#header").load("header.php");
         $("#footer").load("footer.php");
         $("#listapresenze").load("listapresenze.php");
+        $("#calendario").load("calendario.php");
     });
 </script>
 
@@ -33,7 +34,7 @@
             <div class="">
                     <!-- Sezione di sinistra  alto-->
                     <!-- calendario -->
-                    <img src="../img/logo login.png" />
+                <div id="calendario"></div>
             </div>
             <div class="">
                     <!-- Sezione di sinistra  basso-->
