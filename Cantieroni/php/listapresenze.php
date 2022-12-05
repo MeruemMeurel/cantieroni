@@ -7,17 +7,17 @@
     <link rel="stylesheet" href="../css/listapresenze.css">
 </head>
 <body>
-    <div>
-        <table cellpadding="0" cellspacing="0">
+    <div class="table-responsive" style="overflow-x: hidden;">
+        <table class="table table-bordered">
             <tr>
-                <th id="chi">Chi</th>
-                <th id="orario">Orario</th>
+                <th>Chi</th>
+                <th>Orario</th>
             </tr>
             <?php
-                for($i=0; $i<10; $i++){
+                for($i=0; $i<15; $i++){
                     ?>
                     <tr>
-                        <td class="utenti">
+                        <td>
                             <?php
                                 if(rand(1, 2) == 1){
                                     ?>
