@@ -3,8 +3,9 @@
     header('Access-Controll-Allow-Origin: *');
     header('Content-Type: application:json');
 
-    include_once '../../../Database/Database.php';
-    include_once '../../../Models/Cantiere.php';
+    include_once '../../Database/Database.php';
+    include_once '../../Models/Cantiere.php';
+
 
     //Istanzio il DB
     $database= new Database();
@@ -28,11 +29,15 @@
             extract($row);
 
             $cantiere_item = array(
-                'idCantiere' => $idCantiere,
+                'id' => $id,
                 'nome' => $nome,
-                'localita' => $localita,
-                'dataInizio' => $dataInizio,
-                'dataFine' => $dataFine
+                'indirizzo' => $indirizzo,
+                'citta' => $citta,
+                'provincia' => $provincia,
+                'descrizione' => $descrizione
+//                'localita' => $localita,
+//                'dataInizio' => $dataInizio,
+//                'dataFine' => $dataFine
             );
 
             array_push($cantiere_arr['data'],$cantiere_item);

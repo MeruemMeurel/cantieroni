@@ -6,11 +6,15 @@ class Cantiere
 {
     private $conn;
 
-    private int $idCantiere;
+    private int $id;
     private string $nome;
-    private Localita $localita;
-    private date $dataInizio;
-    private date $dataFine;
+    private string $indirizzo;
+    private string $citta;
+    private string $provincia;
+
+    private string $descrizione;
+    //    private date $dataInizio;
+//    private date $dataFine;
 
 //    /**
 //     * @param int $idCantiere
@@ -37,7 +41,7 @@ class Cantiere
      * @return mixed
      */
     public function read(){
-        $query="SELECT * FROM dbo.Cantiere";
+        $query="SELECT * FROM Cantiere";
 
         $stmt = $this->conn->prepare($query);
 
