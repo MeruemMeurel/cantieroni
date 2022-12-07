@@ -9,22 +9,18 @@ class Ruolo
     private bool $gestione_cantiere;
 
     /**
-     * @param int $idRuolo
-     * @param bool $admin
-     * @param bool $gestioneCantiere
+     * Istanzia un'oggetto RuoloDB, passando per parametro un PDO della connessione col Database
+     * @param $db
      */
-//    public function __construct(int $idRuolo, bool $admin, bool $gestioneCantiere)
-//    {
-//        $this->idRuolo = $idRuolo;
-//        $this->admin = $admin;
-//        $this->gestioneCantiere = $gestioneCantiere;
-//    }
-
     public function __construct($db){
         $this->conn = $db;
     }
 
 
+    /**
+     * Lancia una query al DB e restituisce tutti i record della tabella Ruolo
+     * @return mixed
+     */
     public function read(){
         $query="SELECT * FROM ruolo";
 

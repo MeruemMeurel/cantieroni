@@ -1,6 +1,9 @@
 <?php
-class Cantiere
+
+class CantiereDB
 {
+    private $conn;
+
     private int $id;
     private string $nome;
     private string $indirizzo;
@@ -11,25 +14,57 @@ class Cantiere
     private string $descrizione;
 
     /**
-     * @param int $id
-     * @param string $nome
-     * @param string $indirizzo
-     * @param string $citta
-     * @param string $provincia
-     * @param date $data_inizio
-     * @param date $data_fine
-     * @param string $descrizione
+     * Istanzia un'oggetto CantiereDB, passando per parametro un PDO della connessione col Database
+     * @param $db
      */
-    public function __construct(int $id, string $nome, string $indirizzo, string $citta, string $provincia, date $data_inizio, date $data_fine, string $descrizione)
+    public function __construct($db){
+        $this->conn = $db;
+    }
+
+    /**
+     * Lancia una query al DB e restituisce tutti i record della tabella Cantiere
+     * @return mixed
+     */
+    public function read(){
+        $query="SELECT * FROM cantiere";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    /**
+     * NON IMPLEMENTATA
+     * Restituisce un cantiere dato il suo id
+     * @param int $id
+     * @return mixed
+     */
+    public function find_by_id(int $id){
+        $query="SELECT * FROM cantiere WHERE id = $id";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getConn()
     {
-        $this->id = $id;
-        $this->nome = $nome;
-        $this->indirizzo = $indirizzo;
-        $this->citta = $citta;
-        $this->provincia = $provincia;
-        $this->data_inizio = $data_inizio;
-        $this->data_fine = $data_fine;
-        $this->descrizione = $descrizione;
+        return $this->conn;
+    }
+
+    /**
+     * @param mixed $conn
+     */
+    public function setConn($conn): void
+    {
+        $this->conn = $conn;
     }
 
     /**
@@ -113,33 +148,33 @@ class Cantiere
     }
 
     /**
-     * @return date
+     * @return Date
      */
-    public function getDataInizio(): date
+    public function getDataInizio(): Date
     {
         return $this->data_inizio;
     }
 
     /**
-     * @param date $data_inizio
+     * @param Date $data_inizio
      */
-    public function setDataInizio(date $data_inizio): void
+    public function setDataInizio(Date $data_inizio): void
     {
         $this->data_inizio = $data_inizio;
     }
 
     /**
-     * @return date
+     * @return Date
      */
-    public function getDataFine(): date
+    public function getDataFine(): Date
     {
         return $this->data_fine;
     }
 
     /**
-     * @param date $data_fine
+     * @param Date $data_fine
      */
-    public function setDataFine(date $data_fine): void
+    public function setDataFine(Date $data_fine): void
     {
         $this->data_fine = $data_fine;
     }
