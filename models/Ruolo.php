@@ -13,15 +13,11 @@ class Ruolo
      * @param bool $admin
      * @param bool $gestioneCantiere
      */
-//    public function __construct(int $idRuolo, bool $admin, bool $gestioneCantiere)
-//    {
-//        $this->idRuolo = $idRuolo;
-//        $this->admin = $admin;
-//        $this->gestioneCantiere = $gestioneCantiere;
-//    }
-
-    public function __construct($db){
-        $this->conn = $db;
+    public function __construct(int $idRuolo, bool $admin, bool $gestioneCantiere)
+    {
+        $this->idRuolo = $idRuolo;
+        $this->admin = $admin;
+        $this->gestioneCantiere = $gestioneCantiere;
     }
 
 

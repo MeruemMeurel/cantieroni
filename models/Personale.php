@@ -9,7 +9,7 @@ class Personale
     private string $posizione;
     private int $idPersonale;
     private Ruolo $ruolo;
-    private Azienda $azienda;
+    private AziendaDB $azienda;
 
     /**
      * @param string $nome
@@ -19,9 +19,9 @@ class Personale
      * @param string $posizione
      * @param int $idPersonale
      * @param Ruolo $ruolo
-     * @param Azienda $azienda
+     * @param AziendaDB $azienda
      */
-    public function __construct(string $nome, string $cognome, string $email, string $telefono, string $posizione, int $idPersonale, Ruolo $ruolo, Azienda $azienda)
+    public function __construct(string $nome, string $cognome, string $email, string $telefono, string $posizione, int $idPersonale, Ruolo $ruolo, AziendaDB $azienda)
     {
         $this->nome = $nome;
         $this->cognome = $cognome;
@@ -146,17 +146,17 @@ class Personale
     }
 
     /**
-     * @return Azienda
+     * @return AziendaDB
      */
-    public function getAzienda(): Azienda
+    public function getAzienda(): AziendaDB
     {
         return $this->azienda;
     }
 
     /**
-     * @param Azienda $azienda
+     * @param AziendaDB $azienda
      */
-    public function setAzienda(Azienda $azienda): void
+    public function setAzienda(AziendaDB $azienda): void
     {
         $this->azienda = $azienda;
     }
