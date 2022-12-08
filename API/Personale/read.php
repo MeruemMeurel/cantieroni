@@ -3,8 +3,8 @@
 header('Access-Controll-Allow-Origin: *');
 header('Content-Type: application:json');
 
-include_once '../../Database/Database.php';
-include_once '../../modelliDB/PersonaleDB.php.php';
+include_once '..\..\Database\Database.php';
+include_once '..\..\modelliDB\PersonaleDB.php';
 
 
 //Istanzio il DB
