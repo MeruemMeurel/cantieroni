@@ -9,6 +9,7 @@ class Cantiere
     private date $data_inizio;
     private date $data_fine;
     private string $descrizione;
+	private int $id_capocantiere;
 
     /**
      * @param int $id
@@ -19,8 +20,9 @@ class Cantiere
      * @param date $data_inizio
      * @param date $data_fine
      * @param string $descrizione
+     * @param int $id_capocantiere
      */
-    public function __construct(int $id, string $nome, string $indirizzo, string $citta, string $provincia, date $data_inizio, date $data_fine, string $descrizione)
+    public function __construct(int $id, string $nome, string $indirizzo, string $citta, string $provincia, date $data_inizio, date $data_fine, string $descrizione, int $id_capocantiere)
     {
         $this->id = $id;
         $this->nome = $nome;
@@ -30,6 +32,7 @@ class Cantiere
         $this->data_inizio = $data_inizio;
         $this->data_fine = $data_fine;
         $this->descrizione = $descrizione;
+		$this->id_capocantiere = $id_capocantiere;
     }
 
     /**
@@ -159,5 +162,22 @@ class Cantiere
     {
         $this->descrizione = $descrizione;
     }
+
+	/**
+	 * @return int
+	 */
+	public function getIdCapocantiere(): int
+	{
+		return $this->id_capocantiere;
+	}
+
+	/**
+	 * @param int $id_capocantiere
+	 */
+	public function setIdCapocantiere(int $id_capocantiere): void
+	{
+		$this->id_capocantiere = $id_capocantiere;
+	}
+
 
 }

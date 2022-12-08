@@ -4,14 +4,16 @@ class PersonaleDB
 {
 	private $conn;
 
+	private int $id;
 	private string $nome;
 	private string $cognome;
 	private string $email;
 	private string $telefono;
-	private string $posizione;
-	private int $idPersonale;
-	private Ruolo $ruolo;
-	private AziendaDB $azienda;
+	private string $indirizzo;
+	private string $citta;
+	private string $provincia;
+	private int $id_ruolo;
+	private int $id_azienda;
 
 	/**
 	 * Istanzia un'oggetto PersonaleDB, passando per parametro un PDO della connessione col Database
@@ -50,6 +52,22 @@ class PersonaleDB
 	public function setConn($conn): void
 	{
 		$this->conn = $conn;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getId(): int
+	{
+		return $this->id;
+	}
+
+	/**
+	 * @param int $id
+	 */
+	public function setId(int $id): void
+	{
+		$this->id = $id;
 	}
 
 	/**
@@ -119,65 +137,81 @@ class PersonaleDB
 	/**
 	 * @return string
 	 */
-	public function getPosizione(): string
+	public function getIndirizzo(): string
 	{
-		return $this->posizione;
+		return $this->indirizzo;
 	}
 
 	/**
-	 * @param string $posizione
+	 * @param string $indirizzo
 	 */
-	public function setPosizione(string $posizione): void
+	public function setIndirizzo(string $indirizzo): void
 	{
-		$this->posizione = $posizione;
+		$this->indirizzo = $indirizzo;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getCitta(): string
+	{
+		return $this->citta;
+	}
+
+	/**
+	 * @param string $citta
+	 */
+	public function setCitta(string $citta): void
+	{
+		$this->citta = $citta;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getProvincia(): string
+	{
+		return $this->provincia;
+	}
+
+	/**
+	 * @param string $provincia
+	 */
+	public function setProvincia(string $provincia): void
+	{
+		$this->provincia = $provincia;
 	}
 
 	/**
 	 * @return int
 	 */
-	public function getIdPersonale(): int
+	public function getIdRuolo(): int
 	{
-		return $this->idPersonale;
+		return $this->id_ruolo;
 	}
 
 	/**
-	 * @param int $idPersonale
+	 * @param int $id_ruolo
 	 */
-	public function setIdPersonale(int $idPersonale): void
+	public function setIdRuolo(int $id_ruolo): void
 	{
-		$this->idPersonale = $idPersonale;
+		$this->id_ruolo = $id_ruolo;
 	}
 
 	/**
-	 * @return Ruolo
+	 * @return int
 	 */
-	public function getRuolo(): Ruolo
+	public function getIdAzienda(): int
 	{
-		return $this->ruolo;
+		return $this->id_azienda;
 	}
 
 	/**
-	 * @param Ruolo $ruolo
+	 * @param int $id_azienda
 	 */
-	public function setRuolo(Ruolo $ruolo): void
+	public function setIdAzienda(int $id_azienda): void
 	{
-		$this->ruolo = $ruolo;
-	}
-
-	/**
-	 * @return AziendaDB
-	 */
-	public function getAzienda(): AziendaDB
-	{
-		return $this->azienda;
-	}
-
-	/**
-	 * @param AziendaDB $azienda
-	 */
-	public function setAzienda(AziendaDB $azienda): void
-	{
-		$this->azienda = $azienda;
+		$this->id_azienda = $id_azienda;
 	}
 
 

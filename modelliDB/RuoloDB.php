@@ -4,9 +4,10 @@ class Ruolo
 {
     private $conn;
 
-    private int $id;
-    private bool $is_admin;
-    private bool $gestione_cantiere;
+	private int $id;
+	private string $descrizione;
+	private bool $is_admin;
+	private bool $gestione_cantiere;
 
     /**
      * Istanzia un'oggetto RuoloDB, passando per parametro un PDO della connessione col Database
@@ -35,53 +36,67 @@ class Ruolo
 
 
 
-    /**
-     * @return int
-     */
-    public function getIdRuolo(): int
-    {
-        return $this->idRuolo;
-    }
+	/**
+	 * @return int
+	 */
+	public function getId(): int
+	{
+		return $this->id;
+	}
 
-    /**
-     * @param int $idRuolo
-     */
-    public function setIdRuolo(int $idRuolo): void
-    {
-        $this->idRuolo = $idRuolo;
-    }
+	/**
+	 * @param int $id
+	 */
+	public function setId(int $id): void
+	{
+		$this->id = $id;
+	}
 
-    /**
-     * @return bool
-     */
-    public function isAdmin(): bool
-    {
-        return $this->admin;
-    }
+	/**
+	 * @return string
+	 */
+	public function getDescrizione(): string
+	{
+		return $this->descrizione;
+	}
 
-    /**
-     * @param bool $admin
-     */
-    public function setAdmin(bool $admin): void
-    {
-        $this->admin = $admin;
-    }
+	/**
+	 * @param string $descrizione
+	 */
+	public function setDescrizione(string $descrizione): void
+	{
+		$this->descrizione = $descrizione;
+	}
 
-    /**
-     * @return bool
-     */
-    public function isGestioneCantiere(): bool
-    {
-        return $this->gestioneCantiere;
-    }
+	/**
+	 * @return bool
+	 */
+	public function isIsAdmin(): bool
+	{
+		return $this->is_admin;
+	}
 
-    /**
-     * @param bool $gestioneCantiere
-     */
-    public function setGestioneCantiere(bool $gestioneCantiere): void
-    {
-        $this->gestioneCantiere = $gestioneCantiere;
-    }
+	/**
+	 * @param bool $is_admin
+	 */
+	public function setIsAdmin(bool $is_admin): void
+	{
+		$this->is_admin = $is_admin;
+	}
 
+	/**
+	 * @return bool
+	 */
+	public function isGestioneCantiere(): bool
+	{
+		return $this->gestione_cantiere;
+	}
 
+	/**
+	 * @param bool $gestione_cantiere
+	 */
+	public function setGestioneCantiere(bool $gestione_cantiere): void
+	{
+		$this->gestione_cantiere = $gestione_cantiere;
+	}
 }

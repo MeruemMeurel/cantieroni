@@ -5,12 +5,12 @@ class AziendaDB
 
 	private $conn;
 
-	public int $idAzienda;
-	public String $nome;
-	public String $indirizzo;
-	public String $citta;
-	public String $provincia;
-	public int $idTitolare;
+	private int $id;
+	private String $nome;
+	private String $indirizzo;
+	private String $citta;
+	private String $provincia;
+	private String $partita_iva;
 
 	/**
 	 * Istanzia un'oggetto AziendaDB, passando per parametro un PDO della connessione col Database
@@ -54,17 +54,17 @@ class AziendaDB
 	/**
 	 * @return int
 	 */
-	public function getIdAzienda(): int
+	public function getId(): int
 	{
-		return $this->idAzienda;
+		return $this->id;
 	}
 
 	/**
-	 * @param int $idAzienda
+	 * @param int $id
 	 */
-	public function setIdAzienda(int $idAzienda): void
+	public function setId(int $id): void
 	{
-		$this->idAzienda = $idAzienda;
+		$this->id = $id;
 	}
 
 	/**
@@ -132,20 +132,18 @@ class AziendaDB
 	}
 
 	/**
-	 * @return int
+	 * @return String
 	 */
-	public function getIdTitolare(): int
+	public function getPartitaIva(): string
 	{
-		return $this->idTitolare;
+		return $this->partita_iva;
 	}
 
 	/**
-	 * @param int $idTitolare
+	 * @param String $partita_iva
 	 */
-	public function setIdTitolare(int $idTitolare): void
+	public function setPartitaIva(string $partita_iva): void
 	{
-		$this->idTitolare = $idTitolare;
+		$this->partita_iva = $partita_iva;
 	}
-
-
 }

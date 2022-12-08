@@ -3,61 +3,36 @@
 class Attivita
 {
 
-	public int $idPersonale;
-	public int $idCantiere;
-	public DateTime $inizio;
-	public DateTime $fine;
-	public string $note;
-	public int $idAttivita;
+	private int $id;
+	private DateTime $inizio;
+	private DateTime $fine;
 
 	/**
-	 * @param int $idPersonale
-	 * @param int $idCantiere
+	 * @param int $id
 	 * @param DateTime $inizio
 	 * @param DateTime $fine
-	 * @param String $note
-	 * @param int $idAttivita
 	 */
-	public function __construct(int $idPersonale, int $idCantiere, DateTime $inizio, DateTime $fine, string $note, int $idAttivita)
+	public function __construct(int $id, DateTime $inizio, DateTime $fine)
 	{
-		$this->idPersonale = $idPersonale;
-		$this->idCantiere = $idCantiere;
+		$this->id = $id;
 		$this->inizio = $inizio;
 		$this->fine = $fine;
-		$this->note = $note;
-		$this->idAttivita = $idAttivita;
 	}
 
 	/**
 	 * @return int
 	 */
-	public function getIdPersonale(): int
+	public function getId(): int
 	{
-		return $this->idPersonale;
+		return $this->id;
 	}
 
 	/**
-	 * @param int $idPersonale
+	 * @param int $id
 	 */
-	public function setIdPersonale(int $idPersonale): void
+	public function setId(int $id): void
 	{
-		$this->idPersonale = $idPersonale;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getIdCantiere(): int
-	{
-		return $this->idCantiere;
-	}
-
-	/**
-	 * @param int $idCantiere
-	 */
-	public function setIdCantiere(int $idCantiere): void
-	{
-		$this->idCantiere = $idCantiere;
+		$this->id = $id;
 	}
 
 	/**
@@ -92,35 +67,5 @@ class Attivita
 		$this->fine = $fine;
 	}
 
-	/**
-	 * @return String
-	 */
-	public function getNote(): string
-	{
-		return $this->note;
-	}
 
-	/**
-	 * @param String $note
-	 */
-	public function setNote(string $note): void
-	{
-		$this->note = $note;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getIdAttivita(): int
-	{
-		return $this->idAttivita;
-	}
-
-	/**
-	 * @param int $idAttivita
-	 */
-	public function setIdAttivita(int $idAttivita): void
-	{
-		$this->idAttivita = $idAttivita;
-	}
 }

@@ -2,86 +2,86 @@
 
 class Ruolo
 {
-    private $conn;
-
     private int $id;
+	private string $descrizione;
     private bool $is_admin;
     private bool $gestione_cantiere;
 
-    /**
-     * @param int $idRuolo
-     * @param bool $admin
-     * @param bool $gestioneCantiere
-     */
-    public function __construct(int $idRuolo, bool $admin, bool $gestioneCantiere)
-    {
-        $this->idRuolo = $idRuolo;
-        $this->admin = $admin;
-        $this->gestioneCantiere = $gestioneCantiere;
-    }
+	/**
+	 * @param int $id
+	 * @param string $descrizione
+	 * @param bool $is_admin
+	 * @param bool $gestione_cantiere
+	 */
+	public function __construct(int $id, string $descrizione, bool $is_admin, bool $gestione_cantiere)
+	{
+		$this->id = $id;
+		$this->descrizione = $descrizione;
+		$this->is_admin = $is_admin;
+		$this->gestione_cantiere = $gestione_cantiere;
+	}
 
+	/**
+	 * @return int
+	 */
+	public function getId(): int
+	{
+		return $this->id;
+	}
 
-    public function read(){
-        $query="SELECT * FROM ruolo";
+	/**
+	 * @param int $id
+	 */
+	public function setId(int $id): void
+	{
+		$this->id = $id;
+	}
 
-        $stmt = $this->conn->prepare($query);
+	/**
+	 * @return string
+	 */
+	public function getDescrizione(): string
+	{
+		return $this->descrizione;
+	}
 
-        $stmt->execute();
+	/**
+	 * @param string $descrizione
+	 */
+	public function setDescrizione(string $descrizione): void
+	{
+		$this->descrizione = $descrizione;
+	}
 
-        return $stmt;
-    }
+	/**
+	 * @return bool
+	 */
+	public function isIsAdmin(): bool
+	{
+		return $this->is_admin;
+	}
 
+	/**
+	 * @param bool $is_admin
+	 */
+	public function setIsAdmin(bool $is_admin): void
+	{
+		$this->is_admin = $is_admin;
+	}
 
+	/**
+	 * @return bool
+	 */
+	public function isGestioneCantiere(): bool
+	{
+		return $this->gestione_cantiere;
+	}
 
-
-
-    /**
-     * @return int
-     */
-    public function getIdRuolo(): int
-    {
-        return $this->idRuolo;
-    }
-
-    /**
-     * @param int $idRuolo
-     */
-    public function setIdRuolo(int $idRuolo): void
-    {
-        $this->idRuolo = $idRuolo;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isAdmin(): bool
-    {
-        return $this->admin;
-    }
-
-    /**
-     * @param bool $admin
-     */
-    public function setAdmin(bool $admin): void
-    {
-        $this->admin = $admin;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isGestioneCantiere(): bool
-    {
-        return $this->gestioneCantiere;
-    }
-
-    /**
-     * @param bool $gestioneCantiere
-     */
-    public function setGestioneCantiere(bool $gestioneCantiere): void
-    {
-        $this->gestioneCantiere = $gestioneCantiere;
-    }
-
-
+	/**
+	 * @param bool $gestione_cantiere
+	 */
+	public function setGestioneCantiere(bool $gestione_cantiere): void
+	{
+		$this->gestione_cantiere = $gestione_cantiere;
+	}
 }
