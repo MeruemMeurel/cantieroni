@@ -5,7 +5,7 @@ class Post
 
 	private int $id;
 	private int $id_utente;
-	private DateTime $ora_post;
+	private \MongoDB\BSON\Timestamp $ora_post;
 	private int $id_attivita;
 
     private string $descrizione;
@@ -13,11 +13,11 @@ class Post
     /**
      * @param int $id
      * @param int $id_utente
-     * @param DateTime $ora_post
+     * @param Timestamp $ora_post
      * @param int $id_attivita
      * @param string $descrizione
      */
-    public function __construct(int $id, int $id_utente, DateTime $ora_post, int $id_attivita, string $descrizione)
+    public function __construct(int $id, int $id_utente, Timestamp $ora_post, int $id_attivita, string $descrizione)
     {
         $this->id = $id;
         $this->id_utente = $id_utente;
@@ -61,7 +61,7 @@ class Post
     /**
      * @return DateTime
      */
-    public function getOraPost(): DateTime
+    public function getOraPost(): Timestamp
     {
         return $this->ora_post;
     }
@@ -69,7 +69,7 @@ class Post
     /**
      * @param DateTime $ora_post
      */
-    public function setOraPost(DateTime $ora_post): void
+    public function setOraPost(Timestamp $ora_post): void
     {
         $this->ora_post = $ora_post;
     }

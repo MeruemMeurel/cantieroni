@@ -7,7 +7,7 @@ class PostDB
 
 	private int $id;
 	private int $id_utente;
-	private DateTime $ora_post;
+	private Timestamp $ora_post;
 	private int $id_attivita;
 
 	/**
@@ -84,7 +84,7 @@ class PostDB
 	/**
 	 * @return DateTime
 	 */
-	public function getOraPost(): DateTime
+	public function getOraPost(): Timestamp
 	{
 		return $this->ora_post;
 	}
@@ -92,7 +92,7 @@ class PostDB
 	/**
 	 * @param DateTime $ora_post
 	 */
-	public function setOraPost(DateTime $ora_post): void
+	public function setOraPost(Timestamp $ora_post): void
 	{
 		$this->ora_post = $ora_post;
 	}
