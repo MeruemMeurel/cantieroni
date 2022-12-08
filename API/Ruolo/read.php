@@ -4,7 +4,7 @@
     header('Content-Type: application:json');
 
     include_once '../../Database/Database.php';
-    include_once '../../models/Ruolo.php';
+    include_once '../../modelliDB/RuoloDB.php';
 
 
     //Istanzio il DB
