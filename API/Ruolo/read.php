@@ -4,15 +4,15 @@
     header('Content-Type: application:json');
 
     include_once '../../Database/Database.php';
-    include_once '../../Models/ruolo.php';
+    include_once '../../models/Ruolo.php';
 
 
     //Istanzio il DB
     $database= new Database();
     $db = $database->connect();
 
-    //Istanzio il cantiere
-    $ruolo = new RuoloDB($db);
+    //Istanzio il ruolo
+    $ruolo = new RuoloDB($db);è
 
     //Query Cantiere
     $result = $ruolo->read();

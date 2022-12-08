@@ -1,6 +1,6 @@
 <?php
 
-class Ruolo
+class RuoloDB
 {
     private $conn;
 

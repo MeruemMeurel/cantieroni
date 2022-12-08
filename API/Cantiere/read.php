@@ -4,7 +4,7 @@
     header('Content-Type: application:json');
 
     include_once '../../Database/Database.php';
-    include_once '../../Models/Cantiere.php';
+    include_once '../../models/Cantiere.php';
 
 
     //Istanzio il DB
