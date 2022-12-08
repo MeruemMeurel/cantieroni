@@ -14,7 +14,7 @@ $db = $database->connect();
 //Istanzio l'azienda
 $azienda = new AziendaDB($db);
 
-//Query Attività
+//Query Azienda
 $result = $azienda->read();
 
 $num = $result->rowCount();

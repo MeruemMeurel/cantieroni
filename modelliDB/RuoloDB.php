@@ -10,7 +10,7 @@ class RuoloDB
 	private bool $gestione_cantiere;
 
     /**
-     * Istanzia un'oggetto RuoloDB, passando per parametro un PDO della connessione col Database
+     * Istanzia un oggetto RuoloDB, passando per parametro un PDO della connessione col Database
      * @param $db
      */
     public function __construct($db){

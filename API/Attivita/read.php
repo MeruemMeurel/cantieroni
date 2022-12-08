@@ -14,7 +14,7 @@ $db = $database->connect();
 //Istanzio l'attività
 $attivita = new AttivitaDB($db);
 
-//Query Attività
+//Query attività
 $result = $attivita->read();
 
 $num = $result->rowCount();

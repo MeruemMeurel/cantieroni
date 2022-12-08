@@ -14,7 +14,7 @@ $db = $database->connect();
 //Istanzio l'oggetto Personale
 $personale = new PersonaleDB($db);
 
-//Query Personale
+//Query personale
 $result = $personale->read();
 
 $num = $result->rowCount();

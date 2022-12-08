@@ -11,7 +11,7 @@ include_once '../../models/Post.php.php';
 $database= new Database();
 $db = $database->connect();
 
-//Istanzio il Post
+//Istanzio il post
 $post = new PostDB($db);
 
 //Query Post

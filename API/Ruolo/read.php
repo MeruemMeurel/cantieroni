@@ -12,7 +12,7 @@
     $db = $database->connect();
 
     //Istanzio il ruolo
-    $ruolo = new RuoloDB($db);è
+    $ruolo = new RuoloDB($db);
 
     //Query Cantiere
     $result = $ruolo->read();

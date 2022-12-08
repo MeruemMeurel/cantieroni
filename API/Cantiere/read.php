@@ -14,7 +14,7 @@
     //Istanzio il cantiere
     $cantiere = new CantiereDB($db);
 
-    //Query Cantiere
+    //Query cantiere
     $result = $cantiere->read();
 
     $num = $result->rowCount();
