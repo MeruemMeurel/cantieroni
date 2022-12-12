@@ -1,0 +1,14 @@
+#lista{
+    width: 350px;
+    display: block;
+    margin-top: 500px;
+    background-color: #f1f1f1;
+}
+
+#lavoratore{
+    width: 100%;
+}
+
+#orario{
+    width: 100%;
+}

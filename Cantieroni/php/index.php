@@ -25,7 +25,6 @@
     <!-- importo header -->
     <div id="header"></div>
    <!-- Inizio suddivisione pagina -->
-   
 <div class="container-fluid text-center ">
     <div class="row">
         <div class="col-3">
