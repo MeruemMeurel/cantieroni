@@ -1,7 +1,7 @@
 const date = new Date;
-const date1 = new Date;
+//const date1 = new Date;
 let month = date.getMonth();
-let month1 = date1.getMonth();
+//let month1 = date1.getMonth();
 
 function clickCalendar(id) {
     let selector = $('#'.concat(id));
@@ -26,8 +26,10 @@ function clickCalendar(id) {
 
 function loadCalendar() {
     date.setDate(1);
-
-    $('#month-year').text(translateMonth(date.getMonth()) + " " + date.getFullYear());
+  console.log("loadCalendar date",date);
+let txtmonth=translateMonth(date.getMonth()) + " " + date.getFullYear();
+console.log("loadCal txtmonth",txtmonth);
+    $('#month-year').text(txtmonth);
     month = date.getMonth();
 
     for (let i = 0; i<7; i++) {
@@ -63,6 +65,15 @@ function nextMonth() {
     date.setMonth(date.getMonth());
     loadCalendar();
 }
+
+function setToday() {
+    date.setTime(Date.now());
+    date.setDate(1);
+    month = date.getMonth();
+    console.log("setToday date",date);
+    loadCalendar();
+}
+
 
 function translateMonth(number) {
     switch (number) {
@@ -123,6 +134,7 @@ function selectDay(date) {
     daySelected = date;
     if(dayIdSelected !== null)
         $('#day-sel-2').text("Giorno selezionato: " + date.getDate() + "/" + date.getMonth() + "/" +  date.getFullYear());
+    
     //loadPresenti();
 }
 

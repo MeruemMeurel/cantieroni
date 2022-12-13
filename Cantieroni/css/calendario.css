@@ -1,15 +1,17 @@
 .calendar-div {
+  
   width: 20vw;
   height: 50vh;
+  
   background-color: white;
 }
 
 .calendar {
   margin-top: 3%;
   margin-bottom: 3%;
-  width: 25%;
+  /*width: 25%;*/
   height: 60%;
-  box-shadow: 0 0 12px 5px #dedede;
+  box-shadow: 0 10px 10px 10px #dedede;
 
 }
 
@@ -37,7 +39,7 @@
 }
 
 .calendar .head li .item {
-  display: block;
+  /*display: block;*/
   color: white;
   text-align: center;
   padding: 2.2vh 0.833vw;
@@ -57,11 +59,11 @@
 }
 
 .calendar .body th{
-  border: 1px solid #d2d2d2;
+  border: 1% solid #d2d2d2;
 }
 
 .calendar .body td {
-  border: 1px solid #d2d2d2;
+  border: 1%  solid #d2d2d2;
 }
 /*---------*/
 .calendar .body td:hover {
@@ -109,8 +111,10 @@
 }
 
 .calendar-div {
+  
   width: 20vw;
   height: 50vh;
+  
   background-color: white;
 }
 
@@ -132,7 +136,7 @@
 .btn-collapse {
   width: 70%;
   height: auto;
-  border-bottom: 2px solid #2d2d2d;
+  border-bottom: 2%  solid #2d2d2d;
 }
 
 .btn-collapse a {
@@ -147,11 +151,11 @@
 }
 
 .person-div li img {
-  width: 40px;
-  height: 40px;
+  width: 40%;
+  height: 40%;
   border-radius:50%;
-  border: 1px solid #a7a7a7;
-  box-shadow: 0 0 12px 1px #a7a7a7;
+  border: 1% solid #a7a7a7;
+  box-shadow: 0 0 12% 1% #a7a7a7;
   object-fit: cover;
   margin-right: 15px;
 }
