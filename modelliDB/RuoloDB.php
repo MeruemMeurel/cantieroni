@@ -4,10 +4,10 @@ class RuoloDB
 {
     private $conn;
 
-	private int $id;
-	private string $descrizione;
-	private bool $is_admin;
-	private bool $gestione_cantiere;
+	public int $id;
+    public string $descrizione;
+    public bool $is_admin;
+    public bool $gestione_cantiere;
 
     /**
      * Istanzia un oggetto RuoloDB, passando per parametro un PDO della connessione col Database
@@ -30,6 +30,24 @@ class RuoloDB
         $stmt->execute();
 
         return $stmt;
+    }
+
+    public function read_by_id(){
+        $query="SELECT * FROM ruolo WHERE id = ?";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(1, $this->id);
+
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $this->descrizione = $row['descrizione'];
+        $this->is_admin = $row['is_admin'];
+        $this->gestione_cantieri = $row['gestione_cantieri'];
+
+
     }
 
 
