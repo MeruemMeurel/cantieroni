@@ -1,11 +1,11 @@
 
 #lista{
-    overflow:scroll;
+    overflow:auto;
     border-collapse:collapse;
-    width: 90%;
-    display: block;
+    width: auto;
+    display:inline-block;
     background-color: #f1f1f1;
-    margin-left: 10%;
+    margin-left: 20px;
     height: 50vh;
 }
 
@@ -13,8 +13,20 @@
     background-color: darkorange;
     width: 100%;
 }
-
+thead{
+    
+    border-top: 20%;
+    border-color: black;
+}
 th{
     position: sticky;
     top:0;
+   
+}
+
+.fotoprof{
+   width: 30%;
+   border-radius: 50%;
+   border-color: black;
+   box-shadow: 0 5px 5px 5px #dedede;
 }

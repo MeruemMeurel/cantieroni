@@ -1,21 +1,47 @@
+<script src="../../models/Personale.js"></script>
 <script>
-var array=Array(5);
+    var array=[];
+    array.push(new Personale(0,"narcis","neamtu","email","telefono","in","cit","","",""));
+    array.push(new Personale(0,"dan","neamtu","email","telefono","in","cit","","",""));
+    array.push(new Personale(0,"daniel","neamtu","email","telefono","in","cit","","",""));
+    array.push(new Personale(0,"gnon","neamtu","email","telefono","in","cit","","",""));
 
+    array.push(new Personale(0,"narcis","neamtu","email","telefono","in","cit","","",""));
+    array.push(new Personale(0,"dan","neamtu","email","telefono","in","cit","","",""));
+    array.push(new Personale(0,"daniel","neamtu","email","telefono","in","cit","","",""));
+    array.push(new Personale(0,"gnon","neamtu","email","telefono","in","cit","","",""));
 
+    array.push(new Personale(0,"narcis","neamtu","email","telefono","in","cit","","",""));
+    array.push(new Personale(0,"dan","neamtu","email","telefono","in","cit","","",""));
+    array.push(new Personale(0,"daniel","neamtu","email","telefono","in","cit","","",""));
+    array.push(new Personale(0,"gnon","neamtu","email","telefono","in","cit","","",""));
+    var str="";
+    for(let i=0;i< array.length;i++){
+    str+='<tr><td><img class="fotoprof" align="left" src="../img/immagine_profilo_default.png" >'+array[i].nome+ " "+array[i].cognome+'</td>';
+    }
+    
+    document.getElementById("bodytabella").innerHTML += str;
+    console.log(str);
+    console.log("mhanz");
 </script>
-    <div class="table-responsive">
-        <table id="lista" class="table table-bordered">
-    <thead>
-        <tr > 
-            <th scope="col" id="lavoratore">Lavoratori presenti</th>
 
-        </tr>
-    </thead>
-    <tbody>
-        <tr >
-            <td colspan="0"><img src="../img/immagine_profilo_default.png" > Mark</td> 
-        </tr>
-      
-    </tbody>
-    </table>
-    </div>
+
+
+<div class="table-responsive">
+    <table id="lista" class="table table-bordered">
+<thead>
+    <tr > 
+        <th scope="col" id="lavoratore">Lavoratori presenti</th>
+    </tr>
+</thead>
+<tbody id="bodytabella">
+
+
+    <!--<tr >
+        <td colspan="0"><img src="../img/immagine_profilo_default.png" > Mark</td> 
+    </tr> -->
+  
+</tbody>
+</table>
+</div>
+
