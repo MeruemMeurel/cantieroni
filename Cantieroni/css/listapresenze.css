@@ -1,15 +1,20 @@
+
 #lista{
+    overflow:scroll;
+    border-collapse:collapse;
     width: 90%;
     display: block;
-    margin-top: 0px;
     background-color: #f1f1f1;
     margin-left: 10%;
+    height: 50vh;
 }
 
 #lavoratore{
+    background-color: darkorange;
     width: 100%;
 }
 
-#orario{
-    width: 100%;
+th{
+    position: sticky;
+    top:0;
 }
