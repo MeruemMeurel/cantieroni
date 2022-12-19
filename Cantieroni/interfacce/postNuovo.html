@@ -3,8 +3,8 @@
   <form method="POST">
     <div class="post">
       
-        <div class="post-text">
-          <textarea name="resoconto" cols="40" rows="10" style="border: none; background-color: transparent; resize: none; outline: none; width: 100%; height:auto;" ></textarea>
+        <div class="grow-wrap">
+          <textarea class="post-textarea" name="resoconto" placeholder="Scrivi qualcosa..."  onInput="this.parentNode.dataset.replicatedValue = this.value" required></textarea>
         </div>
         <!-- <input type="file" id="files" name="files" multiple> -->
         <input class="post-invio" type="submit" value="Manda" name="invio">
