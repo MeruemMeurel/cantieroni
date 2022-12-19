@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-    <title>Resoconti</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/index.css">
-    <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.js"
-    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous">
-    </script>
-<script>
-
-</script>
-
-
-</head>
 <script src="../../models/Post.js"></script>
 <script src="../../models/Personale.js"></script>
 <script>
@@ -25,23 +7,13 @@
         array.push(new Post(1,new Personale(0,"narcis","neamtu","email","telefono","in","cit","","",""), "2022-12-14T13:14:15", "SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO"));
         array.push(new Post(2,new Personale(0,"narcis","neamtu","email","telefono","in","cit","","",""), "2022-12-14T13:14:15", "SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO"));
         array.push(new Post(3,new Personale(0,"narcis","neamtu","email","telefono","in","cit","","",""), "2022-12-14T13:14:15", "SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO"));
-    
+        var str="";
+        for(let i=0;i< array.length;i++){
+        str+='<div style="margin: auto;border-style:solid; none; border-color:#000000; border-width:1px; border-radius: 12px; overflow: hidden;"><div style="background-color: rgba(255, 142, 0, 0.98);">&emsp;Utente: '+array[i].Personale.nome +' '+array[i].Personale.cognome+' &emsp; Data: '+array[i].ora_post+' </div><div style="border-style:solid; border-left:none; border-right: none; border-color:#000000; border-width:1px; min-height: 100px; background-color: rgba(231, 228, 228, 0.86);">'+array[i].descrizione+'</div></div><br><br>';
+        }
+        document.getElementById("bodylistaresoconti").innerHTML += str;
+        console.log(str);
+        console.log("mhanz");
 </script>
-<body>
-    <form method="POST">
-        <input type="hidden" name="IdUtente" value="Zhario" />
-          <div style="text-align : center; border-style:solid; none; border-color:#000000; border-width:2px; border-radius: 12px; overflow: hidden; ">
-              <div style="background-color: rgba(255, 142, 0, 0.98);">
-                <label for="oggetto" style="margin-botto: 2px; ">Oggetto:</label>
-                <input type="text"  name="oggetto" value="" style="border: none; background-color: transparent; resize: none; outline: none; width: 92%; height:50px " >
-              </div>
-              <div style="border-style:solid; border-left:none; border-right: none; border-color:#000000; border-width:1px; background-color: rgba(231, 228, 228, 0.86);">
-                <textarea name="resoconto" cols="40" rows="4" style="border: none; background-color: transparent; resize: none; outline: none; width: 100%; height:auto;" ></textarea>
-              </div>
-              <input type="file" id="files" name="files" multiple>
-              <input type="submit" value="Manda" name="invio">
 
-              
-        </div>
-      </form>
-</body>
+  <div id="bodylistaresoconti"></div>
