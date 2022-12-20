@@ -1,16 +1,11 @@
-const productContainers = [...document.querySelectorAll('.product-container')];
-const nxtBtn = [...document.querySelectorAll('.nxt-btn')];
-const preBtn = [...document.querySelectorAll('.pre-btn')];
+const prev = document.getElementById('next');
 
-productContainers.forEach((item, i) => {
-    let containerDimensions = item.getBoundingClientRect();
-    let containerWidth = containerDimensions.width;
+prev.onclick = () => {
+    document.getElementById('lista').scrollLeft += 1200;
+};
 
-    nxtBtn[i].addEventListener('click', () => {
-        item.scrollLeft += containerWidth;
-    })
+const next = document.getElementById('previous');
 
-    preBtn[i].addEventListener('click', () => {
-        item.scrollLeft -= containerWidth;
-    })
-})
+next.onclick = () => {
+    document.getElementById('lista').scrollLeft -= 1200;
+};
