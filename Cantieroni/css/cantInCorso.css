@@ -1,12 +1,8 @@
-/* HEADER */
-
-* {
-    margin: 0;
-    padding: 0;
-    font-family: "Mulish", sans-serif;
-  }
-
 /* PRODUCTS */
+*:focus {
+    outline: none;
+}
+
 .product {
     position: relative;
     overflow: hidden;
@@ -26,15 +22,17 @@
   
 .product-card {
     flex: 0 0 auto;
-    width: 250px;
-    height: 450px;
+    width: 320px;
+    height: 290px;
     margin-right: 40px;
+    border-style: solid;
+    border-width: 2px;
 }
   
 .product-image {
     position: relative;
     width: 100%;
-    height: 350px;
+    height: 180px;
     overflow: hidden;
 }
   
@@ -47,18 +45,15 @@
 .product-info {
     width: 100%;
     height: 100px;
-    padding-top: 10px;
 }
 
-  
 .product-short-description {
-    width: 100%;
-    height: 20px;
+    height: 85px;
     line-height: 20px;
     overflow: hidden;
     opacity: 0.5;
     text-transform: capitalize;
-    margin: 5px 0;
+    margin: 5px 5px;
 }
 
 .pre-btn,
@@ -74,15 +69,18 @@
     background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
     cursor: pointer;
     z-index: 8;
-  }
+    outline: none;
+}
   
 .pre-btn {
     left: 0;
     transform: rotate(180deg);
+    outline: none;
 }
   
 .nxt-btn {
     right: 0;
+    outline: none;
 }
   
 .pre-btn img,
