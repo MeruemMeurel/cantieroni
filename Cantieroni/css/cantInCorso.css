@@ -1,7 +1,4 @@
 /* PRODUCTS */
-*:focus {
-    outline: none;
-}
 
 .product {
     position: relative;
@@ -69,18 +66,15 @@
     background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
     cursor: pointer;
     z-index: 8;
-    outline: none;
 }
   
 .pre-btn {
     left: 0;
     transform: rotate(180deg);
-    outline: none;
 }
   
 .nxt-btn {
     right: 0;
-    outline: none;
 }
   
 .pre-btn img,
@@ -91,4 +85,9 @@
 .pre-btn:hover img,
 .nxt-btn:hover img {
     opacity: 1;
+}
+
+.pre-btn:focus,
+.nxt-btn:focus {
+    outline:0;
 }
