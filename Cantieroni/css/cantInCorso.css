@@ -1,5 +1,10 @@
 /* PRODUCTS */
 
+.card{
+    min-width: 18rem;
+    margin: 20px;
+}
+
 .product {
     position: relative;
     overflow: hidden;
@@ -19,17 +24,18 @@
   
 .product-card {
     flex: 0 0 auto;
-    width: 320px;
-    height: 290px;
-    margin-right: 40px;
+    width: 16.667vw;
+    height: 15.104vw;
+    margin-right: 2.083vw;
     border-style: solid;
-    border-width: 2px;
+    border-width: 0.2vw;
+    background-color: crimson;
 }
   
 .product-image {
     position: relative;
     width: 100%;
-    height: 180px;
+    height: 9.375vw;
     overflow: hidden;
 }
   
@@ -41,16 +47,16 @@
 
 .product-info {
     width: 100%;
-    height: 100px;
+    height: 5.208vw;
 }
 
 .product-short-description {
-    height: 85px;
-    line-height: 20px;
+    height: 4.427vw;
+    line-height: 1.042vw;
     overflow: hidden;
     opacity: 0.5;
     text-transform: capitalize;
-    margin: 5px 5px;
+    margin: 0.260vw 0.260vw;
 }
 
 .pre-btn,
@@ -89,5 +95,5 @@
 
 .pre-btn:focus,
 .nxt-btn:focus {
-    outline:0;
+    outline: 0;
 }

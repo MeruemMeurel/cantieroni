@@ -15,15 +15,15 @@
     array.push(new Cantiere(2, "Cantiere 12", "Via random", "Prato", "Firenze", "20/12/2022", "22/12/2022", "Descrizione12", "codice2"));
     array.push(new Cantiere(2, "Cantiere 13", "Via random", "Prato", "Firenze", "20/12/2022", "22/12/2022", "Descrizione12", "codice2"));
     array.push(new Cantiere(2, "Cantiere 14", "Via random", "Prato", "Firenze", "20/12/2022", "22/12/2022", "Descrizione14", "codice2"));
-    var str = "";
+    var strCards = "";
     if(array.length <= 5){
         document.getElementById("previous").style.visibility = "hidden";
         document.getElementById("next").style.visibility = "hidden";
     }
     for(let i=0; i<array.length; i++){
-        str += '<div class="product-card"><div class="product-image"><img src="../img/cantiere.jpg" class="product-thumb" alt=""></div><div class="product-info"><p class="product-short-description">'+array[i].descrizione+'</p></div></div>'
+        strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">'+array[i].descrizione+'</p></div></div>'
     }
-    document.getElementById("lista").innerHTML += str;
+    document.getElementById("lista").innerHTML += strCards;
 </script>
 
 
