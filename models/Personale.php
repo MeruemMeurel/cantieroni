@@ -12,6 +12,7 @@ class Personale
 	private string $provincia;
     private int $id_ruolo;
     private int $id_azienda;
+    private string $img_path;
 
 	/**
 	 * @param int $id

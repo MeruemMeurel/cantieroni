@@ -6,8 +6,6 @@ class Post
 	private int $id;
 	private int $id_utente;
 	private \MongoDB\BSON\Timestamp $ora_post;
-	private int $id_attivita;
-
     private string $descrizione;
 
     /**
