@@ -1,35 +1,8 @@
-<script src="../../models/Cantiere.js"></script>
-<script>
-    var array=[];
-    array.push(new Cantiere(1, "Cantiere 1", "Via a caso", "Campi Bisenzio", "Firenze", "20/12/2022", "22/12/2022", "Descrizione1", "codice1"));
-    array.push(new Cantiere(2, "Cantiere 2", "Via random", "Prato", "Firenze", "20/12/2022", "22/12/2022", "Descrizione2", "codice2"));
-    array.push(new Cantiere(2, "Cantiere 3", "Via random", "Prato", "Firenze", "20/12/2022", "22/12/2022", "Descrizione3", "codice2"));
-    array.push(new Cantiere(2, "Cantiere 4", "Via random", "Prato", "Firenze", "20/12/2022", "22/12/2022", "Descrizione4", "codice2"));
-    array.push(new Cantiere(2, "Cantiere 5", "Via random", "Prato", "Firenze", "20/12/2022", "22/12/2022", "Descrizione5", "codice2"));
-    array.push(new Cantiere(2, "Cantiere 6", "Via random", "Prato", "Firenze", "20/12/2022", "22/12/2022", "Descrizione6", "codice2"));
-    array.push(new Cantiere(2, "Cantiere 7", "Via random", "Prato", "Firenze", "20/12/2022", "22/12/2022", "Descrizione7", "codice2"));
-    array.push(new Cantiere(1, "Cantiere 8", "Via a caso", "Campi Bisenzio", "Firenze", "20/12/2022", "22/12/2022", "Descrizione8", "codice1"));
-    array.push(new Cantiere(2, "Cantiere 9", "Via random", "Prato", "Firenze", "20/12/2022", "22/12/2022", "Descrizione9", "codice2"));
-    array.push(new Cantiere(2, "Cantiere 10", "Via random", "Prato", "Firenze", "20/12/2022", "22/12/2022", "Descrizione10", "codice2"));
-    array.push(new Cantiere(2, "Cantiere 11", "Via random", "Prato", "Firenze", "20/12/2022", "22/12/2022", "Descrizione11", "codice2"));
-    array.push(new Cantiere(2, "Cantiere 12", "Via random", "Prato", "Firenze", "20/12/2022", "22/12/2022", "Descrizione12", "codice2"));
-    array.push(new Cantiere(2, "Cantiere 13", "Via random", "Prato", "Firenze", "20/12/2022", "22/12/2022", "Descrizione12", "codice2"));
-    array.push(new Cantiere(2, "Cantiere 14", "Via random", "Prato", "Firenze", "20/12/2022", "22/12/2022", "Descrizione14", "codice2"));
-    var strCards = "";
-    if(array.length <= 5){
-        document.getElementById("previous").style.visibility = "hidden";
-        document.getElementById("next").style.visibility = "hidden";
-    }
-    for(let i=0; i<array.length; i++){
-        strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">'+array[i].descrizione+'</p></div></div>'
-    }
-    document.getElementById("lista").innerHTML += strCards;
-</script>
-
+<script src="../js/cantieriAll.js"></script>
 
 <section class="product"> 
-    <button class="pre-btn" id="previous"><img src="../img/arrow.png" alt=""></button>
-    <button class="nxt-btn" id="next"><img src="../img/arrow.png" alt=""></button>
-    <div class="product-container" id="lista"></div>
+    <button class="pre-btn" id="prevInCorso"><img src="../img/arrow.png" alt=""></button>
+    <button class="nxt-btn" id="nextInCorso"><img src="../img/arrow.png" alt=""></button>
+    <div class="product-container" id="listaInCorso"></div>
 </section>
 <script src="../js/cantInCorso.js"></script>
