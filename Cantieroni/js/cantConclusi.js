@@ -1,3 +1,4 @@
+//Scroll a destra/sinistra
 const prevConclusi = document.getElementById('prevConclusi');
 const nextConclusi = document.getElementById('nextConclusi');
 
@@ -9,11 +10,9 @@ nextConclusi.onclick = () => {
     document.getElementById('listaConclusi').scrollLeft += 1200;
 };
 
+
+//Aggiunta dei cantieri nel relativo html
 var strCards = "";
-if(cantConclusi.length <= 5){
-    document.getElementById("prevConclusi").style.visibility = "hidden";
-    document.getElementById("nextConclusi").style.visibility = "hidden";
-}
 for(let i=0; i<cantConclusi.length; i++){
     if(i == 0){
         strCards += '<div class="card" id="card1Conclusi"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">'+cantConclusi[i].descrizione+'</p></div></div>'
@@ -23,3 +22,21 @@ for(let i=0; i<cantConclusi.length; i++){
     }
 }
 document.getElementById("listaConclusi").innerHTML += strCards;
+
+
+//Cambiamento della visibilità delle frecce in caso di ridimensionamento della finestra
+function changeArrowVisOnResize(){
+    var element = document.querySelector('#listaConclusi');
+    if((element.offsetHeight < element.scrollHeight) || (element.offsetWidth < element.scrollWidth)){
+        prevConclusi.style.visibility = "visible";
+        nextConclusi.style.visibility = "visible";
+    }
+    else{
+        prevConclusi.style.visibility = "hidden";
+        nextConclusi.style.visibility = "hidden";
+    }
+}
+changeArrowVisOnResize();
+window.addEventListener('resize', changeArrowVisOnResize);
+
+
