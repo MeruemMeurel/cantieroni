@@ -38,5 +38,3 @@ function changeArrowVisOnResize(){
 }
 changeArrowVisOnResize();
 window.addEventListener('resize', changeArrowVisOnResize);
-
-
