@@ -63,3 +63,9 @@
 #cantConclusi .card{
     opacity: 0.7;
 }
+
+#card1InCorso .card-img{
+    width: 50%;
+    height: auto;
+    margin: auto;
+}

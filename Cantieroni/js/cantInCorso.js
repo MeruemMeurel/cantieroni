@@ -15,11 +15,9 @@ nextInCorso.onclick = () => {
 var strCards = "";
 for(let i=0; i<cantInCorso.length; i++){
     if(i == 0){
-        strCards += '<div class="card" id="card1InCorso"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">'+cantInCorso[i].descrizione+'</p></div></div>'
+        strCards += '<div class="card bg-light" id="card1InCorso"><img class="card-img" src="../img/plus.png" alt="Card image cap"></div>'
     }
-    else{
-        strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">'+cantInCorso[i].descrizione+'</p></div></div>'
-    }
+    strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">'+cantInCorso[i].descrizione+'</p></div></div>'
 }
 document.getElementById("listaInCorso").innerHTML += strCards;
 
