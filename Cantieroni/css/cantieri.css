@@ -67,14 +67,15 @@
 #inserCantiere{
     width: 30em;
     height: 18em;
-    top: 50%;
+    top: 150%;
     left: 50%;
     position: fixed;
     margin-top: -9em;
     margin-left: -15em;
     border: 1px solid;
     background-color: orange;
-    display: none;
+    visibility: hidden;
+    transition: top 0.3s;
 }
 
 #plusPerAgg{

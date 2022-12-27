@@ -11,7 +11,8 @@ nextInCorso.onclick = () => {
 };
 
 function mostraInserimento(){
-    document.getElementById('inserCantiere').style.display = "block";
+    document.getElementById('inserCantiere').style.visibility = "visible";
+    document.getElementById('inserCantiere').style.top = "50%";
 }
 
 
