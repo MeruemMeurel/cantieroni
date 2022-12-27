@@ -64,8 +64,27 @@
     opacity: 0.7;
 }
 
-#card1InCorso .card-img{
+#inserCantiere{
+    width: 30em;
+    height: 18em;
+    top: 50%;
+    left: 50%;
+    position: fixed;
+    margin-top: -9em;
+    margin-left: -15em;
+    border: 1px solid;
+    background-color: orange;
+    display: none;
+}
+
+#plusPerAgg{
     width: 50%;
     height: auto;
     margin: auto;
+    border: none;
+    background: transparent;
+}
+
+#plusPerAgg:focus{
+    outline: none;
 }
