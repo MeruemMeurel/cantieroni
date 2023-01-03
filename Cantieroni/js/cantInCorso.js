@@ -10,11 +10,6 @@ nextInCorso.onclick = () => {
     document.getElementById('listaInCorso').scrollLeft += 1200;
 };
 
-function mostraInserimento(){
-    document.getElementById('inserCantiere').style.visibility = "visible";
-    document.getElementById('inserCantiere').style.top = "50%";
-}
-
 
 //Aggiunta dei cantieri nel relativo html
 var strCards = "";
