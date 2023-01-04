@@ -11,10 +11,10 @@ include_once '../../modelliDB/AttivitaDB.php';
 $database= new Database();
 $db = $database->connect();
 
-//Istanzio l'attività
+//Istanzio l'utente
 $attivita = new AttivitaDB($db);
 
-//Query attività
+//Query utente
 $result = $attivita->read();
 
 $num = $result->rowCount();
