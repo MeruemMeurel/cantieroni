@@ -4,7 +4,7 @@
     header('Content-Type: application:json');
 
     include_once '../../Database/Database.php';
-    include_once '../../modelliDB/AttivitaDB.php';
+    include_once '../../modelliDB/UtenteDB.php';
 
     //Istanzio il DB
     $database= new Database();
@@ -21,7 +21,7 @@
 
     //Creo array
     $utente_arr = array(
-        'id' => $utente->$id,
+        'id' => $utente->id,
         'username' => $utente->username,
         'password' => $utente->password,
         'email' => $utente->email,
