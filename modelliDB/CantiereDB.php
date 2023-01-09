@@ -4,15 +4,15 @@ class CantiereDB
 {
     private $conn;
 
-	private int $id;
-	private string $nome;
-	private string $indirizzo;
-	private string $citta;
-	private string $provincia;
-	private date $data_inizio;
-	private date $data_fine;
-	private string $descrizione;
-	private int $id_capocantiere;
+	public int $id;
+	public string $nome;
+	public string $indirizzo;
+	public string $citta;
+	public string $provincia;
+	public date $data_inizio;
+	public date $data_fine;
+	public string $descrizione;
+	public int $id_capocantiere;
 
     /**
      * Istanzia un'oggetto CantiereDB, passando per parametro un PDO della connessione col Database
@@ -42,15 +42,38 @@ class CantiereDB
      * @param int $id
      * @return mixed
      */
-    public function find_by_id(int $id){
-        $query="SELECT * FROM cantiere WHERE id = $id";
 
-        $stmt = $this->conn->prepare($query);
+	public function read_by_id(){
+		$query="SELECT * FROM cantiere WHERE id = ?";
 
-        $stmt->execute();
+		$stmt = $this->conn->prepare($query);
 
-        return $stmt;
-    }
+		$stmt->bindParam(1, $this->id);
+
+		$stmt->execute();
+
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		$this->nome = $row['nome'];
+		$this->indirizzo = $row['indirizzo'];
+		$this->citta = $row['citta'];
+		$this->provincia = $row['provincia'];
+		$this->descrizione = $row['descrizione'];
+		$this->id_capocantiere = $row['id_capocantiere'];
+
+	}
+
+	public function read_by_name() {
+		$query = "SELECT * FROM cantiere WHERE nome LIKE ?";
+
+		$stmt = $this->conn->prepare($query);
+
+		$stmt->bindParam(1, $this->nome);
+
+		$stmt->execute();
+
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+	}
 
     /**
      * @return mixed
