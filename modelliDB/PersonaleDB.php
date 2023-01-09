@@ -39,11 +39,11 @@ class PersonaleDB
 	}
 
 	/**
-	 *
 	 * Restituisce un membro del personale dato il suo id
 	 * @return mixed
 	 */
 	public function read_by_id(){
+
 		$query="SELECT * FROM personale WHERE id LIKE :id";
 
 		$stmt = $this->conn->prepare($query);
@@ -63,6 +63,25 @@ class PersonaleDB
 		$this->provincia = $row['provincia'];
 		$this->id_ruolo = $row['id_ruolo'];
 		$this->id_azienda = $row['id_azienda'];
+	}
+
+	//SELECT p.* FROM personale p INNER JOIN azienda a ON p.id_azienda = a.id WHERE a.nome LIKE 'Cantieroni s.r.l';
+
+	/**
+	 * NON IMPLEMENTATA
+	 * Restituisce un membro del personale dato l'id della sua azienda
+	 * @return mixed
+	 */
+	public function read_by_azienda() {
+		$query="SELECT * FROM personale WHERE id_azienda = :id_azienda";
+
+		$stmt = $this->conn->prepare($query);
+
+		$stmt->bindParam(':id_azienda', $this->id_azienda);
+
+		$stmt->execute();
+
+		return $stmt;
 	}
 
 	/**
