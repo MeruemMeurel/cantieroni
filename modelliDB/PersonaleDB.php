@@ -43,8 +43,7 @@ class PersonaleDB
 	 * @return mixed
 	 */
 	public function read_by_id(){
-
-		$query="SELECT * FROM personale WHERE id LIKE :id";
+		$query="SELECT * FROM personale WHERE id = :id";
 
 		$stmt = $this->conn->prepare($query);
 
@@ -101,6 +100,32 @@ class PersonaleDB
 		$stmt->execute();
 
 		return $stmt;
+	}
+
+	/**
+	 * Restituisce un membro del personale data la mail
+	 * @return mixed
+	 */
+	public function read_by_email(){
+		$query="SELECT * FROM personale WHERE email LIKE :email";
+
+		$stmt = $this->conn->prepare($query);
+
+		$stmt->bindParam(':email', $this->email);
+
+		$stmt->execute();
+
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		$this->id = $row['id'];
+		$this->nome = $row['nome'];
+		$this->cognome = $row['cognome'];
+		$this->telefono = $row['telefono'];
+		$this->indirizzo = $row['indirizzo'];
+		$this->citta = $row['citta'];
+		$this->provincia = $row['provincia'];
+		$this->id_ruolo = $row['id_ruolo'];
+		$this->id_azienda = $row['id_azienda'];
 	}
 
 	/**
