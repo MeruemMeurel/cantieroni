@@ -37,18 +37,17 @@ class CantiereDB
     }
 
     /**
-     * NON IMPLEMENTATA
+     * IMPLEMENTATA, mancano le date
      * Restituisce un cantiere dato il suo id
-     * @param int $id
      * @return mixed
      */
 
 	public function read_by_id(){
-		$query="SELECT * FROM cantiere WHERE id = ?";
+		$query="SELECT * FROM cantiere WHERE id = :id";
 
 		$stmt = $this->conn->prepare($query);
 
-		$stmt->bindParam(1, $this->id);
+		$stmt->bindParam(':id', $this->id);
 
 		$stmt->execute();
 
@@ -63,16 +62,31 @@ class CantiereDB
 
 	}
 
+	/**
+	 * NON IMPLEMENTATA
+	 * Restituisce un cantiere dato il suo nome
+	 * @return mixed
+	 */
+
 	public function read_by_name() {
-		$query = "SELECT * FROM cantiere WHERE nome LIKE ?";
+		$this->nome = str_replace("-", " ", $this->nome);
+
+		$query = "SELECT * FROM cantiere WHERE nome LIKE :nome";
 
 		$stmt = $this->conn->prepare($query);
 
-		$stmt->bindParam(1, $this->nome);
+		$stmt->bindParam(':nome', $this->nome);
 
 		$stmt->execute();
 
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		$this->id = $row['id'];
+		$this->indirizzo = $row['indirizzo'];
+		$this->citta = $row['citta'];
+		$this->provincia = $row['provincia'];
+		$this->descrizione = $row['descrizione'];
+		$this->id_capocantiere = $row['id_capocantiere'];
 	}
 
     /**
