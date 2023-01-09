@@ -129,6 +129,32 @@ class PersonaleDB
 	}
 
 	/**
+	 * Restituisce un membro del personale dato il numero di telefono
+	 * @return mixed
+	 */
+	public function read_by_phone(){
+		$query="SELECT * FROM personale WHERE telefono LIKE :telefono";
+
+		$stmt = $this->conn->prepare($query);
+
+		$stmt->bindParam(':telefono', $this->telefono);
+
+		$stmt->execute();
+
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		$this->id = $row['id'];
+		$this->nome = $row['nome'];
+		$this->cognome = $row['cognome'];
+		$this->email = $row['email'];
+		$this->indirizzo = $row['indirizzo'];
+		$this->citta = $row['citta'];
+		$this->provincia = $row['provincia'];
+		$this->id_ruolo = $row['id_ruolo'];
+		$this->id_azienda = $row['id_azienda'];
+	}
+
+	/**
 	 * @return mixed
 	 */
 	public function getConn()
