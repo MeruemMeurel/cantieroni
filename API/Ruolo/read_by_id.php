@@ -16,7 +16,7 @@
 
     //Get ID
     $app = isset($_GET['id']) ? $_GET['id'] : die();
-    $ruolo->setId($app);
+    $ruolo->id = $app;
 
     //Get ruolo
     $ruolo->read_by_id();

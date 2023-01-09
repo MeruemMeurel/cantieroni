@@ -7,7 +7,7 @@ class RuoloDB
 	public int $id;
     public string $descrizione;
     public bool $is_admin;
-    public bool $gestione_cantiere;
+    public bool $gestione_cantieri;
 
     /**
      * Istanzia un oggetto RuoloDB, passando per parametro un PDO della connessione col Database
@@ -46,75 +46,33 @@ class RuoloDB
         $this->descrizione = $row['descrizione'];
         $this->is_admin = $row['is_admin'];
         $this->gestione_cantieri = $row['gestione_cantieri'];
-
-
     }
 
-
-
-
-
 	/**
-	 * @return int
+	 * Restituisce tutti i ruoli admin
+	 * @return mixed
 	 */
-	public function getId(): int
-	{
-		return $this->id;
+	public function read_if_admin(){
+		$query="SELECT * FROM ruolo WHERE is_admin = 1";
+
+		$stmt = $this->conn->prepare($query);
+
+		$stmt->execute();
+
+		return $stmt;
 	}
 
 	/**
-	 * @param int $id
+	 * Restituisce tutti i ruoli che gestiscono cantieri
+	 * @return mixed
 	 */
-	public function setId(int $id): void
-	{
-		$this->id = $id;
-	}
+	public function read_if_gestione(){
+		$query="SELECT * FROM ruolo WHERE gestione_cantieri = 1";
 
-	/**
-	 * @return string
-	 */
-	public function getDescrizione(): string
-	{
-		return $this->descrizione;
-	}
+		$stmt = $this->conn->prepare($query);
 
-	/**
-	 * @param string $descrizione
-	 */
-	public function setDescrizione(string $descrizione): void
-	{
-		$this->descrizione = $descrizione;
-	}
+		$stmt->execute();
 
-	/**
-	 * @return bool
-	 */
-	public function isIsAdmin(): bool
-	{
-		return $this->is_admin;
-	}
-
-	/**
-	 * @param bool $is_admin
-	 */
-	public function setIsAdmin(bool $is_admin): void
-	{
-		$this->is_admin = $is_admin;
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function isGestioneCantiere(): bool
-	{
-		return $this->gestione_cantiere;
-	}
-
-	/**
-	 * @param bool $gestione_cantiere
-	 */
-	public function setGestioneCantiere(bool $gestione_cantiere): void
-	{
-		$this->gestione_cantiere = $gestione_cantiere;
+		return $stmt;
 	}
 }
