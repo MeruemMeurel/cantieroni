@@ -5,11 +5,11 @@ class PostDB
 
 	private $conn;
 
-	private int $id;
-	private int $id_utente;
-	private Timestamp $ora_post;
-	private int $id_cantiere;
-    private string $descrizione;
+	public int $id;
+	public int $id_utente;
+	public Timestamp $ora_post;
+	public int $id_cantiere;
+	public string $descrizione;
 
 	/**
 	 * Istanzia un'oggetto PostDB, passando per parametro un PDO della connessione col Database
@@ -32,6 +32,26 @@ class PostDB
 		$stmt->execute();
 
 		return $stmt;
+	}
+
+	/**
+	 * Restituisce un post in base all'id
+	 * @return mixed
+	 */
+	public function read_by_id(){
+		$query="SELECT * FROM post WHERE id = :id";
+
+		$stmt = $this->conn->prepare($query);
+
+		$stmt->bindParam(':id', $this->id);
+
+		$stmt->execute();
+
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		$this->id_utente = $row['id_utente'];
+		//$this->ora_post = $row['ora_post'];
+		$this->descrizione = $row['descrizione'];
 	}
 
     /**
