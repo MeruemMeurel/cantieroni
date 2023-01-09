@@ -63,7 +63,7 @@ class CantiereDB
 	}
 
 	/**
-	 * NON IMPLEMENTATA
+	 * IMPLEMENTATA, mancano le date
 	 * Restituisce un cantiere dato il suo nome
 	 * @return mixed
 	 */

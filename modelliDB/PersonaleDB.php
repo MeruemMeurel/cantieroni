@@ -68,7 +68,6 @@ class PersonaleDB
 	//SELECT p.* FROM personale p INNER JOIN azienda a ON p.id_azienda = a.id WHERE a.nome LIKE 'Cantieroni s.r.l';
 
 	/**
-	 * NON IMPLEMENTATA
 	 * Restituisce un membro del personale dato l'id della sua azienda
 	 * @return mixed
 	 */
@@ -78,6 +77,26 @@ class PersonaleDB
 		$stmt = $this->conn->prepare($query);
 
 		$stmt->bindParam(':id_azienda', $this->id_azienda);
+
+		$stmt->execute();
+
+		return $stmt;
+	}
+
+	/**
+	 * Restituisce un membro del personale dati nome e cognome
+	 * @return mixed
+	 */
+	public function read_by_name(){
+		$this->nome = str_replace("-", " ", $this->nome);
+		$this->cognome = str_replace("-", " ", $this->cognome);
+
+		$query = "SELECT * FROM personale WHERE nome LIKE :nome AND cognome LIKE :cognome";
+
+		$stmt = $this->conn->prepare($query);
+
+		$stmt->bindParam(':nome', $this->nome);
+		$stmt->bindParam(':cognome', $this->cognome);
 
 		$stmt->execute();
 
