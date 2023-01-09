@@ -4,16 +4,16 @@ class PersonaleDB
 {
 	private $conn;
 
-	private int $id;
-	private string $nome;
-	private string $cognome;
-	private string $email;
-	private string $telefono;
-	private string $indirizzo;
-	private string $citta;
-	private string $provincia;
-	private int $id_ruolo;
-	private int $id_azienda;
+	public int $id;
+	public string $nome;
+	public string $cognome;
+	public string $email;
+	public string $telefono;
+	public string $indirizzo;
+	public string $citta;
+	public string $provincia;
+	public int $id_ruolo;
+	public int $id_azienda;
 
 	/**
 	 * Istanzia un'oggetto PersonaleDB, passando per parametro un PDO della connessione col Database
@@ -39,6 +39,33 @@ class PersonaleDB
 	}
 
 	/**
+	 *
+	 * Restituisce un membro del personale dato il suo id
+	 * @return mixed
+	 */
+	public function read_by_id(){
+		$query="SELECT * FROM personale WHERE id LIKE :id";
+
+		$stmt = $this->conn->prepare($query);
+
+		$stmt->bindParam(':id', $this->id);
+
+		$stmt->execute();
+
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		$this->nome = $row['nome'];
+		$this->cognome = $row['cognome'];
+		$this->email = $row['email'];
+		$this->telefono = $row['telefono'];
+		$this->indirizzo = $row['indirizzo'];
+		$this->citta = $row['citta'];
+		$this->provincia = $row['provincia'];
+		$this->id_ruolo = $row['id_ruolo'];
+		$this->id_azienda = $row['id_azienda'];
+	}
+
+	/**
 	 * @return mixed
 	 */
 	public function getConn()
@@ -53,166 +80,5 @@ class PersonaleDB
 	{
 		$this->conn = $conn;
 	}
-
-	/**
-	 * @return int
-	 */
-	public function getId(): int
-	{
-		return $this->id;
-	}
-
-	/**
-	 * @param int $id
-	 */
-	public function setId(int $id): void
-	{
-		$this->id = $id;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getNome(): string
-	{
-		return $this->nome;
-	}
-
-	/**
-	 * @param string $nome
-	 */
-	public function setNome(string $nome): void
-	{
-		$this->nome = $nome;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getCognome(): string
-	{
-		return $this->cognome;
-	}
-
-	/**
-	 * @param string $cognome
-	 */
-	public function setCognome(string $cognome): void
-	{
-		$this->cognome = $cognome;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getEmail(): string
-	{
-		return $this->email;
-	}
-
-	/**
-	 * @param string $email
-	 */
-	public function setEmail(string $email): void
-	{
-		$this->email = $email;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getTelefono(): string
-	{
-		return $this->telefono;
-	}
-
-	/**
-	 * @param string $telefono
-	 */
-	public function setTelefono(string $telefono): void
-	{
-		$this->telefono = $telefono;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getIndirizzo(): string
-	{
-		return $this->indirizzo;
-	}
-
-	/**
-	 * @param string $indirizzo
-	 */
-	public function setIndirizzo(string $indirizzo): void
-	{
-		$this->indirizzo = $indirizzo;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getCitta(): string
-	{
-		return $this->citta;
-	}
-
-	/**
-	 * @param string $citta
-	 */
-	public function setCitta(string $citta): void
-	{
-		$this->citta = $citta;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getProvincia(): string
-	{
-		return $this->provincia;
-	}
-
-	/**
-	 * @param string $provincia
-	 */
-	public function setProvincia(string $provincia): void
-	{
-		$this->provincia = $provincia;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getIdRuolo(): int
-	{
-		return $this->id_ruolo;
-	}
-
-	/**
-	 * @param int $id_ruolo
-	 */
-	public function setIdRuolo(int $id_ruolo): void
-	{
-		$this->id_ruolo = $id_ruolo;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getIdAzienda(): int
-	{
-		return $this->id_azienda;
-	}
-
-	/**
-	 * @param int $id_azienda
-	 */
-	public function setIdAzienda(int $id_azienda): void
-	{
-		$this->id_azienda = $id_azienda;
-	}
-
 
 }
