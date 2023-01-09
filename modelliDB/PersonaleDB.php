@@ -64,7 +64,8 @@ class PersonaleDB
 		$this->id_azienda = $row['id_azienda'];
 	}
 
-	//SELECT p.* FROM personale p INNER JOIN azienda a ON p.id_azienda = a.id WHERE a.nome LIKE 'Cantieroni s.r.l';
+	//Se servisse la query a partire dal nome dell'azienda
+	//SELECT p.* FROM personale p INNER JOIN azienda a ON p.id_azienda = a.id WHERE a.nome LIKE :nome_azienda;
 
 	/**
 	 * Restituisce un membro del personale dato l'id della sua azienda
@@ -152,6 +153,25 @@ class PersonaleDB
 		$this->provincia = $row['provincia'];
 		$this->id_ruolo = $row['id_ruolo'];
 		$this->id_azienda = $row['id_azienda'];
+	}
+
+	//Se servisse la query a partire dalla descrizione del ruolo
+	//SELECT p.* FROM personale p INNER JOIN ruolo r ON p.id_azienda = r.id WHERE r.descrizione LIKE :nome_ruolo;
+
+	/**
+	 * Restituisce un membro del personale dato l'id del suo ruolo
+	 * @return mixed
+	 */
+	public function read_by_ruolo() {
+		$query="SELECT * FROM personale WHERE id_ruolo = :id_ruolo";
+
+		$stmt = $this->conn->prepare($query);
+
+		$stmt->bindParam(':id_ruolo', $this->id_ruolo);
+
+		$stmt->execute();
+
+		return $stmt;
 	}
 
 	/**
