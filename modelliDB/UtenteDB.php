@@ -118,6 +118,41 @@
 		    $this->email = $row['email'];
 		    $this->id_personale = $row['id_personale'];
 	    }
+
+	    /**
+	     * Crea un utente con tutti gli attributi
+	     * @return mixed
+	     */
+		public function create() {
+			$query = 'INSERT INTO utente
+				SET
+				    username = :username,
+					password = :password,
+					email = :email,
+					telefono = :telefono,
+					id_personale = :id_personale
+				';
+
+			$stmt = $this->conn->prepare($query);
+
+			$this->username = htmlspecialchars(strip_tags($this->username));
+			$this->password = htmlspecialchars(strip_tags($this->password));
+			$this->email = htmlspecialchars(strip_tags($this->email));
+			$this->telefono = htmlspecialchars(strip_tags($this->telefono));
+			$this->id_personale = htmlspecialchars(strip_tags($this->id_personale));
+
+			$stmt->bindParam(':username', $this->username);
+			$stmt->bindParam(':password', $this->password);
+			$stmt->bindParam(':email', $this->email);
+			$stmt->bindParam(':telefono', $this->telefono);
+			$stmt->bindParam(':id_personale', $this->id_personale);
+
+			if($stmt->execute()) {
+				return true;
+			} else {
+				return false;
+			}
+		}
     }
 
 ?>
