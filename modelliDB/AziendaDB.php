@@ -97,6 +97,36 @@ class AziendaDB
 		return $stmt;
 	}
 
+	public function create() {
+		$query = 'INSERT INTO azienda 
+			SET 
+			    nome = :nome,
+				indirizzo = :indirizzo,
+				citta = :citta,
+				provincia = :provincia,
+				partita_iva = :partita_iva';
+
+		$stmt = $this->conn->prepare($query);
+
+		$this->nome = htmlspecialchars(strip_tags($this->nome));
+		$this->indirizzo = htmlspecialchars(strip_tags($this->indirizzo));
+		$this->citta = htmlspecialchars(strip_tags($this->citta));
+		$this->provincia = htmlspecialchars(strip_tags($this->provincia));
+		$this->partita_iva = htmlspecialchars(strip_tags($this->partita_iva));
+
+		$stmt->bindParam(':nome', $this->nome);
+		$stmt->bindParam(':indirizzo', $this->indirizzo);
+		$stmt->bindParam(':citta', $this->citta);
+		$stmt->bindParam(':provincia', $this->provincia);
+		$stmt->bindParam(':partita_iva', $this->partita_iva);
+
+		if($stmt->execute()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	/**
 	 * @return mixed
 	 */
