@@ -175,6 +175,53 @@ class PersonaleDB
 	}
 
 	/**
+	 * Crea un membro del personale dati tutti gli attributi
+	 * @return mixed
+	 */
+
+	public function create() {
+		$query = 'INSERT INTO personale 
+			SET 
+			    nome = :nome,
+				cognome = :cognome,
+				email = :email,
+				telefono = :telefono,
+				indirizzo = :indirizzo,
+				citta = :citta,
+				provincia = :provincia,
+				id_ruolo = :id_ruolo,
+				id_azienda = :id_azienda';
+
+		$stmt = $this->conn->prepare($query);
+
+		$this->nome = htmlspecialchars(strip_tags($this->nome));
+		$this->cognome = htmlspecialchars(strip_tags($this->cognome));
+		$this->email = htmlspecialchars(strip_tags($this->email));
+		$this->telefono = htmlspecialchars(strip_tags($this->telefono));
+		$this->indirizzo = htmlspecialchars(strip_tags($this->indirizzo));
+		$this->citta = htmlspecialchars(strip_tags($this->citta));
+		$this->provincia = htmlspecialchars(strip_tags($this->provincia));
+		$this->id_ruolo = htmlspecialchars(strip_tags($this->id_ruolo));
+		$this->id_azienda = htmlspecialchars(strip_tags($this->id_azienda));
+
+		$stmt->bindParam(':nome', $this->nome);
+		$stmt->bindParam(':cognome', $this->cognome);
+		$stmt->bindParam(':email', $this->email);
+		$stmt->bindParam(':telefono', $this->telefono);
+		$stmt->bindParam(':indirizzo', $this->indirizzo);
+		$stmt->bindParam(':citta', $this->citta);
+		$stmt->bindParam(':provincia', $this->provincia);
+		$stmt->bindParam(':id_ruolo', $this->id_ruolo);
+		$stmt->bindParam(':id_azienda', $this->id_azienda);
+
+		if($stmt->execute()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
 	 * @return mixed
 	 */
 	public function getConn()
