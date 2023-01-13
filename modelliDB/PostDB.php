@@ -54,6 +54,44 @@ class PostDB
 		$this->descrizione = $row['descrizione'];
 	}
 
+	/**
+	 * Restituisce l'id dell'autore dall'id del post
+	 * @return mixed
+	 */
+
+	public function read_author() {
+		$query="SELECT id_utente FROM post WHERE id = :id";
+
+		$stmt = $this->conn->prepare($query);
+
+		$stmt->bindParam(':id', $this->id);
+
+		$stmt->execute();
+
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		return $row['id_utente'];
+	}
+
+	/**
+	 * Restituisce l'user dell'autore di un post dall'id
+	 * @return mixed
+	 */
+
+	public function read_author_user() {
+		$query="SELECT u.username FROM post p INNER JOIN utente u ON p.id_utente WHERE p.id_utente = u.id AND p.id = :id";
+
+		$stmt = $this->conn->prepare($query);
+
+		$stmt->bindParam(':id', $this->id);
+
+		$stmt->execute();
+
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		return $row['username'];
+	}
+
     /**
      * @return mixed
      */

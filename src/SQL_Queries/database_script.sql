@@ -30,6 +30,7 @@ CREATE TABLE personale(
                           provincia CHAR(2),
                           id_ruolo INT UNSIGNED NOT NULL,
                           id_azienda INT UNSIGNED NOT NULL,
+                          img_path varchar(256),
 
                           FOREIGN KEY (id_ruolo) REFERENCES ruolo(id),
                           FOREIGN KEY (id_azienda) REFERENCES azienda(id)
@@ -55,15 +56,27 @@ CREATE TABLE attivita(
                          fine datetime
 );
 
+CREATE TABLE utente(
+                       id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
+                       username VARCHAR(40) UNIQUE NOT NULL,
+                       password VARCHAR(30) NOT NULL,
+                       email VARCHAR(320) NOT NULL UNIQUE,
+                       telefono CHAR(10),
+                       id_personale INT UNSIGNED NOT NULL,
+
+                       FOREIGN KEY (id_personale) REFERENCES personale(id)
+
+);
+
 CREATE TABLE post(
                      id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
                      id_utente INT UNSIGNED NOT NULL,
                      ora_post TIMESTAMP,
-			   id_cantiere INT UNSIGNED NOT NULL,
-			   descrizione VARCHAR(256),
+                     descrizione VARCHAR(512),
+                     id_cantiere INT UNSIGNED NOT NULL,
 
-                     FOREIGN KEY (id_utente) REFERENCES personale(id),
-			   FOREIGN KEY (id_cantiere) REFERENCES cantiere(id)
+                     FOREIGN KEY (id_utente) REFERENCES utente(id),
+                     FOREIGN KEY (id_cantiere) REFERENCES cantiere(id)
 );
 
 CREATE TABLE allegato(
