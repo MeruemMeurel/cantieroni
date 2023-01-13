@@ -52,6 +52,7 @@ class PostDB
 		$this->id_utente = $row['id_utente'];
 		//$this->ora_post = $row['ora_post'];
 		$this->descrizione = $row['descrizione'];
+		$this->id_cantiere = $row['id_cantiere'];
 	}
 
 	/**
@@ -92,6 +93,43 @@ class PostDB
 		return $row['username'];
 	}
 
+	/**
+	 * Restituisce l'id del cantiere dall'id del post
+	 * @return mixed
+	 */
+	public function read_cantiere() {
+		$query="SELECT id_cantiere FROM post WHERE id = :id";
+
+		$stmt = $this->conn->prepare($query);
+
+		$stmt->bindParam(':id', $this->id);
+
+		$stmt->execute();
+
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		return $row['id_cantiere'];
+	}
+
+	/**
+	 * Restituisce il nome del cantiere dall'id del post
+	 * @return mixed
+	 */
+
+	public function read_cantiere_nome() {
+		$query="SELECT c.nome FROM post p INNER JOIN cantiere c ON p.id_cantiere WHERE p.id_cantiere = c.id AND p.id = :id";
+
+		$stmt = $this->conn->prepare($query);
+
+		$stmt->bindParam(':id', $this->id);
+
+		$stmt->execute();
+
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		return $row['nome'];
+	}
+
     /**
      * @return mixed
      */
@@ -107,86 +145,5 @@ class PostDB
     {
         $this->conn = $conn;
     }
-
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId(int $id): void
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return int
-     */
-    public function getIdUtente(): int
-    {
-        return $this->id_utente;
-    }
-
-    /**
-     * @param int $id_utente
-     */
-    public function setIdUtente(int $id_utente): void
-    {
-        $this->id_utente = $id_utente;
-    }
-
-    /**
-     * @return Timestamp
-     */
-    public function getOraPost(): Timestamp
-    {
-        return $this->ora_post;
-    }
-
-    /**
-     * @param Timestamp $ora_post
-     */
-    public function setOraPost(Timestamp $ora_post): void
-    {
-        $this->ora_post = $ora_post;
-    }
-
-    /**
-     * @return int
-     */
-    public function getIdCantiere(): int
-    {
-        return $this->id_cantiere;
-    }
-
-    /**
-     * @param int $id_cantiere
-     */
-    public function setIdCantiere(int $id_cantiere): void
-    {
-        $this->id_cantiere = $id_cantiere;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDescrizione(): string
-    {
-        return $this->descrizione;
-    }
-
-    /**
-     * @param string $descrizione
-     */
-    public function setDescrizione(string $descrizione): void
-    {
-        $this->descrizione = $descrizione;
-    }
-
 
 }

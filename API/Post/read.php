@@ -32,8 +32,8 @@ if($num > 0){
 			'id' => $id,
 			'id_utente' => $id_utente,
 			'ora_post' => $ora_post,
-			'id_cantiere' => $id_cantiere,
-            'descrizione' => $descrizione
+            'descrizione' => $descrizione,
+			'id_cantiere' => $id_cantiere
 		);
 
 		array_push($post_arr['data'],$post_item);

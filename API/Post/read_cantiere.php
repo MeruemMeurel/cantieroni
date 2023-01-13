@@ -18,18 +18,6 @@ $post = new PostDB($db);
 $app = isset($_GET['id']) ? $_GET['id'] : die();
 $post->id = $app;
 
-//Get post
-$post->read_by_id();
-
-//Create array
-$post_arr = array(
-	'id' => $post->id,
-	'id_utente' => $post->id_utente,
-	//'ora_post' => $post->ora_post,
-	'descrizione' => $post->descrizione,
-	'id_cantiere' => $post->id_cantiere
-);
-
 //Make JSON
-print_r(json_encode($post_arr));
+print_r(json_encode($post->read_cantiere()));
 ?>
