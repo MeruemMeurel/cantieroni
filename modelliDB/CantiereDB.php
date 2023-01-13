@@ -89,6 +89,44 @@ class CantiereDB
 		$this->id_capocantiere = $row['id_capocantiere'];
 	}
 
+	/**
+	 * IMPLEMENTATA, mancano le date
+	 * Crea un cantiere con tutti gli attributi
+	 * @return mixed
+	 */
+	public function create() {
+		$query = 'INSERT INTO cantiere
+			SET
+			    nome = :nome,
+				indirizzo = :indirizzo,
+				citta = :citta,
+				provincia = :provincia,
+				descrizione = :descrizione,
+				id_capocantiere = :id_capocantiere';
+
+		$stmt = $this->conn->prepare($query);
+
+		$this->nome = htmlspecialchars(strip_tags($this->nome));
+		$this->indirizzo = htmlspecialchars(strip_tags($this->indirizzo));
+		$this->citta = htmlspecialchars(strip_tags($this->citta));
+		$this->provincia = htmlspecialchars(strip_tags($this->provincia));
+		$this->descrizione = htmlspecialchars(strip_tags($this->descrizione));
+		$this->id_capocantiere = htmlspecialchars(strip_tags($this->id_capocantiere));
+
+		$stmt->bindParam(':nome', $this->nome);
+		$stmt->bindParam(':indirizzo', $this->indirizzo);
+		$stmt->bindParam(':citta', $this->citta);
+		$stmt->bindParam(':provincia', $this->provincia);
+		$stmt->bindParam(':descrizione', $this->descrizione);
+		$stmt->bindParam(':id_capocantiere', $this->id_capocantiere);
+
+		if($stmt->execute()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
     /**
      * @return mixed
      */
@@ -104,150 +142,5 @@ class CantiereDB
     {
         $this->conn = $conn;
     }
-
-	/**
-	 * @return int
-	 */
-	public function getId(): int
-	{
-		return $this->id;
-	}
-
-	/**
-	 * @param int $id
-	 */
-	public function setId(int $id): void
-	{
-		$this->id = $id;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getNome(): string
-	{
-		return $this->nome;
-	}
-
-	/**
-	 * @param string $nome
-	 */
-	public function setNome(string $nome): void
-	{
-		$this->nome = $nome;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getIndirizzo(): string
-	{
-		return $this->indirizzo;
-	}
-
-	/**
-	 * @param string $indirizzo
-	 */
-	public function setIndirizzo(string $indirizzo): void
-	{
-		$this->indirizzo = $indirizzo;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getCitta(): string
-	{
-		return $this->citta;
-	}
-
-	/**
-	 * @param string $citta
-	 */
-	public function setCitta(string $citta): void
-	{
-		$this->citta = $citta;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getProvincia(): string
-	{
-		return $this->provincia;
-	}
-
-	/**
-	 * @param string $provincia
-	 */
-	public function setProvincia(string $provincia): void
-	{
-		$this->provincia = $provincia;
-	}
-
-	/**
-	 * @return date
-	 */
-	public function getDataInizio(): date
-	{
-		return $this->data_inizio;
-	}
-
-	/**
-	 * @param date $data_inizio
-	 */
-	public function setDataInizio(date $data_inizio): void
-	{
-		$this->data_inizio = $data_inizio;
-	}
-
-	/**
-	 * @return date
-	 */
-	public function getDataFine(): date
-	{
-		return $this->data_fine;
-	}
-
-	/**
-	 * @param date $data_fine
-	 */
-	public function setDataFine(date $data_fine): void
-	{
-		$this->data_fine = $data_fine;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getDescrizione(): string
-	{
-		return $this->descrizione;
-	}
-
-	/**
-	 * @param string $descrizione
-	 */
-	public function setDescrizione(string $descrizione): void
-	{
-		$this->descrizione = $descrizione;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getIdCapocantiere(): int
-	{
-		return $this->id_capocantiere;
-	}
-
-	/**
-	 * @param int $id_capocantiere
-	 */
-	public function setIdCapocantiere(int $id_capocantiere): void
-	{
-		$this->id_capocantiere = $id_capocantiere;
-	}
-
 
 }
