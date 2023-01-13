@@ -7,6 +7,13 @@ function mostraInserimento(){
     document.getElementById('inserCantiere').style.top = "50%";
 }
 
+function aggiungiCantiere(){
+    var app = document.getElementsByClassName("aggCampi");
+    var idCantiere = Math.floor(Math.random() * 1000000)
+    var c = new Cantiere(idCantiere, app[0], app[1], app[2], app[3], app[4], app[5], app[6], app[7]);
+    aggCantiere();
+}
+
 //Evento nel caso in cui venga premuto ESC durante l'inserimento del cantiere
 window.addEventListener('keydown', function(e) {
     if(e.key == "Escape" && document.getElementById('inserCantiere').style.visibility == "visible"){
