@@ -2,10 +2,36 @@ var oggi = new Date();
 
 var array = Array();
 
+
+
+// Legge tutti i cantieri
+fetch('http://localhost/cantieroni/API/Cantiere/read.php',{credentials: 'include'})
+    .then((response) => {
+         if(response.ok) {   
+            return response.json();
+         }
+         throw new Error(response.statusText);
+    })
+    .then((data) => {
+            // Login effettuato            
+            data.data.forEach(el => {
+                //console.log("cantiere",el);    
+                array.push(new Cantiere(el.id, el.nome, el.indirizzo, el.citta, el.provincia, el.data_inizio, el.data_fine, el.descrizione, el.id_capocantiere));                                
+            });
+            creaCantieri(array);
+
+
+    }).catch((err) => {
+        console.log(err);
+    });
+
+
+
 //Cantieri in corso
+/*
 array.push(new Cantiere(1, "Cantiere 1", "Via a caso", "Campi Bisenzio", "Firenze", "20/12/2022", "01/01/2024", "Descrizione1", "codice1"));
 array.push(new Cantiere(2, "Cantiere 2", "Via random", "Prato", "Firenze", "20/12/2022", "01/01/2024", "Descrizione2", "codice2"));
-/*array.push(new Cantiere(2, "Cantiere 3", "Via random", "Prato", "Firenze", "20/12/2022", "01/01/2024", "Descrizione3", "codice2"));
+array.push(new Cantiere(2, "Cantiere 3", "Via random", "Prato", "Firenze", "20/12/2022", "01/01/2024", "Descrizione3", "codice2"));
 array.push(new Cantiere(2, "Cantiere 4", "Via random", "Prato", "Firenze", "20/12/2022", "01/01/2024", "Descrizione4", "codice2"));
 array.push(new Cantiere(2, "Cantiere 5", "Via random", "Prato", "Firenze", "20/12/2022", "01/01/2024", "Descrizione5", "codice2"));
 array.push(new Cantiere(2, "Cantiere 6", "Via random", "Prato", "Firenze", "20/12/2022", "01/01/2024", "Descrizione6", "codice2"));
@@ -15,7 +41,7 @@ array.push(new Cantiere(2, "Cantiere 9", "Via random", "Prato", "Firenze", "20/1
 array.push(new Cantiere(2, "Cantiere 10", "Via random", "Prato", "Firenze", "20/12/2022", "01/01/2024", "Descrizione10", "codice2"));
 array.push(new Cantiere(2, "Cantiere 11", "Via random", "Prato", "Firenze", "20/12/2022", "01/01/2024", "Descrizione11", "codice2"));
 array.push(new Cantiere(2, "Cantiere 12", "Via random", "Prato", "Firenze", "20/12/2022", "01/01/2024", "Descrizione12", "codice2"));
-array.push(new Cantiere(2, "Cantiere 13", "Via random", "Prato", "Firenze", "20/12/2022", "01/01/2024", "Descrizione13", "codice2"));*/
+array.push(new Cantiere(2, "Cantiere 13", "Via random", "Prato", "Firenze", "20/12/2022", "01/01/2024", "Descrizione13", "codice2"));
 
 //Cantieri da iniziare
 array.push(new Cantiere(3, "Cantiere 1", "Via a caso", "Campi Bisenzio", "Firenze", "01/01/2024", "01/01/2030", "Descrizione14", "codice1"));
@@ -33,34 +59,47 @@ array.push(new Cantiere(1, "Cantiere 1", "Via a caso", "Campi Bisenzio", "Firenz
 array.push(new Cantiere(1, "Cantiere 1", "Via a caso", "Campi Bisenzio", "Firenze", "01/01/2020", "01/01/2022", "Descrizione24", "codice1"));
 array.push(new Cantiere(3, "Cantiere 1", "Via a caso", "Campi Bisenzio", "Firenze", "01/01/2020", "01/01/2022", "Descrizione25", "codice1"));
 array.push(new Cantiere(1, "Cantiere 1", "Via a caso", "Campi Bisenzio", "Firenze", "01/01/2020", "01/01/2022", "Descrizione26", "codice1"));
+*/
 
-var cantInCorso = [];
-var cantDaIniziare = [];
-var cantConclusi = [];
 
-for(let i=0; i<array.length; i++){
-    var app = array[i].data_inizio.split('/');
-    var dataInizio = new Date(Number(app[2]), Number(app[1]) - 1, Number(app[0]));
-    app = array[i].data_fine.split('/');
-    var dataFine = new Date(Number(app[2]), Number(app[1]) - 1, Number(app[0]));
 
-    if(dataInizio.getTime() < oggi.getTime() && dataFine.getTime() > oggi.getTime()){
-        cantInCorso.push(array[i]);
+
+function creaCantieri(array) {
+    let cantInCorso = [];
+    let cantDaIniziare = [];
+    let cantConclusi = [];
+    
+    for(let i=0; i<array.length; i++){        
+        console.log("cantiere",i,array[i]);    
+        let dataInizio=new Date(2000,1,1) , dataFine=new Date(3000,12,31);
+
+        if(array[i].data_inizio) {
+            let app = array[i].data_inizio.split('-');
+            dataInizio = new Date(Number(app[0]), Number(app[1]) - 1, Number(app[2]));
+        }
+
+        if(array[i].data_fine) {
+            let app = array[i].data_fine.split('-');        
+            dataFine = new Date(Number(app[0]), Number(app[1]) - 1, Number(app[2]));
+        }
+
+        if(dataInizio.getTime() < oggi.getTime() && dataFine.getTime() > oggi.getTime()){
+            cantInCorso.push(array[i]);
+        }
+        else if(dataInizio.getTime() > oggi.getTime()){
+            cantDaIniziare.push(array[i]);
+        }
+        else if(dataFine.getTime() < oggi.getTime()){
+            cantConclusi.push(array[i]);
+        }
     }
-    else if(dataInizio.getTime() > oggi.getTime()){
-        cantDaIniziare.push(array[i]);
-    }
-    else if(dataFine.getTime() < oggi.getTime()){
-        cantConclusi.push(array[i]);
-    }
+    console.log("cantInCorso.length",cantInCorso.length);
+    console.log("cantDaIniziare.length",cantDaIniziare.length);
+    console.log("cantConclusi.length",cantConclusi.length);
 }
-console.log(cantInCorso.length);
-console.log(cantDaIniziare.length);
-console.log(cantConclusi.length);
-
 
 function aggiungiCantiere(){
-    console.log("AOH");
+//    console.log("AOH");
     var temp = Array()
     temp[0] = document.getElementById("idNome").value;
     temp[1] = document.getElementById("idIndirizzo").value;

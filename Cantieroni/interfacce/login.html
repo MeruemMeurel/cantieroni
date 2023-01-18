@@ -20,11 +20,11 @@
             </div>
 
             <!-- Login Form -->
-            <form>
+            
                 <input type="text" id="login" class="fadeIn second" name="login" placeholder="email"  value="" >
-                <input type="password"id="password" class="fadeIn third" name="login" placeholder="password" value="">
-               <br> <button onclick="location.href='index.php'"  class="animazione" value="Log In">Log In</button>
-            </form>
+                <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" value="">
+               <br> <button onclick="login();"  class="animazione" value="Log In">Log In</button>
+                <div id="error" style="color:red"></div>
             <br>
             <!-- Remind Passowrd -->
             <div id="formFooter">
@@ -33,5 +33,31 @@
 
         </div>
     </div>
+
+<script>
+function login() {
+    let email=document.getElementById('login');
+    let password=document.getElementById('password');
+    let error=document.getElementById('error');
+    error.innerHTML='';
+
+    let rc=fetch('http://localhost/cantieroni/API/Utente/check_login.php?username='+encodeURIComponent(email.value)+'&password='+encodeURIComponent(password.value),{credentials: 'include'})
+		.then((response) => {
+             if(response.ok) {   
+                return response.json();
+             }
+             throw new Error(response.statusText);
+        })
+		.then((data) => {
+                // Login effettuato
+				document.location='index.html';            
+
+		}).catch((err) => {
+            error.innerHTML=err;
+        });
+    
+}
+</script>
+
 </body>
 </html>

@@ -1,30 +1,71 @@
 //Scroll a destra/sinistra
-const prevInCorso = document.getElementById('prevInCorso');
-const nextInCorso = document.getElementById('nextInCorso');
+let prevInCorso=null; 
+let nextInCorso=null; 
 
-prevInCorso.onclick = () => {
-    document.getElementById('listaInCorso').scrollLeft -= 1200;
-};
 
-nextInCorso.onclick = () => {
-    document.getElementById('listaInCorso').scrollLeft += 1200;
-};
+
+
+function prevInCorso_setup() {
+    if(!prevInCorso) {
+        prevInCorso = document.getElementById('prevInCorso');
+        nextInCorso = document.getElementById('nextInCorso');
+
+        prevInCorso.onclick = () => {
+            document.getElementById('listaInCorso').scrollLeft -= 1200;
+        };
+
+        nextInCorso.onclick = () => {
+            document.getElementById('listaInCorso').scrollLeft += 1200;
+        };
+    }
+}
+
+
+
+// Legge tutti i cantieri
+fetch('http://localhost/cantieroni/API/Cantiere/read_in_corso.php',{credentials: 'include'})
+    .then((response) => {
+         if(response.ok) {   
+            return response.json();
+         }
+         throw new Error(response.statusText);
+    })
+    .then((data) => {
+            let array=[];
+            // Login effettuato            
+            data.data.forEach(el => {
+                //console.log("cantiere",el);    
+                array.push(new Cantiere(el.id, el.nome, el.indirizzo, el.citta, el.provincia, el.data_inizio, el.data_fine, el.descrizione, el.id_capocantiere));                                
+            });
+            setInCorso(array);
+
+
+    }).catch((err) => {
+        console.log("Cantieri/read_in_corso",err);
+    });
+
 
 
 //Aggiunta dei cantieri nel relativo html
-var strCards = "";
-for(let i=0; i<cantInCorso.length; i++){
-    if(i == 0){
-        strCards += '<div class="card bg-light" id="card1InCorso"><button id="plusPerAgg"><img class="card-img" src="../img/plus.png" alt="Card image cap" onclick="mostraInserimento()"></button></div>'
+function setInCorso(cantInCorso) {
+    prevInCorso_setup();
+
+    var strCards = "";
+    for(let i=0; i<cantInCorso.length; i++){
+        if(i == 0){
+            strCards += '<div class="card bg-light" id="card1InCorso"><button id="plusPerAgg"><img class="card-img" src="../img/plus.png" alt="Card image cap" onclick="mostraInserimento()"></button></div>'
+        }
+        strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">'+cantInCorso[i].descrizione+'</p></div></div>'
     }
-    strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">'+cantInCorso[i].descrizione+'</p></div></div>'
+    document.getElementById("listaInCorso").innerHTML += strCards;    
 }
-document.getElementById("listaInCorso").innerHTML += strCards;
+
 
 
 //Cambiamento della visibilità delle frecce in caso di ridimensionamento della finestra
 function changeArrowVisOnResize(){
-    var element = document.querySelector('#listaInCorso');
+
+    var element = document.querySelector('#listaInCorso');    
     if((element.offsetHeight < element.scrollHeight) || (element.offsetWidth < element.scrollWidth)){
         prevInCorso.style.visibility = "visible";
         nextInCorso.style.visibility = "visible";
@@ -34,5 +75,11 @@ function changeArrowVisOnResize(){
         nextInCorso.style.visibility = "hidden";
     }
 }
-changeArrowVisOnResize();
-window.addEventListener('resize', changeArrowVisOnResize);
+
+
+$(document).on('ready',function() {    
+    changeArrowVisOnResize();
+    window.addEventListener('resize', changeArrowVisOnResize);
+});
+
+
