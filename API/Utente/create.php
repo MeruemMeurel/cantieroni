@@ -1,6 +1,6 @@
 <?php
 //Headers
-header('Access-Controll-Allow-Origin: *');
+header('Access-Control-Allow-Origin: *');
 header('Content-Type: application:json');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-With');
@@ -23,6 +23,7 @@ $utente->password = $data->password;
 $utente->email = $data->email;
 $utente->telefono = $data->telefono;
 $utente->id_personale = $data->id_personale;
+$utente->token = md5(uniqid()); // Creo un token random per il login
 
 if($utente->create()) {
 	echo json_encode(

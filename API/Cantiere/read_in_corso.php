@@ -15,7 +15,7 @@
     $cantiere = new CantiereDB($db);
 
     //Query cantiere
-    $result = $cantiere->read();
+    $result = $cantiere->read_in_corso();
 
     $num = $result->rowCount();
 
