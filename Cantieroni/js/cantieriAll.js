@@ -5,8 +5,8 @@ var array = Array();
 //Cantieri in corso
 array.push(new Cantiere(1, "Cantiere 1", "Via a caso", "Campi Bisenzio", "Firenze", "20/12/2022", "01/01/2024", "Descrizione1", "codice1"));
 array.push(new Cantiere(2, "Cantiere 2", "Via random", "Prato", "Firenze", "20/12/2022", "01/01/2024", "Descrizione2", "codice2"));
-array.push(new Cantiere(2, "Cantiere 3", "Via random", "Prato", "Firenze", "20/12/2022", "01/01/2024", "Descrizione3", "codice2"));
-/*array.push(new Cantiere(2, "Cantiere 4", "Via random", "Prato", "Firenze", "20/12/2022", "01/01/2024", "Descrizione4", "codice2"));
+/*array.push(new Cantiere(2, "Cantiere 3", "Via random", "Prato", "Firenze", "20/12/2022", "01/01/2024", "Descrizione3", "codice2"));
+array.push(new Cantiere(2, "Cantiere 4", "Via random", "Prato", "Firenze", "20/12/2022", "01/01/2024", "Descrizione4", "codice2"));
 array.push(new Cantiere(2, "Cantiere 5", "Via random", "Prato", "Firenze", "20/12/2022", "01/01/2024", "Descrizione5", "codice2"));
 array.push(new Cantiere(2, "Cantiere 6", "Via random", "Prato", "Firenze", "20/12/2022", "01/01/2024", "Descrizione6", "codice2"));
 array.push(new Cantiere(2, "Cantiere 7", "Via random", "Prato", "Firenze", "20/12/2022", "01/01/2024", "Descrizione7", "codice2"));
@@ -59,6 +59,40 @@ console.log(cantDaIniziare.length);
 console.log(cantConclusi.length);
 
 
-function aggCantiere(){
-    /* Codice da inserire */
+function aggiungiCantiere(){
+    console.log("AOH");
+    var temp = Array()
+    temp[0] = document.getElementById("idNome").value;
+    temp[1] = document.getElementById("idIndirizzo").value;
+    temp[2] = document.getElementById("idCitta").value;
+    temp[3] = document.getElementById("idProvincia").value;
+    temp[4] = document.getElementById("idDataInizio").value;
+    temp[5] = document.getElementById("idDataFine").value;
+    temp[6] = document.getElementById("idDescrizione").value;
+    temp[7] = document.getElementById("idIdCapocantiere").value;
+    var idCantiere = Math.floor(Math.random() * 1000000);
+    var c = new Cantiere(idCantiere, temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7]);
+    /*console.log(app[0]);
+    console.log(app[1]);
+    console.log(app[2]);
+    console.log(app[3]);
+    console.log(app[4]);
+    console.log(app[5]);
+    console.log(app[6]);
+    console.log(app[7]);
+    console.log(c.nome);*/
+    var app = c.data_inizio.split('/');
+    var dataInizio = new Date(Number(app[2]), Number(app[1]) - 1, Number(app[0]));
+    app = c.data_fine.split('/');
+    var dataFine = new Date(Number(app[2]), Number(app[1]) - 1, Number(app[0]));
+
+    if(dataInizio.getTime() < oggi.getTime() && dataFine.getTime() > oggi.getTime()){
+        document.getElementById("listaInCorso").innerHTML += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">'+c.descrizione+'</p></div></div>';
+    }
+    else if(dataInizio.getTime() > oggi.getTime()){
+        document.getElementById("listaDaIniziare").innerHTML += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">'+c.descrizione+'</p></div></div>';
+    }
+    else if(dataFine.getTime() < oggi.getTime()){
+        document.getElementById("listaConclusi").innerHTML += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">'+c.descrizione+'</p></div></div>';
+    }
 }
