@@ -3,46 +3,23 @@ let prevInCorso=null;
 let nextInCorso=null; 
 
 
-
-
 function prevInCorso_setup() {
     if(!prevInCorso) {
         prevInCorso = document.getElementById('prevInCorso');
         nextInCorso = document.getElementById('nextInCorso');
 
+        
         prevInCorso.onclick = () => {
             document.getElementById('listaInCorso').scrollLeft -= 1200;
         };
 
+        
         nextInCorso.onclick = () => {
             document.getElementById('listaInCorso').scrollLeft += 1200;
         };
     }
 }
 
-
-
-// Legge tutti i cantieri
-fetch('http://localhost/cantieroni/API/Cantiere/read_in_corso.php',{credentials: 'include'})
-    .then((response) => {
-         if(response.ok) {   
-            return response.json();
-         }
-         throw new Error(response.statusText);
-    })
-    .then((data) => {
-            let array=[];
-            // Login effettuato            
-            data.data.forEach(el => {
-                //console.log("cantiere",el);    
-                array.push(new Cantiere(el.id, el.nome, el.indirizzo, el.citta, el.provincia, el.data_inizio, el.data_fine, el.descrizione, el.id_capocantiere));                                
-            });
-            setInCorso(array);
-
-
-    }).catch((err) => {
-        console.log("Cantieri/read_in_corso",err);
-    });
 
 
 
@@ -65,21 +42,48 @@ function setInCorso(cantInCorso) {
 //Cambiamento della visibilità delle frecce in caso di ridimensionamento della finestra
 function changeArrowVisOnResize(){
 
-    var element = document.querySelector('#listaInCorso');    
-    if((element.offsetHeight < element.scrollHeight) || (element.offsetWidth < element.scrollWidth)){
-        prevInCorso.style.visibility = "visible";
-        nextInCorso.style.visibility = "visible";
-    }
-    else{
-        prevInCorso.style.visibility = "hidden";
-        nextInCorso.style.visibility = "hidden";
+    //let element = document.querySelector('#listaInCorso');    
+    let element = document.getElementById('listaInCorso'); 
+    if(element) {   
+        if(element && (element.offsetHeight < element.scrollHeight) || (element.offsetWidth < element.scrollWidth)) {
+            prevInCorso.style.visibility = "visible";
+            nextInCorso.style.visibility = "visible";
+        }
+        else{
+            prevInCorso.style.visibility = "hidden";
+            nextInCorso.style.visibility = "hidden";
+        }
     }
 }
 
+$( document ).ready(function() {
+    
+    // Legge tutti i cantieri in corso    
+    fetch('http://localhost/cantieroni/API/Cantiere/read_in_corso.php',{credentials: 'include'})
+    .then((response) => {
+        if(response.ok) {   
+            return response.json();
+        }
+        throw new Error(response.statusText);
+    })
+    .then((data) => {
+            let array=[];
+            // Login effettuato            
+            data.data.forEach(el => {
+                //console.log("cantiere",el);    
+                array.push(new Cantiere(el.id, el.nome, el.indirizzo, el.citta, el.provincia, el.data_inizio, el.data_fine, el.descrizione, el.id_capocantiere));                                
+            });
+            setInCorso(array);
 
-$(document).on('ready',function() {    
-    changeArrowVisOnResize();
+
+    }).catch((err) => {
+        console.log("Cantieri/read_in_corso",err);
+    });
+
+    changeArrowVisOnResize();    
     window.addEventListener('resize', changeArrowVisOnResize);
+    
+
 });
 
 

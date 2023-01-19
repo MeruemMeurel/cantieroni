@@ -1,40 +1,64 @@
 //Scroll a destra/sinistra
-const prevDaIniziare = document.getElementById('prevDaIniziare');
-const nextDaIniziare = document.getElementById('nextDaIniziare');
+let prevDaIniziare = null;
+let nextDaIniziare = null;
 
-prevDaIniziare.onclick = () => {
-    document.getElementById('listaDaIniziare').scrollLeft -= 1200;
-};
+function prevDaIniziareSetup() {    
+    if(!prevDaIniziare) {
+        prevDaIniziare = document.getElementById('prevDaIniziare');
+        nextDaIniziare = document.getElementById('nextDaIniziare');
 
-nextDaIniziare.onclick = () => {
-    document.getElementById('listaDaIniziare').scrollLeft += 1200;
-};
+        prevDaIniziare.onclick = () => {
+            document.getElementById('listaDaIniziare').scrollLeft -= 1200;
+        };
+
+        nextDaIniziare.onclick = () => {
+            document.getElementById('listaDaIniziare').scrollLeft += 1200;
+        };
+    }
+}
+
 
 
 //Aggiunta dei cantieri nel relativo html
-var strCards = "";
-for(let i=0; i<cantDaIniziare.length; i++){
-    if(i == 0){
-        strCards += '<div class="card" id="card1DaIniziare"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">'+cantDaIniziare[i].descrizione+'</p></div></div>'
+function setDaIniziare(cantDaIniziare) {
+    prevDaIniziareSetup();
+    var strCards = "";
+    for (let i = 0; i < cantDaIniziare.length; i++) {
+        if (i == 0) {
+            strCards += '<div class="card" id="card1DaIniziare"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">' + cantDaIniziare[i].descrizione + '</p></div></div>'
+        } else {
+            strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">' + cantDaIniziare[i].descrizione + '</p></div></div>'
+        }
     }
-    else{
-        strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">'+cantDaIniziare[i].descrizione+'</p></div></div>'
-    }
+    document.getElementById("listaDaIniziare").innerHTML += strCards;
 }
-document.getElementById("listaDaIniziare").innerHTML += strCards;
 
 
-//Cambiamento della visibilità delle frecce in caso di ridimensionamento della finestra
-function changeArrowVisOnResize(){
-    var element = document.querySelector('#listaDaIniziare');
-    if((element.offsetHeight < element.scrollHeight) || (element.offsetWidth < element.scrollWidth)){
-        prevDaIniziare.style.visibility = "visible";
-        nextDaIniziare.style.visibility = "visible";
-    }
-    else{
-        prevDaIniziare.style.visibility = "hidden";
-        nextDaIniziare.style.visibility = "hidden";
-    }
-}
-changeArrowVisOnResize();
-window.addEventListener('resize', changeArrowVisOnResize);
+$( document ).ready(function() {
+
+    // Legge tutti i cantieri DaIniziare
+    fetch('http://localhost/cantieroni/API/Cantiere/read_da_iniziare.php',{credentials: 'include'})
+        .then((response) => {
+            if(response.ok) {
+                return response.json();
+            }
+            throw new Error(response.statusText);
+        })
+        .then((data) => {
+            let array=[];
+            // Login effettuato
+            if(data.data) {
+                data.data.forEach(el => {
+                    //console.log("cantiere",el);
+                    array.push(new Cantiere(el.id, el.nome, el.indirizzo, el.citta, el.provincia, el.data_inizio, el.data_fine, el.descrizione, el.id_capocantiere));
+                });
+            }
+            setDaIniziare(array);
+
+
+        }).catch((err) => {
+        console.log("Cantieri/read_DaIniziare",err);
+    });
+
+
+});
