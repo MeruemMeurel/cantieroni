@@ -1,5 +1,5 @@
 //Scroll a destra/sinistra
-<<<<<<< HEAD
+
 let prevDaIniziare = null;
 let nextDaIniziare = null;
 
@@ -17,29 +17,6 @@ function prevDaIniziareSetup() {
         };
     }
 }
-
-=======
-let prevDaIniziare=null; 
-let nextDaIniziare=null; 
-
-
-
-
-function prevDaIniziare_setup() {
-    if(!prevDaIniziare) {
-        prevDaIniziare = document.getElementById('prevDaIniziare');
-        nextDaIniziare = document.getElementById('nextDaIniziare');
-
-        prevDaIniziare.onclick = () => {
-            document.getElementById('listaDaIniziare').scrollLeft -= 1200;
-        };
-
-        nextDaIniziare.onclick = () => {
-            document.getElementById('listaDaIniziare').scrollLeft += 1200;
-        };
-    }
-}
->>>>>>> 66addc4a505812e9adf0840f991f800d6d1d3137
 
 
 //Aggiunta dei cantieri nel relativo html
