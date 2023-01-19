@@ -51,6 +51,18 @@ class CantiereDB
         return $stmt;
     }
 
+    public function read_concluse(){
+
+        $query="SELECT * FROM cantiere WHERE COALESCE(data_fine,'3000-12-31')>NOW()";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+
+        return $stmt;
+
+    }
+
 
     /**
      * IMPLEMENTATA, mancano le date
