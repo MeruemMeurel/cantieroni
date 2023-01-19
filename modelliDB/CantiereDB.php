@@ -1,5 +1,7 @@
 <?php
 
+use Cassandra\Date;
+
 class CantiereDB
 {
     private $conn;
