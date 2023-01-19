@@ -40,7 +40,6 @@
         'email' => $utente->email,
         'telefono' => $utente->telefono,
         'id_personale' => $utente->id_personale,
-        'token' => $utente->token
     );
     if($utente_arr['password']!=$password) {
         header("Unauthorized 2",false,401);
