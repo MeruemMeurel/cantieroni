@@ -45,77 +45,44 @@
 </head>
 <body>
     <!-- importo header -->
-    <div id="header"></div>
+    <div id="header" style="position: fixed; width: 100%; top:0;"></div>
+    <a name="inizio">inizio</a>
    <!-- Inizio suddivisione pagina -->
-   
-<div class="container-fluid text-center ">
-    <div class="row">
-        <div class="col-3">
+        <div style="position: fixed; top: 10%;">
             
             <!-- Sezione di sinistra -->
             <div class="" >
                 <!-- Sezione di sinistra  alto-->
                 <!-- calendario -->                    
                 <div id="calendario"></div>
+                <div>
+                    <!-- Sezione di sinistra  basso-->
+                    <!-- lista presenze -->
+                    <div id="listapresenze"></div>
+            </div>
             </div>
             
 
         </div>
-        <div class="col-6">
+        
+        <div style="margin-left: 25%; margin-right: 5%; margin-top: 6%;">
             <div class="" >
                 <!-- Sezione di centro alto-->
                 <!-- post nuovo -->                    
-                <div id="postNuovo"></div>
+                
+                <div id="postNuovo" style="margin-bottom: 5%"></div>
+
+                <div class=""id="resoconti"></div>
+                <a href=#inizio><img src="../img/Freccia.jpeg" style="width: 5%; height: 7%; position: fixed; right: 0; bottom: 0;"></a>
+                
             </div>
            
                     <!-- Sezione Centrale -->
                     
                     
         </div> 
-        <div class="col-3">
-                    <!-- Sezione di destra -->
-                    <br>
-                    <div class="bordo"> <button onclick="location.href='gestioneCantieri.html'" class="animazione" value="Log In">Torna alla selezione del cantiere</button></div>
-                    <br>
-                    <div class="bordo"><button onclick="location.href='index.php'"  class="animazione" value="Log In">bho 1</button></div>
-                    <br>
-                    <div class="bordo"> <button onclick="location.href='index.php'"  class="animazione" value="Log In">bho 2</button></div>
-                    <br>
-                    <div id=""></div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-3">
-            
-            <!-- Sezione di sinistra -->
-        
-            <div class="">
-                    <!-- Sezione di sinistra  basso-->
-                    <!-- lista presenze -->
-                    <div id="listapresenze"></div>
-            </div>
-
-        </div>
-        <div class="col-6">
-            <div class="blocco">
-                    <!-- Sezione di centro  basso-->
-                    <!-- lista resoconti -->
-                    <div id="resoconti"></div>
-            </div>
-                    <!-- Sezione Centrale -->
-                    
-                    
-        </div> 
-        <div class="col-3">
-                    <!-- Sezione di destra basso -->
-                    
-        </div>
-    </div>
-
 </div>
-
-
     <!-- importo footer -->
-    <div id="footer"></div>
+    <div id="footer" style="bottom: 0;"></div>
 </body>
 </html>
