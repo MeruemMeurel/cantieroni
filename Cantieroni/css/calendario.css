@@ -1,6 +1,5 @@
 .calendar-div {
-  
-  width: 20vw;
+  width: 25%;
   height: 45vh;
   background-color: white;
 }
@@ -8,7 +7,7 @@
 .calendar {
   margin-top: 10px;
   margin-bottom: 0px;
-  /*width: 25%;*/
+  
   height: 60%;
   box-shadow: 0 10px 10px 10px #dedede;
 
