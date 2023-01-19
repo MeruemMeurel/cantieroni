@@ -4,7 +4,7 @@ var plusPremuto = false;
 //Funzione per far apparire l'inserimento (chiamata da cantInCorso.js)
 function mostraInserimento(){
     document.getElementById('inserCantiere').style.visibility = "visible";
-    document.getElementById('inserCantiere').style.top = "50%";
+    document.getElementById('inserCantiere').style.top = "0";
 }
 
 //Evento nel caso in cui venga premuto ESC durante l'inserimento del cantiere
@@ -20,7 +20,7 @@ window.addEventListener('keydown', function(e) {
 
 //Evento nel caso in cui venga fatto un click fuori dal div durante l'inserimento del cantiere
 window.addEventListener("click", function(e){
-    if(!document.getElementById('inserCantiere').contains(e.target) && plusPremuto == true){
+    if(!document.getElementById('formContent').contains(e.target) && plusPremuto == true){
         plusPremuto = !plusPremuto;
         document.getElementById('inserCantiere').style.top = "150%";
         setTimeout(function(){
