@@ -24,8 +24,16 @@
         array.push(new Post(2,new Personale(0,"narcis","neamtu","email","telefono","in","cit","","",""), "2022-12-14T13:14:15", "SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO"));
         array.push(new Post(3,new Personale(0,"narcis","neamtu","email","telefono","in","cit","","",""), "2022-12-14T13:14:15", "SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO"));
         var str="";
+        var ora="";
+        for(let x=0;x< array.length;x++){
+          for(let i=0;i<array[x].ora_post.length; i++){
+          if(i>10 && i<16){
+            ora+=array[x].ora_post[i];
+          }
+        }
+        }
         for(let i=0;i< array.length;i++){
-        str+='<div class="post-resoconto"><div class="resoconto-head"><img class="fotoprof-resoconto" align="left" src="../img/immagine_profilo_default.png" >'+array[i].utente.nome +'&nbsp;'+array[i].utente.cognome+'<br>'+array[i].ora_post+' </div><div>'+array[i].descrizione+'</div></div>';
+        str+='<div class="post-resoconto"><div class="resoconto-head"><table><tr><td><img class="fotoprof-resoconto" align="left" src="../img/immagine_profilo_default.png" >&nbsp;'+array[i].utente.nome +'&nbsp;'+array[i].utente.cognome+'<br>&nbsp;'+array[i].ora_post.substr(11,5)+'</td></tr></table></div><div>'+array[i].descrizione+'</div></div>';
         }
         document.getElementById("bodylistaresoconti").innerHTML = str;
         console.log(str);
