@@ -22,7 +22,6 @@ $utente->username = $data->username;
 $utente->password = $data->password;
 $utente->email = $data->email;
 $utente->telefono = $data->telefono;
-$utente->id_personale = $data->id_personale;
 $utente->token = md5(uniqid()); // Creo un token random per il login
 
 if($utente->create()) {

@@ -34,7 +34,6 @@
                 'password' => $password,
                 'email' => $email,
                 'telefono' => $telefono,
-                'id_personale' => $id_personale
             );
 
             array_push($utente_arr['data'],$utente_item);

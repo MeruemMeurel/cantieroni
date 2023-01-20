@@ -8,7 +8,6 @@
         public string $password;
         public string $email;
         public string $telefono;
-        public int $id_personale;
 
         public function __construct($db){
             $this->conn = $db;
@@ -49,7 +48,6 @@
             $this->password = $row['password'];
             $this->email = $row['email'];
             $this->telefono = $row['telefono'];
-            $this->id_personale = $row['id_personale'];
 
         }
 
@@ -72,7 +70,6 @@
 			$this->username = $row['username'];
 			$this->password = $row['password'];
 			$this->telefono = $row['telefono'];
-			$this->id_personale = $row['id_personale'];
 		}
 
 	    /**
@@ -98,7 +95,6 @@
 		    $this->password = $row['password'];
 		    $this->email = $row['email'];
 		    $this->telefono = $row['telefono'];
-		    $this->id_personale = $row['id_personale'];
 
 			return true;
 	    }
@@ -122,7 +118,6 @@
 		    $this->username = $row['username'];
 		    $this->password = $row['password'];
 		    $this->email = $row['email'];
-		    $this->id_personale = $row['id_personale'];
 	    }
 
 	    /**
@@ -136,7 +131,6 @@
 					password = :password,
 					email = :email,
 					telefono = :telefono,
-					id_personale = :id_personale
 				';
 
 			$stmt = $this->conn->prepare($query);
@@ -145,13 +139,11 @@
 			$this->password = htmlspecialchars(strip_tags($this->password));
 			$this->email = htmlspecialchars(strip_tags($this->email));
 			$this->telefono = htmlspecialchars(strip_tags($this->telefono));
-			$this->id_personale = htmlspecialchars(strip_tags($this->id_personale));
 
 			$stmt->bindParam(':username', $this->username);
 			$stmt->bindParam(':password', $this->password);
 			$stmt->bindParam(':email', $this->email);
 			$stmt->bindParam(':telefono', $this->telefono);
-			$stmt->bindParam(':id_personale', $this->id_personale);
 
 			if($stmt->execute()) {
 				return true;

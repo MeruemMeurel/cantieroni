@@ -28,7 +28,6 @@ $utente_arr = array(
 	'password' => $utente->password,
 	'email' => $utente->email,
 	'telefono' => $utente->telefono,
-	'id_personale' => $utente->id_personale
 );
 
 //Make JSON

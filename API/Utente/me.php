@@ -31,7 +31,6 @@
         'password' => $utente->password,
         'email' => $utente->email,
         'telefono' => $utente->telefono,
-        'id_personale' => $utente->id_personale
     );
 
     //Creo il JSON
