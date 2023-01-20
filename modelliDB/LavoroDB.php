@@ -34,7 +34,7 @@ class LavoroDB
 
 		$this->inizio = $this->inizio.'%';
 
-		$query = "SELECT * FROM lavoro WHERE id_cantiere = :id_cantiere AND inizio LIKE :inizio";
+		$query = "SELECT * FROM lavoro WHERE id_cantiere = :id_cantiere AND DAY(inizio) LIKE DAY(:inizio)";
 
 		$stmt = $this->conn->prepare($query);
 
@@ -45,6 +45,31 @@ class LavoroDB
 
 		return $stmt;
 	}
+
+    public function read_not_presenti() {
+        $this->inizio = $this->inizio.'%';
+
+        $query = "SELECT personale.*
+FROM personale
+ 
+EXCEPT
+
+	SELECT personale.*
+    FROM personale
+    LEFT JOIN lavoro
+    ON personale.id = lavoro.id_personale 
+    WHERE lavoro.id_cantiere = :id_cantiere AND DAY(lavoro.inizio) = DAY(:inizio)
+";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(':id_cantiere', $this->id_cantiere);
+        $stmt->bindParam(':inizio', $this->inizio);
+
+        $stmt->execute();
+
+        return $stmt;
+    }
 
 	public function create(){
 		$query = 'INSERT INTO lavoro
