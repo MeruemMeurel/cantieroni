@@ -1,6 +1,6 @@
 /* Style the header with a grey background and some padding */
 .header {
-  overflow: hidden;
+  /* overflow: hidden; */
   background-color: #f1f1f1;
   padding: 20px 10px;
 }
@@ -38,7 +38,7 @@
 /* Float the link section to the right */
 .header-right {
   float: right;
-  margin-top: 0.8%;
+  /* margin-top: 0.8%; */
 }
 
 /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
@@ -53,6 +53,12 @@
   }
 }
 
+.fotoprof-header{
+    width: 30%;
+    border-radius: 50%;
+    border-color: black;
+    box-shadow: 0 1px 1px 1px #000000;
+}
 
 
 
@@ -66,7 +72,7 @@
 */
 /* Add a black background color to the top navigation bar */
 .topnav {
-  overflow: hidden;
+  /* overflow: hidden; */
   background-color: #f1f1f1;
   align-self: right;
 }
@@ -118,3 +124,51 @@
     border: 1px solid #f1f1f1;
   }
 }
+
+/* CSS PER IL LINK DROPDOWN */
+.dropbtn {
+  background-color: rgba(255, 142, 0, 0.98);
+  color: white;
+  padding: 12px;
+  font-size: 80%;
+  width: auto;
+  border: none;
+  border-radius: 12px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  width: 100%;
+  min-width: 20%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd; width: 100%; text-align: left;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #f1f1f1;}
+
+.crop{
+  min-width: 120px;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+} 
