@@ -34,3 +34,11 @@ th{
    border-color: black;
    box-shadow: 0 4px 4px 4px #dedede;
 }
+
+
+.aggLavoratori {
+    width: 12%;
+    top: 9px;
+    right: 9px;
+    position: absolute;
+}
