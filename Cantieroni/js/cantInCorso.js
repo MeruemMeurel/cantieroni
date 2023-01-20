@@ -32,7 +32,7 @@ function setInCorso(cantInCorso) {
         if(i == 0){
             strCards += '<div class="card bg-light" id="card1InCorso"><button id="plusPerAgg"><img class="card-img" src="../img/plus.png" alt="Card image cap" onclick="mostraInserimento()"></button></div>'
         }
-        strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">'+cantInCorso[i].nome+'</p></div></div>'
+        strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><img class="pennaEditCantiere" src="../img/penna edit cantiere2.png"><div class="card-body"><p class="card-text">'+cantInCorso[i].nome+'</p></div></div>'
     }
     document.getElementById("listaInCorso").innerHTML += strCards;    
 }
