@@ -10,6 +10,7 @@
             
     <!--<input type="text" id="login" class="fadeIn second" name="login" placeholder="email"  value="" >
     <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" value="">-->
+    <input type="hidden" class="aggCampi" id="idCantiereEdit" name="idCantiereEdit" >
     <input type="text" class="aggCampi" id="idNomeEdit" name="nome" placeholder="Nome">
     <input type="text" class="aggCampi" id="idIndirizzoEdit" name="indirizzo" placeholder="Indirizzo">
     <input type="text" class="aggCampi" id="idCittaEdit" name="citta" placeholder="Città">
@@ -27,17 +28,19 @@
     <div id="error" style="color:red"></div>
 </div>
 <script>
-    let nome = document.getElementById("idNome");
-    let indirizzo = document.getElementById("idIndirizzo").value;
-    let citta = document.getElementById("idCitta").value;
-    let provincia = document.getElementById("idProvincia").value;
-    let data_inizio = document.getElementById("idDataInizio").value;
-    let data_fine = document.getElementById("idDataFine").value;
-    let descrizione = document.getElementById("idDescrizione").value;
-    let id_capocantiere= document.getElementById("idIdCapocantiere").value;
+    let nome = document.getElementById("idNomeEdit");
+    let indirizzo = document.getElementById("idIndirizzoEdit").value;
+    let citta = document.getElementById("idCittaEdit").value;
+    let provincia = document.getElementById("idProvinciaEdit").value;
+    let data_inizio = document.getElementById("idDataInizioEdit").value;
+    let data_fine = document.getElementById("idDataFineEdit").value;
+    let descrizione = document.getElementById("idDescrizioneEdit").value;
+    //let id_capocantiere= document.getElementById("idIdCapocantiere").value;
     error.innerHTML = '';
 
-    let rc=fetch('http://localhost/cantieroni/API/cantiere/create.php?username='+encodeURIComponent(email.value)+'&password='+encodeURIComponent(password.value),{credentials: 'include'})
+    let obj = new CantiereNew(nome, indirizzo, citta, provincia, data_inizio, descrizione);
+/*
+    fetch('http://localhost/cantieroni/API/cantiere/create.php?username='+encodeURIComponent(email.value)+'&password='+encodeURIComponent(password.value),{credentials: 'include'})
         .then((response) => {
             if(response.ok) {
                 return response.json();
@@ -51,7 +54,7 @@
         }).catch((err) => {
             error.innerHTML=err;
         });
-
+*/
 
 </script>
 

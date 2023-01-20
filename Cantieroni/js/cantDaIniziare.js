@@ -25,9 +25,9 @@ function setDaIniziare(cantDaIniziare) {
     var strCards = "";
     for (let i = 0; i < cantDaIniziare.length; i++) {
         if (i == 0) {
-            strCards += '<div class="card" id="card1DaIniziare"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><img class="pennaEditCantiere" src="../img/penna edit cantiere2.png onclick="mostraInserimetoEdit()"><div class="card-body"><p class="card-text">' + cantDaIniziare[i].nome + '</p></div></div>'
+            strCards += '<div class="card" id="card1DaIniziare"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><img class="pennaEditCantiere" src="../img/penna edit cantiere2.png onclick="mostraInserimentoEdit()"><div class="card-body"><p class="card-text">' + cantDaIniziare[i].nome + '</p></div></div>'
         } else {
-            strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><img class="pennaEditCantiere" src="../img/penna edit cantiere2.png onclick="mostraInserimetoEdit()"><div class="card-body"><p class="card-text">' + cantDaIniziare[i].nome + '</p></div></div>'
+            strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><img class="pennaEditCantiere" src="../img/penna edit cantiere2.png onclick="mostraInserimentoEdit()"><div class="card-body"><p class="card-text">' + cantDaIniziare[i].nome + '</p></div></div>'
         }
     }
     document.getElementById("listaDaIniziare").innerHTML += strCards;
