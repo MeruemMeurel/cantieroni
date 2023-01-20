@@ -1,15 +1,41 @@
 
-<body>
     <div class="post">
       
         <div class="grow-wrap">
-          <textarea class="post-textarea" name="resoconto" placeholder="Scrivi qualcosa..."  onInput="this.parentNode.dataset.replicatedValue = this.value" required></textarea>
+          <textarea class="post-textarea" name="resoconto" placeholder="Scrivi qualcosa..." id="nuovo_post" onInput="this.parentNode.dataset.replicatedValue = this.value" required></textarea>
         </div>
         <!-- <input type="file" id="files" name="files" multiple> -->
-        <input class="post-invio" type="submit" value="Manda" name="invio">
+        <input class="post-invio" type="submit" value="Manda" name="invio" onclick="aggiungipost();">
 
         
     </div>
 
-</body>
+
+    <script> 
+    function aggiungipost(){
+      let nuovo_post=document.getElementById('nuovo_post');
+
+      let rc=fetch('http://localhost/cantieroni/API/Post/create.php' +encodeURIComponent(nuovo_post.value),/*cookie del cantiere?*/)
+      .then((response) => {
+             if(response.ok) {   
+                return response.json();
+             }
+             throw new Error(response.statusText);
+        })
+		.then((data) => {
+               //aggiorna lista post chiedendoli all'API          
+
+		}).catch((err) => {
+            error.innerHTML=err;
+        });
+    
+    }
+    
+    
+    
+    
+    
+    
+    </script>
+
 
