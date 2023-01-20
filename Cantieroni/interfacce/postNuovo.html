@@ -1,9 +1,11 @@
 
     <div class="post">
       
-        <div class="grow-wrap">
-          <textarea class="post-textarea" name="resoconto" placeholder="Scrivi qualcosa..." id="nuovo_post" onInput="this.parentNode.dataset.replicatedValue = this.value" required></textarea>
-        </div>
+        <!-- <div class="grow-wrap">
+          <textarea class="post-textarea" name="resoconto" rows="6" cols="10" placeholder="Scrivi qualcosa..." id="nuovo_post" onInput="this.parentNode.dataset.replicatedValue = this.value" required></textarea>
+        </div> -->
+        <span class="textarea post-textarea" role="textbox" id="nuovo_post" contenteditable></span>
+
         <!-- <input type="file" id="files" name="files" multiple> -->
         <input class="post-invio" type="submit" value="Manda" name="invio" onclick="aggiungipost();">
 
@@ -15,7 +17,7 @@
     function aggiungipost(){
       let nuovo_post=document.getElementById('nuovo_post');
 
-      let rc=fetch('http://localhost/cantieroni/API/Post/create.php' +encodeURIComponent(nuovo_post.value),/*cookie del cantiere?*/)
+      let rc=fetch('http://localhost/cantieroni/API/Post/create.php'+encodeURIComponent(nuovo_post.value),/*cookie del cantiere?*/)
       .then((response) => {
              if(response.ok) {   
                 return response.json();

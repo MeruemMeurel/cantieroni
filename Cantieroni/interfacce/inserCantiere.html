@@ -21,31 +21,46 @@
     <div id="error" style="color:red"></div>
 </div>
 <script>
-    let nome = document.getElementById("idNome");
-    let indirizzo = document.getElementById("idIndirizzo").value;
-    let citta = document.getElementById("idCitta").value;
-    let provincia = document.getElementById("idProvincia").value;
-    let data_inizio = document.getElementById("idDataInizio").value;
-    let data_fine = document.getElementById("idDataFine").value;
-    let descrizione = document.getElementById("idDescrizione").value;
-    let id_capocantiere= document.getElementById("idIdCapocantiere").value;
-    error.innerHTML = '';
+    class CantiereNew{
+        constructor(nome, indirizzo, citta, provincia, data_inizio, descrizione) {
+            this.nome = nome;
+            this.indirizzo = indirizzo;
+            this.citta = citta;
+            this.provincia = provincia;
+            this.data_inizio = data_inizio;
+            this.descrizione = descrizione;
+        }
 
-    let rc=fetch('http://localhost/cantieroni/API/cantiere/create.php?username='+encodeURIComponent(email.value)+'&password='+encodeURIComponent(password.value),{credentials: 'include'})
-        .then((response) => {
-            if(response.ok) {
-                return response.json();
-            }
-            throw new Error(response.statusText);
-        })
-        .then((data) => {
-            // Login effettuato
-            document.location='index.html';
+    }
 
-        }).catch((err) => {
-            error.innerHTML=err;
-        });
+    function aggiungiCantiere() {
+        let nome = document.getElementById("idNome").value;
+        let indirizzo = document.getElementById("idIndirizzo").value;
+        let citta = document.getElementById("idCitta").value;
+        let provincia = document.getElementById("idProvincia").value;
+        let data_inizio = document.getElementById("idDataInizio").value;
+        let descrizione = document.getElementById("idDescrizione").value;
+        error.innerHTML = '';
 
+        let obj = new CantiereNew(nome, indirizzo, citta, provincia, data_inizio, descrizione);
+
+        let rc2 = fetch('http://localhost/cantieroni/API/cantiere/create_new.php', { method: 'POST' ,credentials: 'include', headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json'
+            }, body: JSON.stringify(obj)})
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error(response.statusText);
+            })
+            .then((data) => {
+                document.reload();
+            }).catch((err) => {
+                error.innerHTML = err;
+                console.log(err);
+            });
+    }
 
 </script>
 

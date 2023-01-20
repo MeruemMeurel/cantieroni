@@ -25,9 +25,9 @@ function setConclusi(cantConclusi) {
     var strCards = "";
     for (let i = 0; i < cantConclusi.length; i++) {
         if (i == 0) {
-            strCards += '<div class="card" id="card1Conclusi"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">' + cantConclusi[i].descrizione + '</p></div></div>'
+            strCards += '<div class="card" id="card1Conclusi"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">' + cantConclusi[i].nome + '</p></div></div>'
         } else {
-            strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">' + cantConclusi[i].descrizione + '</p></div></div>'
+            strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">' + cantConclusi[i].nome + '</p></div></div>'
         }
     }
     document.getElementById("listaConclusi").innerHTML += strCards;

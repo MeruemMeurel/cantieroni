@@ -8,9 +8,40 @@
         </div>
 
         <div class="header-right">
-            MARIO
+            <div style="text-align: right; display: inline-block;">
+                <img class="fotoprof-header" src="../img/immagine_profilo_default.png" >
+            </div>
+            <div style="display: inline-block;">
+                <div class="dropdown">
+                    <button class="dropbtn crop">Zhario Vittorio Zhario Vittorio Zhario Vittorio Zhario Vittorio Zhario Vittorio Zhario Vittorio  Zhario Vittorio Zhario Vittorio Zhario Vittorio Zhario Vittorio Zhario Vittorio Zhario Vittorio  Zhario Vittorio Zhario Vittorio Zhario Vittorio Zhario Vittorio Zhario Vittorio Zhario Vittorio  </button>
+                    <div class="dropdown-content">
+                      <a onclick="logout()" href="#">LOGOUT</a>
+                    </div>
+                </div>
+            </div>
+
+                
+
+
+
+                
+
+            
         </div>
     </div>
+    <script>
+        function logout() {
+        
+            let rc=fetch('http://localhost/cantieroni/API/Utente/logout.php',{credentials: 'include'})
+                .then(() => {
+                    window.location.replace("http://localhost/cantieroni-1/Cantieroni/interfacce/index.html");
+                })
+                .catch((err) => {
+                    error.innerHTML=err;
+                });
+            
+        }
+        </script>
 
 
  
