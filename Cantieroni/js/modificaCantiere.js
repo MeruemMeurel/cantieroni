@@ -15,22 +15,27 @@ function mostraInserimentoEdit(id){
         }
         throw new Error(response.statusText);
     })
-    .then((data) => {
-            // Login effettuato            
-            el=data.data;
+    .then((data) => {                        
+            //console.log("Cantiere da modificare",data)
+            setInputFieldValue('idCantiereEdit',data.id);
+            setInputFieldValue('idNomeEdit',data.nome);
+            setInputFieldValue('idIndirizzoEdit',data.indirizzo);
+            setInputFieldValue('idCittaEdit',data.citta);
+            setInputFieldValue('idProvinciaEdit',data.provincia);            
+            setInputFieldValue('idDescrizioneEdit',data.descrizione);
+            setInputFieldValue('idIdCapocantiereEdit',data.id_capocantiere);            
+            setInputFieldValue('idDataInizioEdit', data.data_inizio );            
+            setInputFieldValue('idDataFineEdit', data.data_fine );
             
-            //TODO array.push(new Cantiere(el.id, el.nome, el.indirizzo, el.citta, el.provincia, el.data_inizio, el.data_fine, el.descrizione, el.id_capocantiere);                                
-            
-            
-
+            // Visualizza modal edit
+            document.getElementById('modificaCantiere').style.visibility = "visible";
+            document.getElementById('modificaCantiere').style.top = "0";
 
     }).catch((err) => {
         console.log("Cantieri/read_in_corso",err);
     });
 
 
-    document.getElementById('modificaCantiere').style.visibility = "visible";
-    document.getElementById('modificaCantiere').style.top = "0";
 }
 
 //Evento nel caso in cui venga premuto ESC durante l'inserimento del cantiere
@@ -44,6 +49,7 @@ window.addEventListener('keydown', function(e) {
     }
 });
 
+/* TODO: da riguardare
 //Evento nel caso in cui venga fatto un click fuori dal div durante l'inserimento del cantiere
 window.addEventListener("click", function(e){
     if(!document.getElementById('formContent').contains(e.target) && pennaPremuta == true){
@@ -57,3 +63,4 @@ window.addEventListener("click", function(e){
         pennaPremuta = !pennaPremuta;
     }
 });
+*/

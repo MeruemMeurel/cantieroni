@@ -7,18 +7,18 @@
     </div>
 
     <!-- Login Form -->
-            
-    <!--<input type="text" id="login" class="fadeIn second" name="login" placeholder="email"  value="" >
-    <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" value="">-->
-    <input type="text" class="aggCampi" id="idNome" name="nome" placeholder="Nome">
-    <input type="text" class="aggCampi" id="idIndirizzo" name="indirizzo" placeholder="Indirizzo">
-    <input type="text" class="aggCampi" id="idCitta" name="citta" placeholder="Città">
-    <input type="text" class="aggCampi" id="idProvincia" name="provincia" placeholder="Provincia">
+       
+    <form>
+    <input type="text" class="aggCampi" id="idNome" name="nome" placeholder="Nome" required>
+    <input type="text" class="aggCampi" id="idIndirizzo" name="indirizzo" placeholder="Indirizzo" required>
+    <input type="text" class="aggCampi" id="idCitta" name="citta" placeholder="Città" required>
+    <input type="text" class="aggCampi" id="idProvincia" name="provincia" placeholder="Provincia" maxlength="2" required>
     <label for="idDataInizio">Data di inizio:</label>
-    <input type="date" class="aggCampi" id="idDataInizio" name="dataInizio" placeholder="Data inizio">
-    <input type="text" class="aggCampi" id="idDescrizione" name="descrizione" placeholder="Descrizione">
-    <input type="button" value="Aggiungi" onclick="aggiungiCantiere()">
-    <div id="error" style="color:red"></div>
+    <input type="date" class="aggCampi" id="idDataInizio" name="dataInizio" placeholder="Data inizio" required>
+    <input type="text" class="aggCampi" id="idDescrizione" name="descrizione" placeholder="Descrizione" required>
+    <input type="submit" value="Aggiungi" onclick="return aggiungiCantiere();">
+    <div id="cantiereNewError" style="color:red"></div>
+</form>
 </div>
 <script>
     class CantiereNew{
@@ -40,7 +40,13 @@
         let provincia = document.getElementById("idProvincia").value;
         let data_inizio = document.getElementById("idDataInizio").value;
         let descrizione = document.getElementById("idDescrizione").value;
+        let error=document.getElementById("cantiereNewError");    
         error.innerHTML = '';
+
+        if(nome.length<1 || indirizzo.length<1 || citta.length<1 || provincia.length<1 || data_inizio.length<1 || descrizione.length<1) {
+            error.innerHTML = "Inserisci tutti i campi";
+            return false;
+        }
 
         let obj = new CantiereNew(nome, indirizzo, citta, provincia, data_inizio, descrizione);
 
@@ -55,11 +61,12 @@
                 throw new Error(response.statusText);
             })
             .then((data) => {
-                document.reload();
+                location.reload();
             }).catch((err) => {
                 error.innerHTML = err;
                 console.log(err);
             });
+        return false;
     }
 
 </script>
