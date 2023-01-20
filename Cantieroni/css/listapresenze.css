@@ -35,7 +35,7 @@ th{
    box-shadow: 0 4px 4px 4px #dedede;
 }
 
-.bottPerAggLav {
+#bottPerAggLav {
     width: 32px;
     height: 32px;
     top: 9px;
@@ -45,7 +45,7 @@ th{
     background: transparent;
 }
 
-.bottPerAggLav:focus {
+#bottPerAggLav:focus {
     outline: none;
 }
 
