@@ -21,8 +21,20 @@
     <div id="error" style="color:red"></div>
 </div>
 <script>
+    class CantiereNew{
+        constructor(nome, indirizzo, citta, provincia, data_inizio, descrizione) {
+            this.nome = nome;
+            this.indirizzo = indirizzo;
+            this.citta = citta;
+            this.provincia = provincia;
+            this.data_inizio = data_inizio;
+            this.descrizione = descrizione;
+        }
+
+    }
+
     function aggiungiCantiere() {
-        let nome = document.getElementById("idNome");
+        let nome = document.getElementById("idNome").value;
         let indirizzo = document.getElementById("idIndirizzo").value;
         let citta = document.getElementById("idCitta").value;
         let provincia = document.getElementById("idProvincia").value;
@@ -35,7 +47,7 @@
         let rc2 = fetch('http://localhost/cantieroni/API/cantiere/create_new.php', { method: 'POST' ,credentials: 'include', headers: {
                 'Accept': 'application/json',
                 'Content-type': 'application/json'
-            }, body: JSON.stringify()})
+            }, body: JSON.stringify(obj)})
             .then((response) => {
                 if (response.ok) {
                     return response.json();
