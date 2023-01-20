@@ -16,7 +16,7 @@ $cantiere = new CantiereDB($db);
 
 //Get ID
 $app = isset($_GET['id']) ? $_GET['id'] : die();
-$cantiere->setId($app);
+$cantiere->id=$app;
 
 //Get cantiere
 $cantiere->read_by_id();
@@ -29,7 +29,9 @@ $cantiere_arr = array(
 	'citta' => $cantiere->citta,
 	'provincia' => $cantiere->provincia,
 	'descrizione' => $cantiere->descrizione,
-	'id_capocantiere' => $cantiere->id_capocantiere
+	'data_inizio' => $cantiere->data_inizio,
+	'data_fine' => $cantiere->data_fine,
+	//'id_capocantiere' => $cantiere->id_capocantiere
 );
 
 //Make JSON
