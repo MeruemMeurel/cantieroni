@@ -58,7 +58,7 @@ EXCEPT
     FROM personale
     LEFT JOIN lavoro
     ON personale.id = lavoro.id_personale 
-    WHERE lavoro.id_cantiere = :id_cantiere AND DAY(lavoro.inizio) = DAY(':inizio')
+    WHERE lavoro.id_cantiere = :id_cantiere AND DAY(lavoro.inizio) = DAY(:inizio)
 ";
 
         $stmt = $this->conn->prepare($query);
