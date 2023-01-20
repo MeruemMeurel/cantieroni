@@ -1,5 +1,5 @@
 class Cantiere{
-    constructor(id, nome, indirizzo, citta, provincia, data_inizio, data_fine, descrizione, id_capocantiere) {
+    constructor(id,nome, indirizzo, citta, provincia, data_inizio, data_fine, descrizione,id_capocantiere) {
         this.id = id;
         this.nome = nome;
         this.indirizzo = indirizzo;

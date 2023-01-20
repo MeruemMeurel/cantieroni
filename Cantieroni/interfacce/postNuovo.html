@@ -17,7 +17,7 @@
     function aggiungipost(){
       let nuovo_post=document.getElementById('nuovo_post');
 
-      let rc=fetch('http://localhost/cantieroni/API/Post/create.php' +encodeURIComponent(nuovo_post.value),/*cookie del cantiere?*/)
+      let rc=fetch('http://localhost/cantieroni/API/Post/create.php'+encodeURIComponent(nuovo_post.value),/*cookie del cantiere?*/)
       .then((response) => {
              if(response.ok) {   
                 return response.json();

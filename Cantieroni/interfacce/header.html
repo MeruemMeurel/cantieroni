@@ -34,7 +34,7 @@
         
             let rc=fetch('http://localhost/cantieroni/API/Utente/logout.php',{credentials: 'include'})
                 .then(() => {
-                    window.location.replace("http://localhost/front-end/cantieroni/Cantieroni/interfacce/login.html");
+                    window.location.replace("http://localhost/cantieroni-1/Cantieroni/interfacce/index.html");
                 })
                 .catch((err) => {
                     error.innerHTML=err;
