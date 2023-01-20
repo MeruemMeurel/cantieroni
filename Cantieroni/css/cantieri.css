@@ -208,3 +208,13 @@ label {
 #plusPerAgg:focus{
     outline: none;
 }
+
+.categCantiere {
+    font-size: 25px;
+    font-weight: 600;
+    color: #0d0d0d;
+    border-bottom: 2px solid #FF8D33;
+    display: inline-block;
+    margin: 40px 8px 10px 8px;
+    /*text-transform: uppercase;*/
+}
