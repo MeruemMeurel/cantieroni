@@ -32,7 +32,7 @@ class Cantiere
         $this->data_inizio = $data_inizio;
         $this->data_fine = $data_fine;
         $this->descrizione = $descrizione;
-		$this->id_capocantiere = $id_capocantiere;
+		//$this->id_capocantiere = $id_capocantiere;
     }
 
     /**

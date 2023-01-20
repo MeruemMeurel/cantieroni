@@ -45,9 +45,7 @@ CREATE TABLE cantiere(
                          data_inizio DATE,
                          data_fine DATE,
                          descrizione VARCHAR(200),
-                         id_capocantiere INT UNSIGNED,
-
-                         FOREIGN KEY (id_capocantiere) REFERENCES personale(id)
+                         
 );
 
 CREATE TABLE attivita(

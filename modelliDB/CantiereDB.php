@@ -13,7 +13,7 @@ class CantiereDB
 	public  $data_inizio;
 	public  $data_fine;
 	public string $descrizione;
-	public int $id_capocantiere;
+	//public int $id_capocantiere=NULL;
 
     /**
      * Istanzia un'oggetto CantiereDB, passando per parametro un PDO della connessione col Database
@@ -97,8 +97,9 @@ class CantiereDB
 		$this->citta = $row['citta'];
 		$this->provincia = $row['provincia'];
 		$this->descrizione = $row['descrizione'];
-		$this->id_capocantiere = $row['id_capocantiere'];
-
+		//$this->id_capocantiere = $row['id_capocantiere'];
+        $this->data_inizio = $row['data_inizio'];
+		$this->data_fine = $row['data_fine'];
 	}
 
 	/**
@@ -125,7 +126,9 @@ class CantiereDB
 		$this->citta = $row['citta'];
 		$this->provincia = $row['provincia'];
 		$this->descrizione = $row['descrizione'];
-		$this->id_capocantiere = $row['id_capocantiere'];
+		//$this->id_capocantiere = $row['id_capocantiere'];
+        $this->data_inizio = $row['data_inizio'];
+		$this->data_fine = $row['data_fine'];
 	}
 
 	/**
@@ -142,8 +145,8 @@ class CantiereDB
 				provincia = :provincia,
 				data_inizio = :data_inizio,
 				data_fine = :data_fine,
-				descrizione = :descrizione
-				id_capocantiere = :id_capocantiere';
+				descrizione = :descrizione';
+//				id_capocantiere = :id_capocantiere';
 
 		$stmt = $this->conn->prepare($query);
 
@@ -154,7 +157,7 @@ class CantiereDB
         $this->data_inizio = htmlspecialchars(strip_tags($this->data_inizio));
         $this->data_fine = htmlspecialchars(strip_tags($this->data_fine));
 		$this->descrizione = htmlspecialchars(strip_tags($this->descrizione));
-		$this->id_capocantiere = htmlspecialchars(strip_tags($this->id_capocantiere));
+		//$this->id_capocantiere = htmlspecialchars(strip_tags($this->id_capocantiere));
 
 		$stmt->bindParam(':nome', $this->nome);
 		$stmt->bindParam(':indirizzo', $this->indirizzo);
@@ -163,7 +166,7 @@ class CantiereDB
         $stmt->bindParam(':data_inizio', $this->data_inizio);
         $stmt->bindParam(':data_fine', $this->data_fine);
         $stmt->bindParam(':descrizione', $this->descrizione);
-		$stmt->bindParam(':id_capocantiere', $this->id_capocantiere);
+		//$stmt->bindParam(':id_capocantiere', $this->id_capocantiere);
 
 		if($stmt->execute()) {
 			return true;
@@ -172,9 +175,54 @@ class CantiereDB
 		}
 	}
 
+
+	public function update() {
+		$query = 'UPDATE cantiere
+			SET
+			    nome = :nome,
+				indirizzo = :indirizzo,
+				citta = :citta,
+				provincia = :provincia,
+				data_inizio = :data_inizio,
+				data_fine = :data_fine,
+				descrizione = :descrizione
+				
+            WHERE
+                id = :id ';
+
+		$stmt = $this->conn->prepare($query);
+
+		$this->nome = htmlspecialchars(strip_tags($this->nome));
+		$this->indirizzo = htmlspecialchars(strip_tags($this->indirizzo));
+		$this->citta = htmlspecialchars(strip_tags($this->citta));
+		$this->provincia = htmlspecialchars(strip_tags($this->provincia));
+        $this->data_inizio = htmlspecialchars(strip_tags($this->data_inizio));
+        $this->data_fine = (empty($this->data_fine) ? NULL : htmlspecialchars(strip_tags($this->data_fine)));
+		$this->descrizione = htmlspecialchars(strip_tags($this->descrizione));
+		//$this->id_capocantiere = htmlspecialchars(strip_tags($this->id_capocantiere));
+        
+
+		$stmt->bindParam(':nome', $this->nome);
+		$stmt->bindParam(':indirizzo', $this->indirizzo);
+		$stmt->bindParam(':citta', $this->citta);
+		$stmt->bindParam(':provincia', $this->provincia);
+        $stmt->bindParam(':data_inizio', $this->data_inizio);
+        $stmt->bindParam(':data_fine', $this->data_fine);
+        $stmt->bindParam(':descrizione', $this->descrizione);
+		//$stmt->bindParam(':id_capocantiere', $this->id_capocantiere);
+        $stmt->bindParam(':id', $this->id);
+
+		if($stmt->execute()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+
     public function create_new(){
-        $query = 'INSERT INTO cantiere(nome,indirizzo,citta,provincia,data_inizio, data_fine,descrizione,id_capocantiere)
-			VALUES (:nome, :indirizzo, :citta, :provincia, :data_inizio,NULL, :descrizione, NULL)';
+        $query = 'INSERT INTO cantiere(nome,indirizzo,citta,provincia,data_inizio, data_fine,descrizione)
+			VALUES (:nome, :indirizzo, :citta, :provincia, :data_inizio,NULL, :descrizione)';
 
         $stmt = $this->conn->prepare($query);
 

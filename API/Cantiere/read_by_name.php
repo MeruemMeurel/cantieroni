@@ -29,7 +29,7 @@ $cantiere_arr = array(
 	'citta' => $cantiere->citta,
 	'provincia' => $cantiere->provincia,
 	'descrizione' => $cantiere->descrizione,
-	'id_capocantiere' => $cantiere->id_capocantiere
+	//'id_capocantiere' => $cantiere->id_capocantiere
 );
 
 //Make JSON

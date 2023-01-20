@@ -37,7 +37,7 @@ if($num > 0){
             'descrizione' => $descrizione,
             'data_inizio' => $data_inizio,
             'data_fine' => $data_fine,
-            'id_capocantiere' => $id_capocantiere
+           // 'id_capocantiere' => $id_capocantiere
         );
 
         array_push($cantiere_arr['data'],$cantiere_item);
