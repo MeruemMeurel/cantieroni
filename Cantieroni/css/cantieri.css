@@ -137,7 +137,7 @@ h2.active {
     padding: 20px;
     /*padding: 20px;*/
     box-sizing: border-box;
-    visibility: visible;
+    visibility: hidden;
     outline: none;
     /*transition: top 0.3s;*/
 }
