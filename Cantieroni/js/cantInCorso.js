@@ -28,11 +28,10 @@ function setInCorso(cantInCorso) {
     prevInCorso_setup();
 
     var strCards = "";
+    strCards += '<div class="card bg-light" id="card1InCorso"><button id="plusPerAgg"><img class="card-img" src="../img/plus.png" alt="Card image cap" onclick="mostraInserimento()"></button></div>';
     for(let i=0; i<cantInCorso.length; i++){
-        if(i == 0){
-            strCards += '<div class="card bg-light" id="card1InCorso"><button id="plusPerAgg"><img class="card-img" src="../img/plus.png" alt="Card image cap" onclick="mostraInserimento()"></button></div>'
-        }
-        strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><button id="pennaPerEdit"><img class="pennaEditCantiere" src="../img/penna edit cantiere2.png" onclick="mostraInserimetoEdit()"></button><div class="card-body"><p class="card-text">'+cantInCorso[i].nome+'</p></div></div>'
+        let cantiere=cantInCorso[i]; // cantiere corrente    
+        strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><button class="pennaPerEdit"><div class="figlioProva"><img class="pennaEditCantiere" src="../img/penna edit cantiere2.png" onclick="mostraInserimentoEdit('+cantiere.id+')"></button><div class="card-body"><p class="card-text">'+cantInCorso[i].nome+'</p></div></div>';
     }
     document.getElementById("listaInCorso").innerHTML += strCards;    
 }
@@ -56,8 +55,7 @@ function changeArrowVisOnResize(){
     }
 }
 
-$( document ).ready(function() {
-    
+$( document ).ready(function() {    
     // Legge tutti i cantieri in corso    
     fetch('http://localhost/cantieroni/API/Cantiere/read_in_corso.php',{credentials: 'include'})
     .then((response) => {

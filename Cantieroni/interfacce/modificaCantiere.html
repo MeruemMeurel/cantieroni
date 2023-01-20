@@ -1,4 +1,4 @@
-<div id="formContent">
+<div id="formContentEdit">
 
     <h2 class="active">Modifica cantiere</h2>
     <!-- Icon -->
@@ -10,50 +10,66 @@
             
     <!--<input type="text" id="login" class="fadeIn second" name="login" placeholder="email"  value="" >
     <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" value="">-->
-    <input type="text" class="aggCampi" id="idNomeEdit" name="nome" placeholder="Nome">
-    <input type="text" class="aggCampi" id="idIndirizzoEdit" name="indirizzo" placeholder="Indirizzo">
-    <input type="text" class="aggCampi" id="idCittaEdit" name="citta" placeholder="Città">
-    <input type="text" class="aggCampi" id="idProvinciaEdit" name="provincia" placeholder="Provincia">
+    <form>
+    <input type="hidden" class="aggCampi" id="idCantiereEdit" name="idCantiereEdit" >
+    <input type="hidden" class="aggCampi" id="idIdCapocantiereEdit" name="idIdCapocantiereEdit" >
+    <input type="text" class="aggCampi" id="idNomeEdit" name="nome" placeholder="Nome" required>
+    <input type="text" class="aggCampi" id="idIndirizzoEdit" name="indirizzo" placeholder="Indirizzo" required>
+    <input type="text" class="aggCampi" id="idCittaEdit" name="citta" placeholder="Città" required>
+    <input type="text" class="aggCampi" id="idProvinciaEdit" name="provincia" placeholder="Provincia" maxlength="2" required>    
     <div class="inputDate">
         <label for="idDataInizioEdit">Data di inizio:</label>
-        <input type="date" class="aggCampi" id="idDataInizioEdit" name="dataInizio" placeholder="Data inizio">
+        <input type="date" class="aggCampi" id="idDataInizioEdit" name="dataInizio" placeholder="Data inizio" required>
     </div>
     <div class="inputDate">
         <label for="idDataFineEdit">Data di fine:</label>
         <input type="date" class="aggCampi" id="idDataFineEdit" name="dataFine" placeholder="Data fine">
     </div>
-    <input type="text" class="aggCampi" id="idDescrizioneEdit" name="descrizione" placeholder="Descrizione">
-    <input type="button" value="Aggiorna">
-    <div id="error" style="color:red"></div>
+    <input type="text" class="aggCampi" id="idDescrizioneEdit" name="descrizione" placeholder="Descrizione" required>
+    <input type="submit" value="Aggiorna" onClick="return updateCantiere()">
+    <div id="cantiereEditError" style="color:red"></div>
+    </form>
 </div>
+
 <script>
-    let nome = document.getElementById("idNome");
-    let indirizzo = document.getElementById("idIndirizzo").value;
-    let citta = document.getElementById("idCitta").value;
-    let provincia = document.getElementById("idProvincia").value;
-    let data_inizio = document.getElementById("idDataInizio").value;
-    let data_fine = document.getElementById("idDataFine").value;
-    let descrizione = document.getElementById("idDescrizione").value;
-    let id_capocantiere= document.getElementById("idIdCapocantiere").value;
+
+function updateCantiere() {
+    let id = document.getElementById("idCantiereEdit").value;
+    let nome = document.getElementById("idNomeEdit").value;
+    let indirizzo = document.getElementById("idIndirizzoEdit").value;
+    let citta = document.getElementById("idCittaEdit").value;
+    let provincia = document.getElementById("idProvinciaEdit").value;
+    let data_inizio = document.getElementById("idDataInizioEdit").value;
+    let data_fine = document.getElementById("idDataFineEdit").value;
+    let descrizione = document.getElementById("idDescrizioneEdit").value;
+    let id_capocantiere= document.getElementById("idIdCapocantiereEdit").value;
+    let error=document.getElementById("cantiereEditError");
     error.innerHTML = '';
+    
+    if(nome.length<1 || indirizzo.length<1 || citta.length<1 || provincia.length<1 || data_inizio.length<1 || descrizione.length<1) {
+        error.innerHTML ="Inserisci tutti i campi";
+            return false;
+        }
 
-    let rc=fetch('http://localhost/cantieroni/API/cantiere/create.php?username='+encodeURIComponent(email.value)+'&password='+encodeURIComponent(password.value),{credentials: 'include'})
-        .then((response) => {
-            if(response.ok) {
-                return response.json();
-            }
-            throw new Error(response.statusText);
-        })
-        .then((data) => {
-            // Login effettuato
-            document.location='index.html';
+    let obj = new Cantiere(id,nome, indirizzo, citta, provincia, data_inizio, data_fine, descrizione, id_capocantiere);
 
-        }).catch((err) => {
-            error.innerHTML=err;
-        });
-
+    fetch('http://localhost/cantieroni/API/cantiere/edit.php', { method: 'POST' ,credentials: 'include', headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json'
+            }, body: JSON.stringify(obj)})
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error(response.statusText);
+            })
+            .then((data) => {                
+                location.reload();
+            }).catch((err) => {
+                error.innerHTML = err;
+                console.log(err);
+            });
+ return false;   
+}
 
 </script>
-
-<!-- <script src="../js/cantieriAll.js"></script> -->
-<!--<script src="../js/inserCantiere.js"></script>-->

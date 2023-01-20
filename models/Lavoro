@@ -1,0 +1,10 @@
+
+class Lavoro{
+    constructor(id, id_cantiere, id_personale, inizio, fine){
+        this.id=id;
+        this.id_cantiere=id_cantiere;
+        this.id_personale=id_personale;
+        this.inizio=inizio;
+        this.fine=fine;
+    }
+}
