@@ -1,0 +1,59 @@
+<div id="formContent">
+
+    <h2 class="active">Modifica cantiere</h2>
+    <!-- Icon -->
+    <div>
+        <img src="../img/logo_login_senza_background.png" />
+    </div>
+
+    <!-- Login Form -->
+            
+    <!--<input type="text" id="login" class="fadeIn second" name="login" placeholder="email"  value="" >
+    <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" value="">-->
+    <input type="text" class="aggCampi" id="idNomeEdit" name="nome" placeholder="Nome">
+    <input type="text" class="aggCampi" id="idIndirizzoEdit" name="indirizzo" placeholder="Indirizzo">
+    <input type="text" class="aggCampi" id="idCittaEdit" name="citta" placeholder="Città">
+    <input type="text" class="aggCampi" id="idProvinciaEdit" name="provincia" placeholder="Provincia">
+    <div class="inputDate">
+        <label for="idDataInizioEdit">Data di inizio:</label>
+        <input type="date" class="aggCampi" id="idDataInizioEdit" name="dataInizio" placeholder="Data inizio">
+    </div>
+    <div class="inputDate">
+        <label for="idDataFineEdit">Data di fine:</label>
+        <input type="date" class="aggCampi" id="idDataFineEdit" name="dataFine" placeholder="Data fine">
+    </div>
+    <input type="text" class="aggCampi" id="idDescrizioneEdit" name="descrizione" placeholder="Descrizione">
+    <input type="button" value="Aggiorna">
+    <div id="error" style="color:red"></div>
+</div>
+<script>
+    let nome = document.getElementById("idNome");
+    let indirizzo = document.getElementById("idIndirizzo").value;
+    let citta = document.getElementById("idCitta").value;
+    let provincia = document.getElementById("idProvincia").value;
+    let data_inizio = document.getElementById("idDataInizio").value;
+    let data_fine = document.getElementById("idDataFine").value;
+    let descrizione = document.getElementById("idDescrizione").value;
+    let id_capocantiere= document.getElementById("idIdCapocantiere").value;
+    error.innerHTML = '';
+
+    let rc=fetch('http://localhost/cantieroni/API/cantiere/create.php?username='+encodeURIComponent(email.value)+'&password='+encodeURIComponent(password.value),{credentials: 'include'})
+        .then((response) => {
+            if(response.ok) {
+                return response.json();
+            }
+            throw new Error(response.statusText);
+        })
+        .then((data) => {
+            // Login effettuato
+            document.location='index.html';
+
+        }).catch((err) => {
+            error.innerHTML=err;
+        });
+
+
+</script>
+
+<!-- <script src="../js/cantieriAll.js"></script> -->
+<!--<script src="../js/inserCantiere.js"></script>-->

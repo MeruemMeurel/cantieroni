@@ -96,7 +96,7 @@ h2.active {
     text-align: center;
 }
 
-#inserCantiere{
+#inserCantiere {
     /*width: 50rem;
     height: 26rem;*/
     top: 0;
@@ -115,6 +115,29 @@ h2.active {
     /*padding: 20px;*/
     box-sizing: border-box;
     visibility: hidden;
+    outline: none;
+    /*transition: top 0.3s;*/
+}
+
+#modificaCantiere {
+    /*width: 50rem;
+    height: 26rem;*/
+    top: 0;
+    /*left: 50%;*/
+    position: fixed;
+    /*margin-top: -13rem;
+    margin-left: -25rem;*/
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+    justify-content: center;
+    width: 100%;
+    min-height: 100%;
+    padding: 20px;
+    /*padding: 20px;*/
+    box-sizing: border-box;
+    visibility: visible;
     outline: none;
     /*transition: top 0.3s;*/
 }
@@ -187,8 +210,15 @@ input {
     outline: none;
 }
 
+/*.inputDate {
+    text-align: left;
+    margin-left: 60px;
+}*/
+
 label {
     font-size: 19px;
+    /*margin-right: 100px;*/
+    /*padding: 15px 32px;*/
 }
 
 #idDescrizione{
@@ -216,5 +246,11 @@ label {
     border-bottom: 2px solid #FF8D33;
     display: inline-block;
     margin: 40px 8px 10px 8px;
-    /*text-transform: uppercase;*/
+}
+
+.pennaEditCantiere {
+    max-width: 30px;
+    top: 4px;
+    right: 4px;
+    position: absolute;
 }
