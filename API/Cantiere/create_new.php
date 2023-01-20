@@ -1,4 +1,5 @@
 <?php
+
 //Headers
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application:json');
@@ -9,7 +10,7 @@ include_once '..\..\Database\Database.php';
 include_once '..\..\modelliDB\CantiereDB.php';
 
 //Istanzio il DB
-$database= new Database();
+$database = new Database();
 $db = $database->connect();
 
 //Istanzio l'oggetto Cantiere
@@ -21,17 +22,15 @@ $cantiere->nome = $data->nome;
 $cantiere->indirizzo = $data->indirizzo;
 $cantiere->citta = $data->citta;
 $cantiere->provincia = $data->provincia;
-$cantiere->data_inizio = date('Y-m-d',strtotime($data->data_inizio));
-$cantiere->data_fine = null;
+$cantiere->data_inizio = $data->data_inizio;
 $cantiere->descrizione = $data->descrizione;
-$cantiere->id_capocantiere = null;
 
-if($cantiere->create()) {
-	echo json_encode(
-		array('message' => 'Cantiere creato')
-	);
+if ($cantiere->create_new()) {
+    echo json_encode(
+        array('message' => 'Cantiere creato')
+    );
 } else {
-	echo json_encode(
-		array('message' => 'Cantiere non creato')
-	);
+    echo json_encode(
+        array('message' => 'Cantiere non creato')
+    );
 }
