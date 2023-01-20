@@ -24,11 +24,8 @@ function setConclusi(cantConclusi) {
     prevConclusiSetup();
     var strCards = "";
     for (let i = 0; i < cantConclusi.length; i++) {
-        if (i == 0) {
-            strCards += '<div class="card" id="card1Conclusi"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">' + cantConclusi[i].nome + '</p></div></div>'
-        } else {
-            strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><div class="card-body"><p class="card-text">' + cantConclusi[i].nome + '</p></div></div>'
-        }
+        let cantiere=cantConclusi[i];        
+        strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><button class="pennaPerEdit"><div class="figlioProva"><img class="pennaEditCantiere" src="../img/penna edit cantiere2.png" onclick="mostraInserimentoEdit('+cantiere.id+')"></button><div class="card-body"><p class="card-text">'+cantiere.nome+'</p></div></div>';        
     }
     document.getElementById("listaConclusi").innerHTML += strCards;
 }
