@@ -35,10 +35,24 @@ th{
    box-shadow: 0 4px 4px 4px #dedede;
 }
 
-
-.aggLavoratori {
-    width: 12%;
+.bottPerAggLav {
+    width: 32px;
+    height: 32px;
     top: 9px;
     right: 9px;
     position: absolute;
+    border: none;
+    background: transparent;
 }
+
+.bottPerAggLav:focus {
+    outline: none;
+}
+
+.aggLavoratori {
+    width: 28px;
+    top: 0;
+    right: 0;
+    position: absolute;
+}
+
