@@ -7,7 +7,7 @@ class PostDB
 
 	public int $id;
 	public int $id_utente;
-	public Timestamp $ora_post;
+	public DateTime $ora_post;
 	public int $id_cantiere;
 	public string $descrizione;
 
@@ -33,6 +33,34 @@ class PostDB
 
 		return $stmt;
 	}
+
+    public function create(){
+        $query = 'INSERT INTO cantiere
+			SET
+			    id_utente = :id_utente,
+			    ora_post = :ora_post,
+			    id_cantiere = :id_cantiere,
+			    descrizione = :descrizione
+			    ';
+
+        $stmt = $this->conn->prepare($query);
+
+        $this->id_utente = htmlspecialchars(strip_tags($this->id_utente));
+        $this->ora_post = htmlspecialchars(strip_tags($this->ora_post));
+        $this->id_cantiere = htmlspecialchars(strip_tags($this->id_cantiere));
+        $this->descrizione = htmlspecialchars(strip_tags($this->descrizione));
+
+        $stmt->bindParam(':id_utente', $this->id_utente);
+        $stmt->bindParam(':ora_post', $this->ora_post);
+        $stmt->bindParam(':id_cantiere', $this->id_cantiere);
+        $stmt->bindParam(':descrizione', $this->descrizione);
+
+        if($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 	/**
 	 * Restituisce un post in base all'id

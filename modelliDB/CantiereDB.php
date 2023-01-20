@@ -1,6 +1,5 @@
 <?php
 
-use Cassandra\Date;
 
 class CantiereDB
 {
@@ -129,6 +128,8 @@ class CantiereDB
 				indirizzo = :indirizzo,
 				citta = :citta,
 				provincia = :provincia,
+				data_inizio = :data_inizio,
+				data_fine = :data_fine,
 				descrizione = :descrizione,
 				id_capocantiere = :id_capocantiere';
 
@@ -138,6 +139,8 @@ class CantiereDB
 		$this->indirizzo = htmlspecialchars(strip_tags($this->indirizzo));
 		$this->citta = htmlspecialchars(strip_tags($this->citta));
 		$this->provincia = htmlspecialchars(strip_tags($this->provincia));
+        $this->data_inizio = htmlspecialchars(strip_tags($this->data_inizio));
+        $this->data_fine = htmlspecialchars(strip_tags($this->data_fine));
 		$this->descrizione = htmlspecialchars(strip_tags($this->descrizione));
 		$this->id_capocantiere = htmlspecialchars(strip_tags($this->id_capocantiere));
 
@@ -145,7 +148,9 @@ class CantiereDB
 		$stmt->bindParam(':indirizzo', $this->indirizzo);
 		$stmt->bindParam(':citta', $this->citta);
 		$stmt->bindParam(':provincia', $this->provincia);
-		$stmt->bindParam(':descrizione', $this->descrizione);
+        $stmt->bindParam(':data_inizio', $this->data_inizio);
+        $stmt->bindParam(':data_fine', $this->data_fine);
+        $stmt->bindParam(':descrizione', $this->descrizione);
 		$stmt->bindParam(':id_capocantiere', $this->id_capocantiere);
 
 		if($stmt->execute()) {

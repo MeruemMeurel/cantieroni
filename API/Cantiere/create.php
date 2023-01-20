@@ -22,6 +22,8 @@ $cantiere->nome = $data->nome;
 $cantiere->indirizzo = $data->indirizzo;
 $cantiere->citta = $data->citta;
 $cantiere->provincia = $data->provincia;
+$cantiere->data_inizio = date('Y-m-d',strtotime($data->data_inizio));
+$cantiere->data_fine = $data->data_fine;
 $cantiere->descrizione = $data->descrizione;
 $cantiere->id_capocantiere = $data->id_capocantiere;
 
