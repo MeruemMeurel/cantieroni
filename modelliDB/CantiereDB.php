@@ -10,8 +10,8 @@ class CantiereDB
 	public string $indirizzo;
 	public string $citta;
 	public string $provincia;
-	public date $data_inizio;
-	public date $data_fine;
+	public  $data_inizio;
+	public  $data_fine;
 	public string $descrizione;
 	public int $id_capocantiere;
 
@@ -142,8 +142,8 @@ class CantiereDB
 				provincia = :provincia,
 				data_inizio = :data_inizio,
 				data_fine = :data_fine,
-				descrizione = :descrizione,
-				id_capocantiere = :id_capocantiere';
+				descrizione = :descrizione
+				/*id_capocantiere = :id_capocantiere*/';
 
 		$stmt = $this->conn->prepare($query);
 
@@ -154,7 +154,7 @@ class CantiereDB
         $this->data_inizio = htmlspecialchars(strip_tags($this->data_inizio));
         $this->data_fine = htmlspecialchars(strip_tags($this->data_fine));
 		$this->descrizione = htmlspecialchars(strip_tags($this->descrizione));
-		$this->id_capocantiere = htmlspecialchars(strip_tags($this->id_capocantiere));
+		//$this->id_capocantiere = htmlspecialchars(strip_tags($this->id_capocantiere));
 
 		$stmt->bindParam(':nome', $this->nome);
 		$stmt->bindParam(':indirizzo', $this->indirizzo);
@@ -163,7 +163,7 @@ class CantiereDB
         $stmt->bindParam(':data_inizio', $this->data_inizio);
         $stmt->bindParam(':data_fine', $this->data_fine);
         $stmt->bindParam(':descrizione', $this->descrizione);
-		$stmt->bindParam(':id_capocantiere', $this->id_capocantiere);
+		//$stmt->bindParam(':id_capocantiere', $this->id_capocantiere);
 
 		if($stmt->execute()) {
 			return true;
