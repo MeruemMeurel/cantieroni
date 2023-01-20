@@ -11,15 +11,44 @@
     <!--<input type="text" id="login" class="fadeIn second" name="login" placeholder="email"  value="" >
     <input type="password" id="password" class="fadeIn third" name="login" placeholder="password" value="">-->
     <table id="listaLavTabella">
+        <!--<tr><td><input type="checkbox" class="aggLavoratore">Lorenzo Uccetta</td><td><input type="checkbox" class="aggLavoratore">Manuel Mauro</td></tr>
         <tr><td><input type="checkbox" class="aggLavoratore">Lorenzo Uccetta</td><td><input type="checkbox" class="aggLavoratore">Manuel Mauro</td></tr>
         <tr><td><input type="checkbox" class="aggLavoratore">Lorenzo Uccetta</td><td><input type="checkbox" class="aggLavoratore">Manuel Mauro</td></tr>
-        <tr><td><input type="checkbox" class="aggLavoratore">Lorenzo Uccetta</td><td><input type="checkbox" class="aggLavoratore">Manuel Mauro</td></tr>
+        -->
     </table>
     <input type="button" class="aggLavoratoreConferma" value="Aggiungi">
     <div id="error" style="color:red"></div>
 </div>
 <script>
 
+    let array=[];
+    fetch('http://localhost/cantieroni/API/Lavoro/read_not_presenti.php?id_cantiere='+encodeURIComponent(1)+
+        "&inizio="+encodeURIComponent('2020-01-20'),{credentials: 'include'})
+        .then((response) => {
+            if(response.ok) {
+                return response.json();
+            }
+            throw new Error(response.statusText);
+        })
+        .then((data) => {
+            data.data.forEach(
+                el => {
+                    array.push(new Personale(el.id,el.nome,el.cognome,el.email,el.telefono,el.indirizzo,el.citta,el.provincia,el.id_ruolo,el.id_azienda,el.img_path));
+                }
+            )
+            setNotPresenti(array);
+        }).catch((err) => {
+        console.log("Cantieri/read_in_corso",err);
+    });
+
+    function setNotPresenti(array){
+        str="";
+        for(let i=0;i<array.length;i++){
+            str+='<tr><td><input id="'+'lav'+i+'" type=\"checkbox\" class=\"aggLavoratore\">'+array[i].nome+' '+array[i].cognome+'</td></tr>'
+        }
+
+        document.getElementById("listaLavTabella").innerHTML = str;
+    }
 </script>
 
 <!-- <script src="../js/cantieriAll.js"></script> -->
