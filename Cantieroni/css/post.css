@@ -91,3 +91,26 @@
   overflow: auto;
   border: none;
 }
+
+.textarea {
+  border: none;
+  font-family: inherit;
+  font-size: inherit;
+  padding: 1px 6px;
+}
+
+.textarea {
+
+  text-align: left;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  resize: none;
+  min-height: 230px;
+  line-height: 20px;
+}
+
+.textarea[contenteditable]:empty::before {
+  content: "Scrivi post...";
+  color: gray;
+}
