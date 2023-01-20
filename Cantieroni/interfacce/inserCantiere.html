@@ -18,7 +18,36 @@
     <input type="text" class="aggCampi" id="idDataFine" name="dataFine" placeholder="Data fine">
     <input type="text" class="aggCampi" id="idDescrizione" name="descrizione" placeholder="Descrizione">
     <input type="button" value="Aggiungi" onclick="aggiungiCantiere()">
+    <div id="error" style="color:red"></div>
 </div>
+<script>
+    let nome = document.getElementById("idNome");
+    let indirizzo = document.getElementById("idIndirizzo").value;
+    let citta = document.getElementById("idCitta").value;
+    let provincia = document.getElementById("idProvincia").value;
+    let data_inizio = document.getElementById("idDataInizio").value;
+    let data_fine = document.getElementById("idDataFine").value;
+    let descrizione = document.getElementById("idDescrizione").value;
+    let id_capocantiere= document.getElementById("idIdCapocantiere").value;
+    error.innerHTML = '';
+
+    let rc=fetch('http://localhost/cantieroni/API/cantiere/create.php?username='+encodeURIComponent(email.value)+'&password='+encodeURIComponent(password.value),{credentials: 'include'})
+        .then((response) => {
+            if(response.ok) {
+                return response.json();
+            }
+            throw new Error(response.statusText);
+        })
+        .then((data) => {
+            // Login effettuato
+            document.location='index.html';
+
+        }).catch((err) => {
+            error.innerHTML=err;
+        });
+
+
+</script>
 
 <!-- <script src="../js/cantieriAll.js"></script> -->
 <!--<script src="../js/inserCantiere.js"></script>-->
