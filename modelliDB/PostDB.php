@@ -7,7 +7,7 @@ class PostDB
 
 	public int $id;
 	public int $id_utente;
-	public DateTime $ora_post;
+	public $ora_post;
 	public int $id_cantiere;
 	public string $descrizione;
 
@@ -138,6 +138,25 @@ class PostDB
 
 		return $row['id_cantiere'];
 	}
+
+    public function read_from_cantiere_date() {
+        $query="SELECT * FROM post WHERE id_cantiere = :id_cantiere AND DAY(ora_post) = DAY(:ora_post)";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(':id_cantiere', $this->id_cantiere);
+        $stmt->bindParam(':ora_post', $this->ora_post);
+
+        $stmt->execute();
+
+        /*$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $this->id_utente = $row['id_utente'];
+        $this->ora_post = $row['ora_post'];
+        $this->descrizione = $row['descrizione'];
+        $this->id_cantiere = $row['id_cantiere'];*/
+        return $stmt;
+    }
 
 	/**
 	 * Restituisce il nome del cantiere dall'id del post
