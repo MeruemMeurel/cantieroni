@@ -62,6 +62,18 @@ class CantiereDB
 
     }
 
+    public function read_da_iniziare(){
+
+        $query="SELECT * FROM cantiere WHERE data_inizio>NOW()";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->execute();
+
+        return $stmt;
+
+    }
+
 
     /**
      * IMPLEMENTATA, mancano le date
