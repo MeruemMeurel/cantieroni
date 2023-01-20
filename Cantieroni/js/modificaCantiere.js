@@ -19,7 +19,7 @@ function mostraInserimentoEdit(id){
             // Login effettuato            
             el=data.data;
             
-            array.push(new Cantiere(el.id, el.nome, el.indirizzo, el.citta, el.provincia, el.data_inizio, el.data_fine, el.descrizione, el.id_capocantiere);                                
+            //TODO array.push(new Cantiere(el.id, el.nome, el.indirizzo, el.citta, el.provincia, el.data_inizio, el.data_fine, el.descrizione, el.id_capocantiere);                                
             
             
 
