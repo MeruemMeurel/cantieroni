@@ -31,11 +31,16 @@ function setInCorso(cantInCorso) {
     strCards += '<div class="card bg-light" id="card1InCorso"><button id="plusPerAgg"><img class="card-img" src="../img/plus.png" alt="Card image cap" onclick="mostraInserimento()"></button></div>';
     for(let i=0; i<cantInCorso.length; i++){
         let cantiere=cantInCorso[i]; // cantiere corrente    
-        strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><button class="pennaPerEdit"><div class="figlioProva"><img class="pennaEditCantiere" src="../img/penna edit cantiere2.png" onclick="mostraInserimentoEdit('+cantiere.id+')"></button><div class="card-body"><p class="card-text">'+cantInCorso[i].nome+'</p></div></div>';
+        strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap" onclick="openCantiere('+cantiere.id+')"><button class="pennaPerEdit"><div class="figlioProva"><img class="pennaEditCantiere" src="../img/penna edit cantiere2.png" onclick="mostraInserimentoEdit('+cantiere.id+')"></button><div class="card-body"><p class="card-text">'+cantInCorso[i].nome+'</p></div></div>';
     }
     document.getElementById("listaInCorso").innerHTML += strCards;    
 }
 
+
+function openCantiere(id) {
+  window.location = '/cantieroni-1/Cantieroni/interfacce/cantiere.html?id='+id;
+  return false;
+}
 
 
 //Cambiamento della visibilità delle frecce in caso di ridimensionamento della finestra

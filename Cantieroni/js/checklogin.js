@@ -11,6 +11,9 @@ let rc=fetch('http://localhost/cantieroni/API/Utente/me.php',{credentials: 'incl
         .then((data) => {
                 // Login effettuato
                 currentUser = data;
+                //console.log("btCurrentUser",data);
+                $('#btCurrentUser').html(data.username);
+                
 
 
         }).catch((err) => {

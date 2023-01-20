@@ -4,39 +4,52 @@
         <!-- <div class="grow-wrap">
           <textarea class="post-textarea" name="resoconto" rows="6" cols="10" placeholder="Scrivi qualcosa..." id="nuovo_post" onInput="this.parentNode.dataset.replicatedValue = this.value" required></textarea>
         </div> -->
-        <span class="textarea post-textarea" role="textbox" id="nuovo_post" contenteditable></span>
+        <textarea class="textarea post-textarea" role="textbox" id="nuovo_post"></textarea>
 
         <!-- <input type="file" id="files" name="files" multiple> -->
-        <input class="post-invio" type="submit" value="Manda" name="invio" onclick="aggiungipost();">
+        <input class="post-invio" type="submit" value="Manda" name="invio" onclick="return aggiungipost();">
 
         
     </div>
 
 
     <script> 
-    function aggiungipost(){
-      let nuovo_post=document.getElementById('nuovo_post');
 
-      let rc=fetch('http://localhost/cantieroni/API/Post/create.php'+encodeURIComponent(nuovo_post.value),/*cookie del cantiere?*/)
+function aggiungipost() {
+      var url = new URL(window.location);
+      var id_cantiere = url.searchParams.get("id");       
+      let nuovo_post=document.getElementById('nuovo_post');
+      let testo=nuovo_post.value;      
+      
+      if(testo.length<1) return false;
+
+      let obj = {
+        id_utente: currentUser.id,
+        id_cantiere: id_cantiere,
+        descrizione: testo
+      }
+      console.log("obj",obj);
+
+      fetch('http://localhost/cantieroni/API/Post/create.php',
+              { method: 'POST' ,
+                credentials: 'include', headers: {
+                  'Accept': 'application/json',
+                  'Content-type': 'application/json'
+              }, 
+              body: JSON.stringify(obj)
+            })             
       .then((response) => {
              if(response.ok) {   
-                return response.json();
+                // Success: reload                            
+                location.reload();  
+                return false;
              }
              throw new Error(response.statusText);
-        })
-		.then((data) => {
-               //aggiorna lista post chiedendoli all'API          
-
-		}).catch((err) => {
+        }).catch((err) => {
             error.innerHTML=err;
         });
     
-    }
-    
-    
-    
-    
-    
+    }    
     
     </script>
 

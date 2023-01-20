@@ -21,26 +21,11 @@
     <script src="../js/calendario.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     
+    
+    <script src="../js/checklogin.js"></script>
 
-<script>
-    $(function () {
-        
-        $("#header").load("header.html");
-        $("#footer").load("footer.html");        
-        $("#listapresenze").load("listapresenze.html");  
-        $("#postNuovo").load("postNuovo.html");       
-        $("#resoconti").load("resoconti.html");  
-
-        $("#calendario").load("calendario.html",function () {
-            setToday();
-            defaultSelecter();
-        });
-
-        
-    }); 
-</script>
-
-
+    <script src="../../models/Post.js"></script>
+    <script src="../../models/Personale.js"></script>
 
 </head>
 <body>
@@ -68,21 +53,111 @@
         <div style="margin-left: 25%; margin-right: 5%; margin-top: 5%;">
             <div class="" >
                 <!-- Sezione di centro alto-->
-                <!-- post nuovo -->                    
-                
-                <div id="postNuovo" style="margin-bottom: 5%"></div>
-
-                <div class=""id="resoconti"></div>
-                <a href=#inizio><img src="../img/Freccia.png" style="width: 3%; height: 5%; position: fixed; right: 0; bottom: 0;"></a>
-                
+                <!-- post nuovo -->                                    
+                <div id="postNuovo" style="margin-bottom: 5%;padding: 4px 4px 4px 4px;"></div>                
+                <div class="" id="resoconti"></div>
+                <a href='#inizio'><img src="../img/Freccia.png" style="width: 3%; height: 5%; position: fixed; right: 0; bottom: 0;"></a>                
             </div>
            
-                    <!-- Sezione Centrale -->
-                    
-                    
+                    <!-- Sezione Centrale -->      
         </div> 
+
 </div>
     <!-- importo footer -->
     <div id="footer" style="bottom: 0;"></div>
+
+
+<script>
+
+$( document ).ready(function() {
+
+$("#header").load("header.html");
+$("#footer").load("footer.html");        
+$("#listapresenze").load("listapresenze.html");  
+$("#postNuovo").load("postNuovo.html");       
+$("#resoconti").load("resoconti.html");  
+
+/*
+$("#calendario").load("calendario.html",function () {
+    setToday();
+    defaultSelecter();
+});*/
+
+var url = new URL(window.location);
+var id_cantiere = url.searchParams.get("id");        
+var datiCantiere = null; // dati cantiere
+var datiCommenti = []; // Dati commenti
+var datiPresenze = []; // Dati presenze personale
+
+var day = url.searchParams.get("day");        
+if(!day) {
+    day= (new Date()).toISOString();
+}
+caricaCantiere(id_cantiere);
+caricaCommenti(id_cantiere,day);
+//caricaPresenze(idCantiere,day);
+
+}); 
+
+
+
+function caricaCantiere(id){
+    // Legge il cantiere
+    fetch('http://localhost/cantieroni/API/Cantiere/read_by_id.php?id='+id,{credentials: 'include'})
+    .then((response) => {
+        if(response.ok) {   
+            return response.json();
+        }
+        throw new Error(response.statusText);
+    })
+    .then((data) => {   
+            datiCantiere=data;        
+    }).catch((err) => {
+        console.log("Cantieri/read_in_corso",err);
+    });
+}
+
+
+function caricaCommenti(id,day){
+    // Legge il cantiere
+    fetch('http://localhost/cantieroni/API/Post/read_cantiere_date.php?id_cantiere='+id+'&ora_post='+day,{credentials: 'include'})
+    .then((response) => {
+        if(response.ok) {   
+            return response.json();
+        }
+        throw new Error(response.statusText);
+    })
+    .then((data) => {   
+            datiCommenti=data.data;        
+            for(let i=0;i< datiCommenti.length;i++){
+                let comm=datiCommenti[i];
+                str+='<div class="post-resoconto"><div class="resoconto-head"><table><tr><td><img class="fotoprof-resoconto" align="left" src="../img/immagine_profilo_default.png" >&nbsp;'+comm.utente.nome +'&nbsp;'+comm.utente.cognome+'<br>&nbsp;'+comm.ora_post.substr(11,5)+'</td></tr></table></div><div>'+comm.descrizione+'</div></div>';
+            }
+  
+    }).catch((err) => {
+        console.log("Cantieri/read_in_corso",err);
+    });
+}
+
+function caricaPresenze(id,day){
+    // Legge il cantiere
+    fetch('http://localhost/cantieroni/API/Post/read_cantiere_date.php?id_cantiere='+id+'&ora_post='+day,{credentials: 'include'})
+    .then((response) => {
+        if(response.ok) {   
+            return response.json();
+        }
+        throw new Error(response.statusText);
+    })
+    .then((data) => {   
+            datiPresenze=data;        
+    }).catch((err) => {
+        console.log("Cantieri/read_in_corso",err);
+    });
+}
+
+
+
+</script>
+
 </body>
 </html>
