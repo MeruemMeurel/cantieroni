@@ -4,7 +4,7 @@
 <script>
 
     var array=[];
-    array.push(new Post(1,new Personale(0,"narcis","neamtu","email","telefono","in","cit","","",""), "2022-12-14T13:14:15", "SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO"));
+    /*array.push(new Post(1,new Personale(0,"narcis","neamtu","email","telefono","in","cit","","",""), "2022-12-14T13:14:15", "SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO"));
     array.push(new Post(2,new Personale(0,"narcis","neamtu","email","telefono","in","cit","","",""), "2022-12-14T13:14:15", "Ogni volta che si aggiorna la data devono aggiornarsi il personali presenti e i post della data, quando scrivi crei un oggetto lo trasformi in json e lo invii come body in una richiesta post al API così si aggiorna sulla lista"));
         array.push(new Post(1,new Personale(0,"narcis","neamtu","email","telefono","in","cit","","",""), "2022-12-14T13:14:15", "Un altro problema che porta alla perdita di esprimere o ad avere un proprio pensiero è sicuramente la paura di essere giudicati, per questo le persone con un pensiero debole finiscono ad avere una paura che portano loro a non esprimersi, non pensandola come il collettivo, anche se potrebbero avere ragione. Questo è un gravissimo problema, anche perché noi in teoria saremmo in mondo che per ASSICURARE tale libertà è stata pure creato un diritto cartaceo su di esso, allora perché queste persone hanno paura di esprimersi, questo è causato da uno dei “vantaggi” dei social media, cioè l’identità nascosta da essa(cioè una maschera) e “grazie” a ciò gli utenti possono insultare a piacere le minoranze, infatti finché sarà così l’internet, non sarà facile per le persone esprimersi senza alcun peso.Quindi, alla fine sono arrivato ad una conclusione e vorrei concludere dicendo: si, l’internet ci aiuta sempre, ma ha pur sempre delle limitazioni e quelle sono le parti umane di essa, potremmo avere delle proprie opinioni, potrebbero anche essere contrari alla collettività, ma alla fine perchè ci dovrebbe interessare l’opinione pubblica, perché dovremmo esprimere un opinione propria con persone che non conosciamo, per poi essere criticati da esse senza alcuna ragione valida? Svegliamoci! Ricordiamoci che internet ci collega anche con le persone che conosciamo, allora perché stringiamo di più la nostra relazione con loro quando abbiamo un argomento gratis, con cui possiamo discutere con loro?"));
         array.push(new Post(2,new Personale(0,"narcis","neamtu","email","telefono","in","cit","","",""), "2022-12-14T13:14:15", "SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO"));
@@ -22,7 +22,31 @@
         array.push(new Post(2,new Personale(0,"narcis","neamtu","email","telefono","in","cit","","",""), "2022-12-14T13:14:15", "SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO"));
         array.push(new Post(1,new Personale(0,"narcis","neamtu","email","telefono","in","cit","","",""), "2022-12-14T13:14:15", "SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO"));
         array.push(new Post(2,new Personale(0,"narcis","neamtu","email","telefono","in","cit","","",""), "2022-12-14T13:14:15", "SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO"));
-        array.push(new Post(3,new Personale(0,"narcis","neamtu","email","telefono","in","cit","","",""), "2022-12-14T13:14:15", "SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO"));
+        array.push(new Post(3,new Personale(0,"narcis","neamtu","email","telefono","in","cit","","",""), "2022-12-14T13:14:15", "SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO SUCA MARCO"));*/
+
+    fetch('http://localhost/cantieroni/API/Post/read_cantiere_date.php?cantiere='+encodeUriComponent()+"&ora_post="+encodeUriComponent(),{credentials: 'include'})
+            .then((response) => {
+              if(response.ok) {
+                return response.json();
+              }
+              throw new Error(response.statusText);
+            })
+            .then((data) => {
+              let array=[];
+              // Login effettuato
+              if(data.data) {
+                data.data.forEach(el => {
+                  //console.log("cantiere",el);
+                  array.push(new Cantiere(el.id, el.nome, el.indirizzo, el.citta, el.provincia, el.data_inizio, el.data_fine, el.descrizione, el.id_capocantiere));
+                });
+              }
+              setConclusi(array);
+
+
+            }).catch((err) => {
+      console.log("Cantieri/read_conclusi",err);
+    });
+
         var str="";
         var ora="";
         for(let x=0;x< array.length;x++){
