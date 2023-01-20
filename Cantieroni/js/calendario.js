@@ -2,6 +2,9 @@ const date = new Date;
 //const date1 = new Date;
 let month = date.getMonth();
 //let month1 = date1.getMonth();
+let dataprova= date.getDate();
+
+
 
 function clickCalendar(id) {
     let selector = $('#'.concat(id));
@@ -164,4 +167,6 @@ function clickCalendar(id) {
     selector.css("font-weight","bold");
 
     selectDay(new Date(date.getFullYear(), date.getMonth(), selector.text()));
+    console.log( selectDay(new Date(date.getFullYear(), date.getMonth(), selector.text())));
+    console.log(dataprova);
 }
