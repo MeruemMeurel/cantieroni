@@ -19,10 +19,12 @@ $post = new PostDB($db);
 // Get the raw posted data
 $data = json_decode(file_get_contents("php://input"));
 
+
 $post->id_utente = $data->id_utente;
-$post->ora_post =  $data->ora_post;
+$post->ora_post =  (empty($data->ora_post)?Date('Y-m-d H:i:s'):$data->ora_post);
 $post->id_cantiere = $data->id_cantiere;
 $post->descrizione = $data->descrizione;
+
 
 if ($post->create()) {
     echo json_encode(

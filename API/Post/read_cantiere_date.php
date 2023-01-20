@@ -48,6 +48,7 @@ if($num > 0){
     echo json_encode($post_arr);
 }else {
     echo json_encode(
-        array('message' => 'Nessun cantiere trovato')
+        array('data' =>[],
+            'message' => 'Nessun post trovato')
     );
 }

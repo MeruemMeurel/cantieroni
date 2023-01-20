@@ -7,7 +7,7 @@ class PostDB
 
 	public int $id;
 	public int $id_utente;
-	public $ora_post;
+	public string $ora_post;
 	public int $id_cantiere;
 	public string $descrizione;
 
@@ -35,7 +35,7 @@ class PostDB
 	}
 
     public function create(){
-        $query = 'INSERT INTO cantiere
+        $query = 'INSERT INTO post
 			SET
 			    id_utente = :id_utente,
 			    ora_post = :ora_post,
