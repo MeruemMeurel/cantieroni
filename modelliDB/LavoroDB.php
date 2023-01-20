@@ -30,13 +30,16 @@ class LavoroDB
 		return $stmt;
 	}
 
-	public function read_by_cantiere() {
+	public function read_cant_date() {
 
-		$query = "SELECT * FROM lavoro WHERE id_cantiere = :id_cantiere";
+		$this->inizio = $this->inizio.'%';
+
+		$query = "SELECT * FROM lavoro WHERE id_cantiere = :id_cantiere AND inizio LIKE :inizio";
 
 		$stmt = $this->conn->prepare($query);
 
 		$stmt->bindParam(':id_cantiere', $this->id_cantiere);
+		$stmt->bindParam(':inizio', $this->inizio);
 
 		$stmt->execute();
 

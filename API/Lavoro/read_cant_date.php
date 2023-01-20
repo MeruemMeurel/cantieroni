@@ -18,8 +18,11 @@ $lavoro = new LavoroDB($db);
 $app = isset($_GET['id_cantiere']) ? $_GET['id_cantiere'] : die();
 $lavoro->id_cantiere = $app;
 
+$app = isset($_GET['inizio']) ? $_GET['inizio'] : die();
+$lavoro->inizio = $app;
+
 //Query Lavoro
-$result = $lavoro->read_by_cantiere();
+$result = $lavoro->read_cant_date();
 
 $num = $result->rowCount();
 
