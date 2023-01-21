@@ -17,7 +17,10 @@ function prevConclusiSetup() {
     }
 }
 
-
+function openCantiere(id) {
+    window.location = '/cantieroni-1/Cantieroni/interfacce/cantiere.html?id='+id;
+    return false;
+}
 
 //Aggiunta dei cantieri nel relativo html
 function setConclusi(cantConclusi) {
@@ -25,7 +28,7 @@ function setConclusi(cantConclusi) {
     var strCards = "";
     for (let i = 0; i < cantConclusi.length; i++) {
         let cantiere=cantConclusi[i];        
-        strCards += '<div class="card"><img class="card-img-top" src="../img/cantiere.jpg" alt="Card image cap"><button class="pennaPerEdit"><div class="figlioProva"><img class="pennaEditCantiere" src="../img/penna edit cantiere2.png" onclick="mostraInserimentoEdit('+cantiere.id+')"></button><div class="card-body"><p class="card-text">'+cantiere.nome+'</p></div></div>';        
+        strCards += '<div class="card"><img class="card-img-top" onclick="openCantiere('+cantiere.id+')" src="../img/cantiere.jpg" alt="Card image cap"><button class="pennaPerEdit"><div class="figlioProva"><img class="pennaEditCantiere" src="../img/penna edit cantiere2.png" onclick="mostraInserimentoEdit('+cantiere.id+')"></button><div class="card-body"><p class="card-text">'+cantiere.nome+'</p></div></div>';
     }
     document.getElementById("listaConclusi").innerHTML += strCards;
 }
