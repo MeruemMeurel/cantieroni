@@ -5,7 +5,18 @@
           <textarea class="post-textarea" name="resoconto" rows="6" cols="10" placeholder="Scrivi qualcosa..." id="nuovo_post" onInput="this.parentNode.dataset.replicatedValue = this.value" required></textarea>
         </div> -->
         <textarea class="textarea post-textarea" role="textbox" id="nuovo_post"></textarea>
+        <script>
+          const textArea = document.querySelector('textarea')
 
+
+          function handleResize(){
+            this.style.height = 'auto'
+            this.style.height = this.scrollHeight + 'px'
+          }
+
+
+          textArea.addEventListener('input', handleResize)
+        </script>
         <!-- <input type="file" id="files" name="files" multiple> -->
         <input class="post-invio" type="submit" value="Manda" name="invio" onclick="return aggiungipost();">
 
@@ -20,7 +31,6 @@ function aggiungipost() {
       var id_cantiere = url.searchParams.get("id");       
       let nuovo_post=document.getElementById('nuovo_post');
       let testo=nuovo_post.value;      
-      
       if(testo.length<1) return false;
 
       let obj = {

@@ -260,7 +260,7 @@ label {
     margin: 40px 8px 10px 8px;
 }
 
-.pennaPerEdit {
+#pennaPerEdit {
     width: 33px;
     height: 33px;
     top: 5px;
@@ -270,7 +270,7 @@ label {
     background: transparent;
 }
 
-.pennaPerEdit:focus{
+#pennaPerEdit:focus{
     outline: none;
 }
 
