@@ -21,7 +21,7 @@
 </div>
 <script>
 
-    let array=[];
+    
     fetch('http://localhost/cantieroni/API/Lavoro/read_not_presenti.php?id_cantiere='+encodeURIComponent(1)+
         "&inizio="+encodeURIComponent('2020-01-20'),{credentials: 'include'})
         .then((response) => {
@@ -31,6 +31,7 @@
             throw new Error(response.statusText);
         })
         .then((data) => {
+            let array=[];
             data.data.forEach(
                 el => {
                     array.push(new Personale(el.id,el.nome,el.cognome,el.email,el.telefono,el.indirizzo,el.citta,el.provincia,el.id_ruolo,el.id_azienda,el.img_path));
