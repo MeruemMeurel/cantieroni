@@ -121,9 +121,9 @@ function caricaCantiere(id){
 }
 
 
-function caricaCommenti(id,day){
+function caricaCommenti(id_cantiere,day){
     // Legge il cantiere
-    fetch('http://localhost/cantieroni/API/Post/read_cantiere_date.php?id_cantiere='+id+'&ora_post='+day,{credentials: 'include'})
+    fetch('http://localhost/cantieroni/API/Post/read_cantiere.php?id_cantiere='+id_cantiere,{credentials: 'include'})
     .then((response) => {
         if(response.ok) {   
             return response.json();
@@ -131,12 +131,15 @@ function caricaCommenti(id,day){
         throw new Error(response.statusText);
     })
     .then((data) => {   
-            datiCommenti=data.data;        
+            datiCommenti=data.data;   
+            let str='';     
             for(let i=0;i< datiCommenti.length;i++){
                 let comm=datiCommenti[i];
-                str+='<div class="post-resoconto"><div class="resoconto-head"><table><tr><td><img class="fotoprof-resoconto" align="left" src="../img/immagine_profilo_default.png" >&nbsp;'+comm.utente.nome +'&nbsp;'+comm.utente.cognome+'<br>&nbsp;'+comm.ora_post.substr(11,5)+'</td></tr></table></div><div>'+comm.descrizione+'</div></div>';
+                // console.log(comm);
+                str+='<div class="post-resoconto"><div class="resoconto-head"><table><tr><td><img class="fotoprof-resoconto" align="left" src="../img/immagine_profilo_default.png" >&nbsp;'+comm.username; 
+                str+='<br>&nbsp;'+comm.ora_post+'</td></tr></table></div><div style="padding: 4px 4px 4px 4px;">'+comm.descrizione+'</div></div>';
             }
-  
+            document.getElementById("bodylistaresoconti").innerHTML = str;
     }).catch((err) => {
         console.log("Cantieri/read_in_corso",err);
     });
@@ -144,6 +147,7 @@ function caricaCommenti(id,day){
 
 function caricaPresenze(id,day){
     // Legge il cantiere
+    //fetch('http://localhost/cantieroni/API/Post/read_cantiere_date.php?id_cantiere='+id+'&ora_post='+day,{credentials: 'include'})
     fetch('http://localhost/cantieroni/API/Post/read_cantiere_date.php?id_cantiere='+id+'&ora_post='+day,{credentials: 'include'})
     .then((response) => {
         if(response.ok) {   
