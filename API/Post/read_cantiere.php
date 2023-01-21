@@ -15,9 +15,40 @@ $db = $database->connect();
 $post = new PostDB($db);
 
 //Get ID
-$app = isset($_GET['id']) ? $_GET['id'] : die();
-$post->id = $app;
+$app = isset($_GET['id_cantiere']) ? $_GET['id_cantiere'] : die();
+$post->id_cantiere = $app;
 
-//Make JSON
-print_r(json_encode($post->read_cantiere()));
-?>
+
+//Query cantiere
+$result = $post->read_from_cantiere();
+
+$num = $result->rowCount();
+
+//Controllo i risultati della query
+if($num > 0){
+    //Array Cantiere
+    $post_arr = array();
+    $post_arr['data'] = array();
+
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)){
+        extract($row);
+        // var_dump($row);
+        $post_item = array(
+            'id' => $id,
+            'id_utente' => $id_utente,
+            'ora_post' => $ora_post,
+            'descrizione' => $descrizione,
+            'id_cantiere' => $id_cantiere,
+            'username' => $username,
+        );
+
+        array_push($post_arr['data'],$post_item);
+    }
+
+    echo json_encode($post_arr);
+}else {
+    echo json_encode(
+        array('data' =>[],
+            'message' => 'Nessun post trovato')
+    );
+}

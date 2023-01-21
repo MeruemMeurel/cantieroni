@@ -158,6 +158,31 @@ class PostDB
         return $stmt;
     }
 
+
+    public function read_from_cantiere() {
+        $query="SELECT * FROM post as P
+			JOIN utente as U ON U.id = P.id_utente
+			WHERE 
+				id_cantiere = :id_cantiere
+			ORDER BY ora_post DESC
+			";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(':id_cantiere', $this->id_cantiere);
+        
+		$stmt->execute();
+
+        /*$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $this->id_utente = $row['id_utente'];
+        $this->ora_post = $row['ora_post'];
+        $this->descrizione = $row['descrizione'];
+        $this->id_cantiere = $row['id_cantiere'];*/
+        return $stmt;
+    }
+
+
 	/**
 	 * Restituisce il nome del cantiere dall'id del post
 	 * @return mixed
